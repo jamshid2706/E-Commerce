@@ -8,14 +8,13 @@ use App\Models\Category;
 class CategoryController extends Controller
 {
     public function index(){
-        dd('CategoryController Index ');
         $categories = Category::all();
-        return view('admin.category.index', [$categories]);
+        return view('admin.category.index', compact('categories'));
     }
 
     public function show($id){
-        dd($id);
-        $post = Category::find($id);
-        return view('admin.category.show',[$post]);
+        $selected = Category::find($id);
+        $categories = Category::all();
+        return view('admin.category.show',compact('categories', 'selected'));
 }
 }

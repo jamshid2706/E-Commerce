@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\ClientController;
 use App\Http\Controllers\admin\IndexController;
+use App\Http\Controllers\admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,5 +26,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'categories'], function () {
         Route::get('/', [CategoryController::class, 'index'])->name('admin.category');
         Route::get('/{id}', [CategoryController::class, 'show'])->name('admin.category.show');
+    });
+    Route::group(['prefix'=>'products'], function () {
+       Route::get('/', [ProductController::class, 'index'])->name('admin.products');
+    });
+    Route::group(['prefix'=>'clients'], function () {
+       Route::get('/', [ClientController::class, 'index'])->name('admin.clients');
     });
 });
