@@ -4,7 +4,8 @@
     @can('product_create')
         <div class="grid grid-cols-12 gap-6 mt-5">
             <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-                <a class="btn btn-primary shadow-md mr-2" {{--href="{{ route('admin.products.create') }}" --}} control-id="ControlID-2">Add New Product</a>
+                <a class="btn btn-primary shadow-md mr-2"
+                   {{--href="{{ route('admin.products.create') }}" --}} control-id="ControlID-2">Add New Product</a>
                 <div class="dropdown">
                     <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown"
                             control-id="ControlID-3">
@@ -21,47 +22,19 @@
                         <ul class="dropdown-content">
                             <li>
                                 <a href="" class="dropdown-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                         stroke-linecap="round" stroke-linejoin="round" icon-name="printer"
-                                         data-lucide="printer" class="lucide lucide-printer w-4 h-4 mr-2">
-                                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
-                                        <path
-                                            d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"></path>
-                                        <rect x="6" y="14" width="12" height="8"></rect>
-                                    </svg>
+                                    <i data-lucide="printer"></i>
                                     Print
                                 </a>
                             </li>
                             <li>
                                 <a href="" class="dropdown-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                         stroke-linecap="round" stroke-linejoin="round" icon-name="file-text"
-                                         data-lucide="file-text" class="lucide lucide-file-text w-4 h-4 mr-2">
-                                        <path
-                                            d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"></path>
-                                        <polyline points="14 2 14 8 20 8"></polyline>
-                                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                                        <line x1="10" y1="9" x2="8" y2="9"></line>
-                                    </svg>
+                                    <i data-lucide="file-text"></i>
                                     Export to Excel
                                 </a>
                             </li>
                             <li>
                                 <a href="" class="dropdown-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                         stroke-linecap="round" stroke-linejoin="round" icon-name="file-text"
-                                         data-lucide="file-text" class="lucide lucide-file-text w-4 h-4 mr-2">
-                                        <path
-                                            d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"></path>
-                                        <polyline points="14 2 14 8 20 8"></polyline>
-                                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                                        <line x1="10" y1="9" x2="8" y2="9"></line>
-                                    </svg>
+                                    <i data-lucide="file-text"></i>
                                     Export to PDF
                                 </a>
                             </li>
@@ -73,14 +46,7 @@
                     <div class="w-56 relative text-slate-500">
                         <input type="text" class="form-control w-56 box pr-10" placeholder="Search..."
                                control-id="ControlID-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                             stroke-linejoin="round" icon-name="search"
-                             class="lucide lucide-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"
-                             data-lucide="search">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
+                        <i data-lucide="search"></i>
                     </div>
                 </div>
             </div>
@@ -88,7 +54,8 @@
     @endcan
     <div class="grid grid-cols-12 gap-6 mt-5">
         @foreach($products as $key => $product)
-            <div class="intro-y col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 shadow-lg border-black btn-rounded-dark">
+            <div
+                class="intro-y col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 shadow-lg border-black btn-rounded-dark">
                 <div class="box border-b-2 border-l-2 border-opacity-10 border-black">
                     <div class="p-5">
                         <div
@@ -106,35 +73,16 @@
                         </div>
                         <div class="text-slate-600 dark:text-slate-500 mt-5">
                             <div class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" icon-name="link" data-lucide="link"
-                                     class="lucide lucide-link w-4 h-4 mr-2">
-                                    <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"></path>
-                                    <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"></path>
-                                </svg>
+                                <i data-lucide="link"></i>
                                 Price: {{ $product->buy ?? '' }}
                                 Price: {{ $product->sell ?? '' }}
                             </div>
                             <div class="flex items-center mt-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" icon-name="layers" data-lucide="layers"
-                                     class="lucide lucide-layers w-4 h-4 mr-2">
-                                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                                    <polyline points="2 17 12 22 22 17"></polyline>
-                                    <polyline points="2 12 12 17 22 12"></polyline>
-                                </svg>
+                                <i data-lucide="layers"></i>
                                 Remaining Stock: {{ $product->stock ?? '' }}
                             </div>
                             <div class="flex items-center mt-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" icon-name="check-square" data-lucide="check-square"
-                                     class="lucide lucide-check-square w-4 h-4 mr-2">
-                                    <polyline points="9 11 12 14 22 4"></polyline>
-                                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
-                                </svg>
+                                <i data-lucide="check-square"></i>
                                 Status: Active
                             </div>
                         </div>
@@ -142,37 +90,17 @@
                     <div
                         class="flex justify-center lg:justify-end items-center p-5 border-t border-slate-200/60 dark:border-darkmode-400">
                         <a class="flex items-center text-primary mr-auto" {{--href="{{ route('admin.products.show', $product->id) }}"--}}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round" icon-name="eye" data-lucide="eye"
-                                 class="lucide lucide-eye w-4 h-4 mr-1">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
+                            <i data-lucide="eye"></i>
                             Preview
                         </a>
                         <a class="flex items-center mr-3" {{--href="{{ route('admin.products.edit', $product->id) }}"--}}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round" icon-name="check-square" data-lucide="check-square"
-                                 class="lucide lucide-check-square w-4 h-4 mr-1">
-                                <polyline points="9 11 12 14 22 4"></polyline>
-                                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
-                            </svg>
+                            <i data-lucide="check-square"></i>
                             Edit
                         </a>
-                        <a class="flex items-center text-danger" {{--href="{{ route('admin.products.destroy', $product->id) }}"--}} data-tw-toggle="modal"
+                        <a class="flex items-center text-danger"
+                           {{--href="{{ route('admin.products.destroy', $product->id) }}"--}} data-tw-toggle="modal"
                            data-tw-target="#delete-confirmation-modal">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round" icon-name="trash-2" data-lucide="trash-2"
-                                 class="lucide lucide-trash-2 w-4 h-4 mr-1">
-                                <polyline points="3 6 5 6 21 6"></polyline>
-                                <path
-                                    d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
-                                <line x1="10" y1="11" x2="10" y2="17"></line>
-                                <line x1="14" y1="11" x2="14" y2="17"></line>
-                            </svg>
+                            <i data-lucide="trash"></i>
                             Delete
                         </a>
                     </div>
