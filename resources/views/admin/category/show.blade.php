@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title') | Category@endsection
+@section('title') | Category @endsection
 @section('content')
     <h2 class="intro-y text-lg font-medium mt-10">Categories</h2>
     @can('client_create')

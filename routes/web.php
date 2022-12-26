@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ClientController;
 use App\Http\Controllers\admin\IndexController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,13 +19,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [IndexController::class, 'index'])->name('admin.home');
     Route::group(['prefix' => 'categories'], function () {
-        Route::get('/', function (){return redirect('/admin/categories/1');})->name('admin.category');
+        Route::get('/', function (){return redirect('/admin/categories/1');})->name('admin.categories');
         Route::get('/{id}', [CategoryController::class, 'show'])->name('admin.category.show');
     });
     Route::group(['prefix'=>'products'], function () {
@@ -33,8 +34,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix'=>'clients'], function () {
        Route::get('/', [ClientController::class, 'index'])->name('admin.clients');
     });
+    Route::group(['prefix'=>'sales'], function () {
+       Route::get('/', [SalesController::class, 'index'])->name('admin.sales');
+    });
 });
 
 Route::get('/test', function () {
-    return view('index');
+    return view('tests.accordion-table');
 });

@@ -12,8 +12,8 @@
 @include('admin.partials.top-menu')
 <div class="flex overflow-hidden">
     @include('admin.partials.menu')
-    <div id="div1" class="content">
-        @yield('content')
+    <div class="content">
+            @yield('content')
     </div>
 </div>
 @yield('scripts')
