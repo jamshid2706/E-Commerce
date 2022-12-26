@@ -24,7 +24,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [IndexController::class, 'index'])->name('admin.home');
     Route::group(['prefix' => 'categories'], function () {
-        Route::get('/', [CategoryController::class, 'index'])->name('admin.category');
+        Route::get('/', function (){return redirect('/admin/categories/1');})->name('admin.category');
         Route::get('/{id}', [CategoryController::class, 'show'])->name('admin.category.show');
     });
     Route::group(['prefix'=>'products'], function () {
@@ -33,4 +33,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix'=>'clients'], function () {
        Route::get('/', [ClientController::class, 'index'])->name('admin.clients');
     });
+});
+
+Route::get('/test', function () {
+    return view('index');
 });

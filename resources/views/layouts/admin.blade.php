@@ -2,17 +2,17 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link href="" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> E - Commerce</title>
+    <title> Royal @yield('title')</title>
     <link rel="stylesheet" href="{{ asset('/css/app2.css') }}"/>
+    <link rel="icon" type="image/icon" href="/svgexport-13.svg">
 </head>
 <body>
 @include('admin.partials.mobile-menu')
 @include('admin.partials.top-menu')
 <div class="flex overflow-hidden">
     @include('admin.partials.menu')
-    <div class="content">
+    <div id="div1" class="content">
         @yield('content')
     </div>
 </div>

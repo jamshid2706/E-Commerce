@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title') | Category@endsection
 @section('content')
     <h2 class="intro-y text-lg font-medium mt-10">Categories</h2>
     @can('client_create')
@@ -114,15 +115,15 @@
             <div class="grid grid-cols-12 gap-5 mt-5">
                 @foreach($categories as $key => $category)
                     @if($category->id == $selected->id)
-                        <div class="col-span-12 sm:col-span-4 2xl:col-span-3 box bg-primary p-5 cursor-pointer zoom-in">
+                        <a class="col-span-12 sm:col-span-4 2xl:col-span-3 box bg-primary p-5 cursor-pointer zoom-in">
                             <div class="font-medium text-base text-white">{{ $category->title }}</div>
                             <div class="text-white text-opacity-80 dark:text-slate-500">{{ count($category->products) }} {{ count($category->products) == 1 ? 'Item' : 'Items'}}</div>
-                        </div>
+                        </a>
                     @else
-                        <div class="col-span-12 sm:col-span-4 2xl:col-span-3 box p-5 cursor-pointer zoom-in">
+                        <a href="/admin/categories/{{ $category->id }}" class="col-span-12 sm:col-span-4 2xl:col-span-3 box p-5 cursor-pointer zoom-in">
                             <div class="font-medium text-base">{{ $category->title }}</div>
                             <div class="text-slate-500">{{ count($category->products) }} {{ count($category->products) == 1 ? 'Item' : 'Items'}}</div>
-                        </div>
+                        </a>
                     @endif
                     {{--<div id="{{$category->id}}" class="{{ $category->id == $selected->id ? "col-span-12 sm:col-span-4 2xl:col-span-3 box p-5 cursor-pointer zoom-in" : "col-span-12 sm:col-span-4 2xl:col-span-3 box bg-primary p-5 cursor-pointer zoom-in" }}">
                         <div class="font-medium text-base">{{ $category->title ?? '' }}</div>
