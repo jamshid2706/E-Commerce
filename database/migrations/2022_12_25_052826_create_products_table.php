@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('buy');
             $table->integer('sell');
             $table->integer('stock');
-            $table->integer('category_id');
+            $table->unsignedBigInteger('category_id');
             $table->timestamps();
             $table->softDeletes();
 
