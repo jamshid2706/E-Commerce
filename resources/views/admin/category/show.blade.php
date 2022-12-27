@@ -11,19 +11,18 @@
     </div>
     <!-- END: Modal Toggle -->
     <!-- BEGIN: Modal Content -->
-    <div id="static-backdrop-modal-preview" class="modal" data-tw-backdrop="static" tabindex="-1"
-         aria-hidden="true">
+    <div id="static-backdrop-modal-preview" class="modal" data-tw-backdrop="static" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body px-5 py-10">
                     <div class="text-left">
-                        <div>
+                        <form action="{{ route('admin.category.store') }}" method="post">
                             <label for="vertical-form-1" class="form-label">Category Name</label>
-                            <input id="vertical-form-1" type="text" class="form-control"
+                            <input id="vertical-form-1" type="text" class="form-control" name="title"
                                    placeholder="Category Name">
-                        </div>
-                        <button class="btn btn-secondary mt-5 w-24 mr-2" data-tw-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary w-24 text-">Ok</button>
+                            <button class="btn btn-secondary mt-5 w-24 mr-2" data-tw-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary w-24 text-">Ok</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -156,11 +155,6 @@
                                 class="text-slate-500">{{ count($category->products) }} {{ count($category->products) == 1 ? 'Item' : 'Items'}}</div>
                         </a>
                     @endif
-                    {{--<div id="{{$category->id}}" class="{{ $category->id == $selected->id ? "col-span-12 sm:col-span-4 2xl:col-span-3 box p-5 cursor-pointer zoom-in" : "col-span-12 sm:col-span-4 2xl:col-span-3 box bg-primary p-5 cursor-pointer zoom-in" }}">
-                        <div class="font-medium text-base">{{ $category->title ?? '' }}</div>
-                        <div class="text-slate-500">5 Items</div>
-                    </div>
---}}
                 @endforeach
             </div>
             <div class="grid grid-cols-12 gap-5 mt-5 pt-5 border-t">
