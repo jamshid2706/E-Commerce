@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\IndexController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\SalesController;
 use App\Models\Sale;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,3 +51,5 @@ Route::get('/test', function () {
 
     //return view('tests.accordion-table');
 });
+
+Auth::routes();
