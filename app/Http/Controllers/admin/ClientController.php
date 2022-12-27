@@ -7,8 +7,15 @@ use App\Models\Client;
 
 class ClientController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $clients = Client::all();
         return view('admin.client.index', compact('clients'));
+    }
+
+    public function create()
+    {
+        $clients = Client::all();
+        return view('admin.clients.index', compact('clients'));
     }
 }

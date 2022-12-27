@@ -7,14 +7,22 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $categories = Category::all();
         return view('admin.category.index', compact('categories'));
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $selected = Category::find($id);
         $categories = Category::all();
-        return view('admin.category.show',compact('categories', 'selected'));
-}
+        return view('admin.category.show', compact('categories', 'selected'));
+    }
+
+    public function create()
+    {
+        $categories = Category::all();
+        return view('admin.category.show', compact('categories'));
+    }
 }
