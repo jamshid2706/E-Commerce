@@ -16,9 +16,7 @@
         <div id="faq-accordion-2" class="accordion accordion-boxed">
             <div class="accordion-item">
                 <div id="faq-accordion-content-5" class="accordion-header">
-                    <button class="accordion-button" type="button" data-tw-toggle="collapse" data-tw-target="#faq-accordion-collapse-5" aria-expanded="true" aria-controls="faq-accordion-collapse-5">
-                        Order number | Sold to | Amount
-                    </button>
+                    <button class="accordion-button" type="button" data-tw-toggle="collapse" data-tw-target="#faq-accordion-collapse-5" aria-expanded="true" aria-controls="faq-accordion-collapse-5">Order number | Sold to | Amount</button>
                 </div>
                 <div id="faq-accordion-collapse-5" class="accordion-collapse collapse show" aria-labelledby="faq-accordion-content-5" data-tw-parent="#faq-accordion-2">
                     <div class="accordion-body text-slate-600 dark:text-slate-500 leading-relaxed">

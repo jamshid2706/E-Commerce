@@ -22,6 +22,9 @@ return new class extends Migration
             $table->unsignedBigInteger('total');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index('product_id', 'product_sale_idx');
+            $table->foreign('product_id', 'product_sale_fk')->on('products')->references('id');
         });
     }
 

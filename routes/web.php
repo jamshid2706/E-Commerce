@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\ClientController;
 use App\Http\Controllers\admin\IndexController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\SalesController;
+use App\Models\Sale;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,5 +41,11 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('/test', function () {
-    return view('tests.accordion-table');
+
+    $sales = Sale::all();
+    foreach ($sales as $sale){
+        dump($sale->products);
+    }
+
+    //return view('tests.accordion-table');
 });
