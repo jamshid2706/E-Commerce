@@ -1,6 +1,65 @@
 @extends('layouts.admin')
 @section('content')
     <h2 class="intro-y text-lg font-medium mt-5">Product Grid</h2>
+    <!-- BEGIN: Modal Toggle -->
+    <div class="my-4">
+        <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#static-backdrop-modal-preview"
+           class="btn btn-primary">Add Products</a>
+    </div>
+    <!-- END: Modal Toggle -->
+    <!-- BEGIN: Modal Content -->
+    <div id="static-backdrop-modal-preview" class="modal" data-tw-backdrop="static" tabindex="-1"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body px-5 py-10">
+                    <div class="text-left">
+                        <form action="/file-upload" class="dropzone mt-3">
+                            <div class="fallback">
+                                <input name="file" type="file" multiple/>
+                            </div>
+                            <div class="dz-message" data-dz-message>
+                                <div class="text-lg font-medium">Drop files here or click to upload.</div>
+                                {{--                                <div class="text-slate-500">--}}
+                                {{--                                    This is just a demo dropzone. Selected files are <span--}}
+                                {{--                                        class="font-medium">not</span> actually uploaded.--}}
+                                {{--                                </div>--}}
+                            </div>
+                        </form>
+                        <div>
+                            <label for="vertical-form-1" class="form-label">Product Title</label>
+                            <input id="vertical-form-1" type="text" class="form-control"
+                                   placeholder="Product Title">
+                        </div>
+                        <div class="mt-3">
+                            <label for="vertical-form-2" class="form-label">Price</label>
+                            <input id="vertical-form-2" type="text" class="form-control" placeholder="Price">
+                        </div>
+                        <div class="mt-3">
+                            <label for="vertical-form-3" class="form-label">Stock</label>
+                            <input id="vertical-form-3" type="text" class="form-control" placeholder="Stock">
+                        </div>
+                        <label for="vertical-form-4" class="form-label mt-3">Category Id</label>
+                        <select class="tom-select w-full">
+                            <option value="1" disabled>Tanlang</option>
+                            <option value="2">Category Id</option>
+                        </select>
+                        <div class="intro-y col-span-12 sm:col-span-6 mt-3">
+                            <label for="comment" class="form-label w-full flex flex-col sm:flex-row">
+                                Product Description
+                                <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Required, at least 5 characters</span>
+                            </label>
+                            <textarea id="comment" class="form-control" name="comment" placeholder="Type your comments"
+                                      minlength="5">test</textarea>
+                        </div>
+                        <button class="btn btn-secondary mt-5 w-24 mr-2" data-tw-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary w-24 text-">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Modal Content -->
     @can('product_create')
         <div class="grid grid-cols-12 gap-6 mt-5">
             <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">

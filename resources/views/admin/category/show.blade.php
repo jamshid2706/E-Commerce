@@ -1,7 +1,35 @@
 @extends('layouts.admin')
-@section('title') | Category @endsection
+@section('title')
+    | Category
+@endsection
 @section('content')
     <h2 class="intro-y text-lg font-medium mt-10">Categories</h2>
+    <!-- BEGIN: Modal Toggle -->
+    <div class="my-4">
+        <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#static-backdrop-modal-preview"
+           class="btn btn-primary">Add Categories</a>
+    </div>
+    <!-- END: Modal Toggle -->
+    <!-- BEGIN: Modal Content -->
+    <div id="static-backdrop-modal-preview" class="modal" data-tw-backdrop="static" tabindex="-1"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body px-5 py-10">
+                    <div class="text-left">
+                        <div>
+                            <label for="vertical-form-1" class="form-label">Category Name</label>
+                            <input id="vertical-form-1" type="text" class="form-control"
+                                   placeholder="Category Name">
+                        </div>
+                        <button class="btn btn-secondary mt-5 w-24 mr-2" data-tw-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary w-24 text-">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Modal Content -->
     @can('client_create')
         <div class="grid grid-cols-12 gap-6 mt-5">
             <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
@@ -117,12 +145,15 @@
                     @if($category->id == $selected->id)
                         <a class="col-span-12 sm:col-span-4 2xl:col-span-3 box bg-primary p-5 cursor-pointer zoom-in">
                             <div class="font-medium text-base text-white">{{ $category->title }}</div>
-                            <div class="text-white text-opacity-80 dark:text-slate-500">{{ count($category->products) }} {{ count($category->products) == 1 ? 'Item' : 'Items'}}</div>
+                            <div
+                                class="text-white text-opacity-80 dark:text-slate-500">{{ count($category->products) }} {{ count($category->products) == 1 ? 'Item' : 'Items'}}</div>
                         </a>
                     @else
-                        <a href="/admin/categories/{{ $category->id }}" class="col-span-12 sm:col-span-4 2xl:col-span-3 box p-5 cursor-pointer zoom-in">
+                        <a href="/admin/categories/{{ $category->id }}"
+                           class="col-span-12 sm:col-span-4 2xl:col-span-3 box p-5 cursor-pointer zoom-in">
                             <div class="font-medium text-base">{{ $category->title }}</div>
-                            <div class="text-slate-500">{{ count($category->products) }} {{ count($category->products) == 1 ? 'Item' : 'Items'}}</div>
+                            <div
+                                class="text-slate-500">{{ count($category->products) }} {{ count($category->products) == 1 ? 'Item' : 'Items'}}</div>
                         </a>
                     @endif
                     {{--<div id="{{$category->id}}" class="{{ $category->id == $selected->id ? "col-span-12 sm:col-span-4 2xl:col-span-3 box p-5 cursor-pointer zoom-in" : "col-span-12 sm:col-span-4 2xl:col-span-3 box bg-primary p-5 cursor-pointer zoom-in" }}">
@@ -133,7 +164,7 @@
                 @endforeach
             </div>
             <div class="grid grid-cols-12 gap-5 mt-5 pt-5 border-t">
-                    @foreach($selected->products as $product)
+                @foreach($selected->products as $product)
                     <div class="intro-y col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3">
                         <div class="box">
                             <div class="p-5">
@@ -152,7 +183,8 @@
                                 </div>
                                 <div class="text-slate-600 dark:text-slate-500 mt-5">
                                     <div class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 24 24"
                                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                              stroke-linejoin="round" icon-name="link" data-lucide="link"
                                              class="lucide lucide-link w-4 h-4 mr-2">
@@ -163,7 +195,8 @@
                                         Price: {{ $product->sell ?? '' }}
                                     </div>
                                     <div class="flex items-center mt-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 24 24"
                                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                              stroke-linejoin="round" icon-name="layers" data-lucide="layers"
                                              class="lucide lucide-layers w-4 h-4 mr-2">
@@ -174,7 +207,8 @@
                                         Remaining Stock: {{ $product->stock ?? '' }}
                                     </div>
                                     <div class="flex items-center mt-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 24 24"
                                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                              stroke-linejoin="round" icon-name="check-square" data-lucide="check-square"
                                              class="lucide lucide-check-square w-4 h-4 mr-2">
@@ -207,7 +241,8 @@
                                     </svg>
                                     Edit
                                 </a>
-                                <a class="flex items-center text-danger" {{--href="{{ route('admin.products.destroy', $product->id) }}"--}} data-tw-toggle="modal"
+                                <a class="flex items-center text-danger"
+                                   {{--href="{{ route('admin.products.destroy', $product->id) }}"--}} data-tw-toggle="modal"
                                    data-tw-target="#delete-confirmation-modal">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -244,11 +279,12 @@
 @section('scripts')
     @parent
     <script>
-        $(".category").click(function() {
+        $(".category").click(function () {
             alert("hey");
-            $( this ).slideUp();
+            $(this).slideUp();
         });
-        $(function () {c
+        $(function () {
+            c
             let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
             @can('category_delete')
             let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'

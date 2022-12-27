@@ -35,7 +35,7 @@
             <a href="{{ route('admin.sales') }}"
                class="side-menu side-menu{{ request()->is("admin/sales") || request()->is("admin/sales/*") ? "--active" : "" }}">
                 <div class="side-menu__icon"><i data-lucide="clipboard"></i></div>
-                <div class="side-menu__title">Clients</div>
+                <div class="side-menu__title">Sales</div>
             </a>
         </li>
     </ul>
