@@ -10,7 +10,13 @@
             <div id="faq-accordion-content-5" class="accordion-header">
                 <button class="accordion-button" type="button" data-tw-toggle="collapse"
                         data-tw-target="#faq-accordion-collapse-5" aria-expanded="true"
-                        aria-controls="faq-accordion-collapse-5">Sale Number: {{ $sale->id }}</button>
+                        aria-controls="faq-accordion-collapse-5">
+                    <div class="9">
+                        <h2>Sale Number: {{ $sale->id }}</h2>
+                        <h2>Sold to : {{$sale->client->name}}</h2>
+                        <h2>Amount : {{ $sale->amount }}</h2>
+                    </div>
+                </button>
             </div>
             <div id="faq-accordion-collapse-5" class="accordion-collapse collapse"
                  aria-labelledby="faq-accordion-content-5" data-tw-parent="#faq-accordion-2">

@@ -28,6 +28,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'categories'], function () {
         Route::get('/', function (){return redirect('/admin/categories/1');})->name('admin.categories');
         Route::get('/{id}', [CategoryController::class, 'show'])->name('admin.category.show');
+        Route::post('/store', [CategoryController::class, 'store'])->name('admin.category.store');
     });
     Route::group(['prefix'=>'products'], function () {
        Route::get('/', [ProductController::class, 'index'])->name('admin.products');
@@ -44,7 +45,7 @@ Route::get('/test', function () {
 
     $sales = Sale::all();
     foreach ($sales as $sale){
-        dump($sale->products);
+        dump($sale->client->name);
     }
 
     //return view('tests.accordion-table');
