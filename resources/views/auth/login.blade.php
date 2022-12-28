@@ -14,7 +14,7 @@
                     </a>
                     <div class="my-auto">
                         <img alt="Midone - HTML Admin Template" class="-intro-x w-1/2 -mt-16"
-                             src="http://enigma.left4code.com/dist/images/illustration.svg">
+                             src="/svgexport-13.svg">
                         <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">A few more clicks to <br> sign
                             in to your account.</div>
                     </div>

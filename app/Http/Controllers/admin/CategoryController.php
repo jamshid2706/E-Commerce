@@ -21,8 +21,10 @@ class CategoryController extends Controller
         return view('admin.category.show', compact('categories', 'selected'));
     }
 
-    public function store() {
-        dd(1111111111111);
+    public function store(CategoryRequest $request) {
+        $data = $request->validated();
+        dd($data);
+        //return $data;
         //Category::create($request);
     }
 

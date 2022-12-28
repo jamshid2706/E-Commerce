@@ -17,6 +17,8 @@
                 <div class="modal-body px-5 py-10">
                     <div class="text-left">
                         <form action="{{ route('admin.category.store') }}" method="post">
+                            @csrf
+                            @method('post')
                             <label for="vertical-form-1" class="form-label">Category Name</label>
                             <input id="vertical-form-1" type="text" class="form-control" name="title"
                                    placeholder="Category Name">
