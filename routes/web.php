@@ -36,6 +36,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     });
     Route::group(['prefix'=>'clients'], function () {
        Route::get('/', [ClientController::class, 'index'])->name('admin.clients');
+       Route::post('/store', [ClientController::class, 'store'])->name('admin.clients.store');
     });
     Route::group(['prefix'=>'sales'], function () {
        Route::get('/', [SalesController::class, 'index'])->name('admin.sales');
