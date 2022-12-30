@@ -27,26 +27,31 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/', [IndexController::class, 'index'])->name('admin.home');
     Route::group(['prefix' => 'categories'], function () {
-        Route::get('/', function (){return redirect('/admin/categories/1');})->name('admin.categories');
+        Route::get('/', function () {
+            return redirect('/admin/categories/1');
+        })->name('admin.categories');
         Route::get('/{id}', [CategoryController::class, 'show'])->name('admin.category.show');
         Route::post('/store', [CategoryController::class, 'store'])->name('admin.category.store');
     });
-    Route::group(['prefix'=>'products'], function () {
-       Route::get('/', [ProductController::class, 'index'])->name('admin.products');
+    Route::group(['prefix' => 'products'], function () {
+        Route::get('/', [ProductController::class, 'index'])->name('admin.products');
     });
-    Route::group(['prefix'=>'clients'], function () {
-       Route::get('/', [ClientController::class, 'index'])->name('admin.clients');
-       Route::post('/store', [ClientController::class, 'store'])->name('admin.clients.store');
+    Route::group(['prefix' => 'clients'], function () {
+        Route::get('/', [ClientController::class, 'index'])->name('admin.clients');
+        Route::post('/store', [ClientController::class, 'store'])->name('admin.clients.store');
+        Route::post('/{id}/edit', [ClientController::class, 'edit'])->name('admin.clients.edit');
+        Route::get('/{id}', [ClientController::class, 'show'])->name('admin.clients.show');
+        Route::delete('/{id}', [ClientController::class, 'destroy'])->name('admin.clients.delete');
     });
-    Route::group(['prefix'=>'sales'], function () {
-       Route::get('/', [SalesController::class, 'index'])->name('admin.sales');
+    Route::group(['prefix' => 'sales'], function () {
+        Route::get('/', [SalesController::class, 'index'])->name('admin.sales');
     });
 });
 
 Route::get('/test', function () {
 
     $sales = Sale::all();
-    foreach ($sales as $sale){
+    foreach ($sales as $sale) {
         dump($sale->products);
     }
 

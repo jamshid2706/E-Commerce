@@ -14,6 +14,12 @@ class ClientController extends Controller
         return view('admin.client.index', compact('clients'));
     }
 
+    public function show($id)
+    {
+        $client = Client::find($id);
+        return view('admin.client.show', compact('client'));
+    }
+
     public function create()
     {
         $clients = Client::all();
@@ -24,6 +30,20 @@ class ClientController extends Controller
     {
         $insertion = Client::create($request->all());
 
+        return redirect()->route('admin.clients');
+    }
+
+    public function edit(ClientRequest $request, $id)
+    {
+        $data = $request->validated();
+        $client = Client::find($id);
+        $client->update($data);
+        return redirect()->back();
+    }
+
+    public function destroy($id)
+    {
+        Client::destroy($id);
         return redirect()->route('admin.clients');
     }
 }
