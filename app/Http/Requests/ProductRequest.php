@@ -25,14 +25,16 @@ class ProductRequest extends FormRequest
     {
         return [
             'image' => [
-                'required',
+                'file'
             ],
             'title' => [
                 'required',
                 'string',
             ],
             'description' => [
-                'required'
+                'required',
+                'string',
+
             ],
             'buy' => [
                 'required',

@@ -12,21 +12,21 @@
         <div class="modal-content">
             <div class="modal-body px-5 py-10">
                 <div class="text-left">
-                    <form class="dropzone mt-3" action="{{route('admin.products.store')}}" method="post">
+                    <form class="dropzone mt-3" action="{{route('admin.products.store')}}" method="post" enctype="multipart/form-data">
+                        @method('post')
                         @csrf
                         <div class="fallback">
-                            <input name="image" type="file" multiple/>
+                            <input class="form-control" type="file" id="formFile" name="image">
                         </div>
                         <div class="dz-message" data-dz-message>
                             <div class="text-lg font-medium">Drop files here or click to upload.</div>
                             <div class="text-slate-500">
-                                <span class="font-medium">not</span> <span> actually uploaded.
-                                    This is just a demo dropzone. Selected files are </span>
+                                This is just a demo dropzone. Selected files are <span class="font-medium">not</span> actually uploaded.
                             </div>
                         </div>
                         <div>
-                            <label for="vertical-form-1" class="form-label">Product Title</label>
-                            <input id="vertical-form-1" type="text" name="title" class="form-control"
+                            <label for="title" class="form-label">Product Title</label>
+                            <input id="title" type="text" name="title" class="form-control"
                                    placeholder="Product Title" required>
                         </div>
                         <div class="mt-3">
@@ -44,7 +44,7 @@
                             <input id="vertical-form-4" type="number" name="stock" class="form-control"
                                    placeholder="Stock" required>
                         </div>
-                        <label for="vertical-form-5" class="form-label mt-3">Category Id</label>
+                        <label for="category_id" class="form-label mt-3">Category Id</label>
                         <select class="tom-select w-full" id="category_id" name="category_id">
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}">

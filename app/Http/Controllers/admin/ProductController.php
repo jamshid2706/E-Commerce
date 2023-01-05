@@ -25,8 +25,9 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
+        $data = $request->validated();
+        dd($data);
         $insertion = Product::create($request->all());
-
         return redirect()->route('admin.product');
     }
 }
