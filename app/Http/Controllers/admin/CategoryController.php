@@ -21,14 +21,21 @@ class CategoryController extends Controller
         return view('admin.category.show', compact('categories', 'selected'));
     }
 
-    public function store(CategoryRequest $request) {
-        $data = $request->validated();
-        dd($data);
-        //return $data;
-        //Category::create($request);
+    public function create()
+    {
+        $categories = Category::all();
+        return view('admin.category.create', compact('categories'));
     }
 
-    public function delete() {
+    public function store(CategoryRequest $request)
+    {
+        $insertion = Category::create($request->all());
+
+        return redirect()->route('admin.category.show');
+    }
+
+    public function delete()
+    {
 
     }
 }
