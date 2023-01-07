@@ -3,7 +3,7 @@
     <div class="h-full flex items-center">
         <!-- BEGIN: Logo -->
         <a href="/admin" class="logo -intro-x hidden md:flex xl:w-[180px] block">
-            <img class="w-6 logo__image" src="{{asset('svgexport-1.png')}}" alt="">
+            <img class="w-32 logo__image" src="{{asset('svgexport-1.png')}}" alt="">
         </a>
         <!-- END: Logo -->
         <!-- BEGIN: Breadcrumb -->
