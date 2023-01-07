@@ -10,7 +10,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body px-5 py-10">
-                    <form action="{{route('admin.clients.store')}}" method="post">
+                    <form action="{{ route('admin.clients.store') }}" method="post">
                         @csrf
                         <div class="text-left">
                             <div>

@@ -4,6 +4,8 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ClientController;
 use App\Http\Controllers\admin\IndexController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\Mobile\ClientsController;
+use App\Http\Controllers\Mobile\ProductsController;
 use App\Http\Controllers\SalesController;
 use App\Models\Sale;
 use Illuminate\Support\Facades\Auth;
@@ -28,8 +30,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/', [IndexController::class, 'index'])->name('admin.home');
     Route::group(['prefix' => 'categories'], function () {
         Route::get('/', function () {
-            return redirect('/admin/categories/1');
-        })->name('admin.categories');
+            return redirect('/admin/categories/1');})->name('admin.categories');
         Route::get('/{id}', [CategoryController::class, 'show'])->name('admin.category.show');
         Route::post('/store', [CategoryController::class, 'store'])->name('admin.category.store');
     });
@@ -47,6 +48,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::group(['prefix' => 'sales'], function () {
         Route::get('/', [SalesController::class, 'index'])->name('admin.sales');
     });
+});
+
+Route::group(['prefix'=>'app'], function () {
+    Route::get('/', function () {dd(111111111111);})->name('home');
+    Route::group(['prefix'=>'clients'], function () {
+        Route::get('/', [ClientsController::class, 'index'])->name('clients');
+        Route::post('/store', [ClientsController::class, 'store'])->name('clients.store');
+        Route::get('/{id}', [ClientsController::class, 'show'])->name('clients.show');
+    });
+    Route::group(['prefix'=>'products'], function () {
+        Route::get('/', [ProductsController::class, 'index'])->name('products');
+    });
+    Route::group(['prefix'=>'sales'], function () {
+        Route::get('/', [SalesController::class, 'index'])->name('sales');
+    });
+
 });
 
 Route::get('/test', function () {
