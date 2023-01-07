@@ -25,7 +25,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'image' => [
-                'file'
+                'required'
             ],
             'title' => [
                 'required',
@@ -34,7 +34,6 @@ class ProductRequest extends FormRequest
             'description' => [
                 'required',
                 'string',
-
             ],
             'buy' => [
                 'required',
@@ -48,6 +47,9 @@ class ProductRequest extends FormRequest
                 'required',
                 'integer',
             ],
+            'category_id' => [
+                'integer'
+            ]
         ];
     }
 }

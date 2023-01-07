@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -25,9 +26,9 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        $data = $request->validated();
-        dd($data);
-        $insertion = Product::create($request->all());
-        return redirect()->route('admin.product');
+        $data = $request->all();
+        $data['image'] = Storage::put('/images', $request['image']);
+        Product::create($data);
+        return redirect()->back();
     }
 }

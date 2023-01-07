@@ -154,38 +154,16 @@
                                 </div>
                                 <div class="text-slate-600 dark:text-slate-500 mt-5">
                                     <div class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24"
-                                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                             stroke-linejoin="round" icon-name="link" data-lucide="link"
-                                             class="lucide lucide-link w-4 h-4 mr-2">
-                                            <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"></path>
-                                            <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"></path>
-                                        </svg>
-                                        Price: {{ $product->buy ?? '' }}
-                                        Price: {{ $product->sell ?? '' }}
+                                        <i data-lucide="link" class="mr-1"></i>
+                                        Buy: {{ $product->buy ?? '' }}
+                                        Sell: {{ $product->sell ?? '' }}
                                     </div>
                                     <div class="flex items-center mt-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24"
-                                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                             stroke-linejoin="round" icon-name="layers" data-lucide="layers"
-                                             class="lucide lucide-layers w-4 h-4 mr-2">
-                                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                                            <polyline points="2 17 12 22 22 17"></polyline>
-                                            <polyline points="2 12 12 17 22 12"></polyline>
-                                        </svg>
+                                        <i data-lucide="layers" class="mr-1"></i>
                                         Remaining Stock: {{ $product->stock ?? '' }}
                                     </div>
                                     <div class="flex items-center mt-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24"
-                                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                             stroke-linejoin="round" icon-name="check-square" data-lucide="check-square"
-                                             class="lucide lucide-check-square w-4 h-4 mr-2">
-                                            <polyline points="9 11 12 14 22 4"></polyline>
-                                            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
-                                        </svg>
+                                        <i data-lucide="check-square" class="mr-1"></i>
                                         Status: Active
                                     </div>
                                 </div>
@@ -193,13 +171,7 @@
                             <div
                                 class="flex justify-center lg:justify-end items-center p-5 border-t border-slate-200/60 dark:border-darkmode-400">
                                 <a class="flex items-center text-primary mr-auto" {{--href="{{ route('admin.products.show', $product->id) }}"--}}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                         stroke-linejoin="round" icon-name="eye" data-lucide="eye"
-                                         class="lucide lucide-eye w-4 h-4 mr-1">
-                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                        <circle cx="12" cy="12" r="3"></circle>
-                                    </svg>
+                                    <i data-lucide="eye" class="mr-1"></i>
                                     Preview
                                 </a>
                                 <a class="flex items-center mr-3" {{--href="{{ route('admin.products.edit', $product->id) }}"--}}>

@@ -18,6 +18,7 @@ class Product extends Model
         'buy',
         'sell',
         'stock',
+        'category_id'
     ];
 
     public function category()
