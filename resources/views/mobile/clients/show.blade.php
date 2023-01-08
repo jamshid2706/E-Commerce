@@ -2,7 +2,7 @@
 @section('content')
     <div class="page-title d-flex mt-3">
         <div class="align-self-center">
-            <a href="{{ route('clients') }}" class="me-3 ms-0 icon icon-xxs bg-theme rounded-s shadow-m pt-2">
+            <a href="{{ route('mobile.clients') }}" class="me-3 ms-0 icon icon-xxs bg-theme rounded-s shadow-m pt-2">
                 <i class="bi bi-chevron-left color-theme font-14"></i>
             </a>
         </div>

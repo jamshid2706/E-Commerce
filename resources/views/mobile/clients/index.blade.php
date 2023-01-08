@@ -24,7 +24,7 @@
             <h4>Clients</h4>
             <div class="list-group list-custom list-group-m list-group-flush rounded-xs overflow-visible check-visited">
                 @foreach ($clients as $client)
-                    <a class="list-group-item" href="{{ route('clients.show', $client->id) }}">
+                    <a class="list-group-item" href="{{ route('mobile.clients.show', $client->id) }}">
                         <i class="bi bi-person-fill"></i>
                         <strong class="font-600">{{ $client->name }}</strong>
                     </a>

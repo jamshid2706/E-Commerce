@@ -14,19 +14,16 @@
             </div>
         </div>
     </div>
-
-
     @foreach ($products as $product)
-
         <div class="card card-style mb-3">
             <div class="content">
                 <div class="d-flex">
                     <div class="pe-3 me-auto">
                         <strong class="opacity-30 color-theme font-11">{{ $product->category->title }}</strong>
                         <h3 class="mt-n2 pb-2">{{ $product->title }}</h3>
-                        <p>
-                            Powerful icon or image columns powered by CSS3 Flexboxes.
-                        </p>
+                        <p class="m-0">Buy: {{ $product->buy }}</p>
+                        <p class="m-0">Sell: {{ $product->sell }}</p>
+                        <p class="m-0">Stock: {{ $product->stock }}</p>
                     </div>
                     <div class="pt-1 ms-auto">
                         <img src="images/pictures/6l.jpg" class="img-fluid rounded-s" width="110">
@@ -34,7 +31,5 @@
                 </div>
             </div>
         </div>
-
         @endforeach
-
 @endsection

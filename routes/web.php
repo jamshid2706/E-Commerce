@@ -49,31 +49,20 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('/', [SalesController::class, 'index'])->name('admin.sales');
     });
 });
-
+// Mobile App routes
 Route::group(['prefix'=>'app'], function () {
-    Route::get('/', function () {dd(111111111111);})->name('home');
+    Route::get('/', function () {dd(111111111111);})->name('mobile.home');
     Route::group(['prefix'=>'clients'], function () {
-        Route::get('/', [ClientsController::class, 'index'])->name('clients');
-        Route::post('/store', [ClientsController::class, 'store'])->name('clients.store');
-        Route::get('/{id}', [ClientsController::class, 'show'])->name('clients.show');
+        Route::get('/', [ClientsController::class, 'index'])->name('mobile.clients');
+        Route::post('/store', [ClientsController::class, 'store'])->name('mobile.clients.store');
+        Route::get('/{id}', [ClientsController::class, 'show'])->name('mobile.clients.show');
     });
     Route::group(['prefix'=>'products'], function () {
-        Route::get('/', [ProductsController::class, 'index'])->name('products');
+        Route::get('/', [ProductsController::class, 'index'])->name('mobile.products');
     });
     Route::group(['prefix'=>'sales'], function () {
-        Route::get('/', [SalesController::class, 'index'])->name('sales');
+        Route::get('/', [SalesController::class, 'index'])->name('mobile.sales');
     });
-
-});
-
-Route::get('/test', function () {
-
-    $sales = Sale::all();
-    foreach ($sales as $sale) {
-        dump($sale->products);
-    }
-
-    //return view('tests.accordion-table');
 });
 
 Auth::routes();

@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="content mt-0">
-        <form class="demo-animation m-0" method="post" action="{{ route('clients.store') }}">
+        <form class="demo-animation m-0" method="post" action="{{ route('mobile.clients.store') }}">
             @csrf
             @method('post')
             <div class="form-custom form-label form-icon mb-3">
