@@ -12,4 +12,19 @@ class SalesController extends Controller
         $sales = Sale::all();
         return view('mobile.sales.index', compact('sales'));
     }
+
+    public function create() {
+        return view('mobile.sales.create');
+    }
+
+    public function store()
+    {
+        dd(request()->all());
+        /*$data = request()->validate([
+            'product' =>'',
+            'price' =>'',
+            'count' =>'',
+            'amount' =>''
+        ]);*/
+    }
 }

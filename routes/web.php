@@ -6,7 +6,8 @@ use App\Http\Controllers\admin\IndexController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\Mobile\ClientsController;
 use App\Http\Controllers\Mobile\ProductsController;
-use App\Http\Controllers\SalesController;
+use App\Http\Controllers\Mobile\SalesController;
+use App\Http\Controllers\SaleController;
 use App\Models\Sale;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -47,12 +48,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::delete('/{id}', [ClientController::class, 'destroy'])->name('admin.clients.delete');
     });
     Route::group(['prefix' => 'sales'], function () {
-        Route::get('/', [SalesController::class, 'index'])->name('admin.sales');
+        Route::get('/', [SaleController::class, 'index'])->name('admin.sales');
     });
 });
 // Mobile App routes
 Route::group(['prefix'=>'app'], function () {
-    Route::get('/', function () {dd(111111111111);})->name('mobile.home');
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('mobile.home');
+
     Route::group(['prefix'=>'clients'], function () {
         Route::get('/', [ClientsController::class, 'index'])->name('mobile.clients');
         Route::post('/store', [ClientsController::class, 'store'])->name('mobile.clients.store');
@@ -60,10 +64,19 @@ Route::group(['prefix'=>'app'], function () {
     });
     Route::group(['prefix'=>'products'], function () {
         Route::get('/', [ProductsController::class, 'index'])->name('mobile.products');
+        Route::get('/create', [ProductsController::class, 'create'])->name('mobile.products.create');
+        Route::post('/store', [ProductsController::class, 'store'])->name('mobile.products.store');
+
     });
     Route::group(['prefix'=>'sales'], function () {
         Route::get('/', [SalesController::class, 'index'])->name('mobile.sales');
+        Route::get('/create', [SalesController::class, 'create'])->name('mobile.sales.create');
+        Route::post('/store', [SalesController::class, 'store'])->name('mobile.sales.store');
     });
+});
+
+Route::get('/test', function () {
+   return view('mobile.home');
 });
 
 Auth::routes();

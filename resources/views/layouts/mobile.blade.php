@@ -3,9 +3,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" type="text/css" href="fonts/bootstrap-icons.css">
-    <link rel="icon" type="image/icon" href="/svgexport-13.svg">
-    <link rel="shortcut icon" type="image/icon" href="/svgexport-13.png">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/fonts/bootstrap-icons.css') }}">
+    <link rel="icon" type="image/icon" href="{{ asset('/svgexport-13.svg') }}">
+    <link rel="shortcut icon" type="image/icon" href="{{ asset('/svgexport-13.png') }}">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover"/>
     <title>Royal | App</title>
@@ -22,16 +22,18 @@
 <div id="page" data-swup="0">
 
     @include('mobile.partials.footer-bar')
-    <div class="header-bar header-fixed header-app header-auto-show">
+    {{--<div class="header-bar header-fixed header-app header-auto-show">
         @include('mobile.partials.title')
-    </div>
+    </div>--}}
     <div class="page-content footer-clear">
         @yield('content')
     </div>
+</div>
 
 
-    <script type="text/javascript" src="{{ asset('/scripts/bootstrap.min.js') }}" defer></script>
-    <script type="text/javascript" src="{{ asset('/scripts/custom.js') }}" defer></script>
-
+<script type="text/javascript" src="{{ asset('/scripts/bootstrap.min.js') }}" defer></script>
+<script type="text/javascript" src="{{ asset('/scripts/custom.js') }}" defer></script>
+<script src="{{ asset('/scripts/jquery.js') }}"></script>
+@yield('scripts')
 </body>
 </html>
