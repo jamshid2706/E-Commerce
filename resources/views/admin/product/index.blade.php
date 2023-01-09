@@ -40,16 +40,12 @@
                     <div
                         class="flex justify-center lg:justify-end items-center p-5 border-t border-slate-200/60 dark:border-darkmode-400">
 
-                        <a class="flex items-center text-primary mr-auto mr-3" {{--href="{{ route('admin.products.edit', $product->id) }}"--}}>
-                            <i data-lucide="check-square" class="mr-1"></i>
-                            Edit
-                        </a>
 
                         <a class="flex items-center text-primary mr-auto" {{--href="{{ route('admin.products.show', $product->id) }}"--}}>
                             <i data-lucide="eye" class="mr-1"></i>
                             Preview
                         </a>
-
+                        @include('admin.product.edit')
                         <a class="flex items-center text-danger"
                            {{--href="{{ route('admin.products.destroy', $product->id) }}"--}} data-tw-toggle="modal"
                            data-tw-target="#delete-confirmation-modal">

@@ -31,4 +31,18 @@ class ProductController extends Controller
         Product::create($data);
         return redirect()->back();
     }
+
+    public function edit(ProductRequest $request, $id)
+    {
+        $data = $request->validated();
+        $product = Product::find($id);
+        $product->update($data);
+        return redirect()->back();
+    }
+
+    public function destroy($id)
+    {
+        Product::destroy($id);
+        return redirect()->route('admin.products');
+    }
 }

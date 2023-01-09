@@ -37,6 +37,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::group(['prefix' => 'products'], function () {
         Route::get('/', [ProductController::class, 'index'])->name('admin.products');
         Route::post('/store', [ProductController::class, 'store'])->name('admin.products.store');
+        Route::post('/{id}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
     });
     Route::group(['prefix' => 'clients'], function () {
         Route::get('/', [ClientController::class, 'index'])->name('admin.clients');
