@@ -60,6 +60,7 @@
             amount.value = price.value * count.value;
             console.log(amount.value);
         }
+
         function add() {
             $(".form_content").append(
                 `
