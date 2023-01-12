@@ -32,7 +32,7 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    public function edit(ProductRequest $request, $id)
+    public function edit(Productrequest $request, $id)
     {
         $data = $request->validated();
         $product = Product::find($id);
