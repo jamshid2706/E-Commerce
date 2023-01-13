@@ -48,7 +48,7 @@ class ProductRequest extends FormRequest
                 'integer',
             ],
             'category_id' => [
-                'integer'
+                'required',
             ]
         ];
     }

@@ -8,14 +8,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body px-5 py-10">
-                <form action="{{route('admin.products.edit',$product->id)}}" method="post">
+                <form action="{{route('admin.products.edit',$product->id)}}" method="post"
+                      enctype="multipart/form-data">
                     @csrf
                     <div class="flex items-center justify-center w-full">
                         <label class="flex flex-col w-full h-56 border-4 border-dashed dropzone"
                                style="cursor: pointer">
                             <div class="flex flex-col items-center justify-center pt-7">
                                 <img src="{{asset('storage/'.$product->image)}}" alt=""
-                                     class="w-60  h-40 text-gray-400 group-hover:text-gray-600">
+                                     class="w-60 h-40 text-gray-400 group-hover:text-gray-600">
                             </div>
                             <input type="file" class="opacity-0 fallback"
                                    name="image"/>
