@@ -34,6 +34,14 @@ class CategoryController extends Controller
         return redirect()->route('admin.category.show');
     }
 
+    public function edit(CategoryRequest $request, $id)
+    {
+        $data = $request->validated();
+        $product = Category::find($id);
+        $product->update($data);
+        return redirect()->back();
+    }
+
     public function delete()
     {
 

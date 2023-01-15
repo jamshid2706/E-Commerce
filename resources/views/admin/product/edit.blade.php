@@ -1,7 +1,10 @@
 <!-- BEGIN: Modal Toggle -->
 <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#static-backdrop-modal-preview-{{ $product->id }}"
-   class="flex items-center text-primary mr-auto"><i data-lucide="edit" class="mr-1"></i>Edit</a>
+   class="flex items-center text-primary mr-auto">
+    <i data-lucide="edit" class="mr-1"></i>
+    Edit</a>
 <!-- END: Modal Toggle -->
+
 <!-- BEGIN: Modal Content -->
 <div id="static-backdrop-modal-preview-{{ $product->id }}" class="modal" data-tw-backdrop="static" tabindex="-1"
      aria-hidden="true">
@@ -15,11 +18,11 @@
                         <label class="flex flex-col w-full h-56 border-4 border-dashed dropzone"
                                style="cursor: pointer">
                             <div class="flex flex-col items-center justify-center pt-7">
-                                <img src="{{asset('storage/'.$product->image)}}" alt=""
+                                <img src="{{asset('storage/'.$product->image)}}" alt="" id="preview"
                                      class="w-60 h-40 text-gray-400 group-hover:text-gray-600">
                             </div>
                             <input type="file" class="opacity-0 fallback"
-                                   name="image"/>
+                                   name="image" accept="image/*" id="image"/>
                         </label>
                     </div>
 
@@ -49,10 +52,8 @@
                     <select class="tom-select w-full" id="category_id" name="category_id">
                         @foreach($categories as $category)
                             <option
-                                {{$category->id === $product->category_id ?'selected':''}}
-
-                                value="{{ $category->id }}">{{ $category->title }}
-
+                                value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected' : '' }}>
+                                {{ $category->title }}
                             </option>
                         @endforeach
                     </select>
@@ -76,3 +77,17 @@
     </div>
 </div>
 <!-- END: Modal Content -->
+<script>
+    function showImage() {
+        return {
+            showPreview(event) {
+                if (event.target.files.length > 0) {
+                    const src = URL.createObjectURL(event.target.files[0]);
+                    const preview = document.getElementById("preview");
+                    preview.src = src;
+                    preview.style.display = "block";
+                }
+            }
+        }
+    }
+</script>

@@ -7,6 +7,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\File;
 
 class ProductController extends Controller
 {
@@ -24,24 +25,25 @@ class ProductController extends Controller
         return view('admin.product.create', compact('categories', 'products'));
     }
 
-    public function store(ProductRequest $request): \Illuminate\Http\RedirectResponse
+    public function store(ProductRequest $request)
     {
         $data = $request->all();
         $data['image'] = Storage::put('/images', $request['image']);
         Product::create($data);
-        return redirect()->back();
+        return redirect()->route('admin.products');
     }
 
-    public function edit(ProductRequest $request, $id): \Illuminate\Http\RedirectResponse
+    public function edit(ProductRequest $request, $id)
     {
+
         $data = $request->validated();
-        $data['image'] = Storage::put('/images', $request['image']);
+        if(array_key_exists('image', $data))$data['image'] = Storage::put('/images', $request['image']);
         $product = Product::find($id);
         $product->update($data);
-        return redirect()->back();
+        return redirect()->route('admin.products');
     }
 
-    public function destroy($id): \Illuminate\Http\RedirectResponse
+    public function destroy($id)
     {
         Product::destroy($id);
         return redirect()->route('admin.products');

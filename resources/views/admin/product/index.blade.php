@@ -39,19 +39,48 @@
                     </div>
                     <div
                         class="flex justify-center lg:justify-end items-center p-5 border-t border-slate-200/60 dark:border-darkmode-400">
-
-
                         <a class="flex items-center text-primary mr-auto" {{--href="{{ route('admin.products.show', $product->id) }}"--}}>
                             <i data-lucide="eye" class="mr-1"></i>
                             Preview
                         </a>
                         @include('admin.product.edit')
-                        <a class="flex items-center text-danger"
-                           {{--href="{{ route('admin.products.destroy', $product->id) }}"--}} data-tw-toggle="modal"
-                           data-tw-target="#delete-confirmation-modal">
-                            <i data-lucide="trash-2" class="mr-auto"></i>
-                            Delete
-                        </a>
+                        <!-- BEGIN: Modal Toggle -->
+                        <a href="javascript:;" data-tw-toggle="modal"
+                           data-tw-target="#delete-modal-preview-{{$product->id}}"
+                           class="flex items-center mr-auto text-danger">
+                            <i data-lucide="trash-2" class="px-1 text-danger"></i>
+                            Delete</a>
+                        <!-- END: Modal Toggle -->
+                        <!-- BEGIN: Modal Content -->
+                        <div id="delete-modal-preview-{{$product->id}}" class="modal" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body p-0">
+                                        <div class="p-5 text-center">
+                                            <i data-lucide="x-circle"
+                                               class="w-16 h-16 text-danger mx-auto mt-3"></i>
+                                            <div class="text-3xl mt-5">Are you sure?</div>
+                                            <div class="text-slate-500 mt-2">Do you really want to delete these
+                                                records? <br>This process cannot be undone.
+                                            </div>
+                                        </div>
+                                        <div class="px-5 pb-8 text-center">
+                                            <form action="{{ route('admin.products.delete', $product->id) }}"
+                                                  method="post">
+                                                <button type="button" data-tw-dismiss="modal"
+                                                        class="btn btn-outline-secondary w-24 mr-1">Cancel
+                                                </button>
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-outline-danger w-24">Yes
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: Modal Content -->
                     </div>
                 </div>
             </div>

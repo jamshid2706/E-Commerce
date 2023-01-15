@@ -34,11 +34,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             return redirect('/admin/categories/1');})->name('admin.categories');
         Route::get('/{id}', [CategoryController::class, 'show'])->name('admin.category.show');
         Route::post('/store', [CategoryController::class, 'store'])->name('admin.category.store');
+        Route::post('/{id}/edit', [CategoryController::class, 'edit'])->name('admin.category.edit');
+
     });
     Route::group(['prefix' => 'products'], function () {
         Route::get('/', [ProductController::class, 'index'])->name('admin.products');
         Route::post('/store', [ProductController::class, 'store'])->name('admin.products.store');
         Route::post('/{id}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+        Route::delete('/{id}', [ProductController::class, 'destroy'])->name('admin.products.delete');
     });
     Route::group(['prefix' => 'clients'], function () {
         Route::get('/', [ClientController::class, 'index'])->name('admin.clients');

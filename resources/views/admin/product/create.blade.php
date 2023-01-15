@@ -14,14 +14,13 @@
                 <div class="text-left">
                     <form class="mt-3" action="{{route('admin.products.store')}}" method="post"
                           enctype="multipart/form-data">
-                        @method('post')
                         @csrf
                         <div class="flex items-center justify-center w-full">
                             <label class="flex flex-col w-full h-32 border-4 border-dashed dropzone"
                                    style="cursor: pointer">
                                 <div class="flex flex-col items-center justify-center pt-7">
                                     @foreach($products as $key => $product)
-                                        <img src="{{asset('storage/'.$product->title)}}" alt="" class="w-52">
+                                        <img src="{{ 'storage/'.$product->image}}" alt="" class="w-52">
                                     @endforeach
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                          class="w-12 h-12 text-gray-400 group-hover:text-gray-600"
@@ -32,8 +31,7 @@
                                               clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                    <input type="file" class="opacity-0 fallback"
-                                           name="image"/>
+                                <input type="file" class="opacity-0 fallback" name="image"/>
                             </label>
                         </div>
 

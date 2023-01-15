@@ -81,10 +81,7 @@
                                     <i data-lucide="eye" class="mr-1"></i>
                                     Preview
                                 </a>
-                                <a class="flex items-center mr-3" {{--href="{{ route('admin.products.edit', $product->id) }}"--}}>
-                                    <i data-lucide="check-square" class="mr-1"></i>
-                                    Edit
-                                </a>
+                                @include('admin.category.edit')
                                 <a class="flex items-center text-danger"
                                    {{--href="{{ route('admin.products.destroy', $product->id) }}"--}} data-tw-toggle="modal"
                                    data-tw-target="#delete-confirmation-modal">
