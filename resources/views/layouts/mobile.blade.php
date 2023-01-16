@@ -18,7 +18,7 @@
     <link rel="manifest" href="{{ asset('/_manifest.json') }}" data-pwa-version="set_in_manifest_and_pwa_js">
     <link rel="apple-touch-icon" href="{{ asset('/logo-combo.png') }}">
 </head>
-<body class="theme-light" data-highlight="highlight-red" data-gradient="body-default">
+<body class="theme-dark" data-highlight="highlight-red" data-gradient="body-default">
 <div id="page" data-swup="0">
 
     @include('mobile.partials.footer-bar')
@@ -28,6 +28,11 @@
     <div class="page-content footer-clear">
         @yield('content')
     </div>
+
+    <div id="menu-sidebar" data-menu-active="nav-welcome" class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+        @include('mobile.partials.sidebar')
+    </div>
+
 </div>
 
 

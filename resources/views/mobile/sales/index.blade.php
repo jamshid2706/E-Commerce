@@ -22,8 +22,8 @@
                     <div class="accordion-item">
                         <button class="accordion-button collapsed px-0" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#accordion{{ $sale->id }}">
-                            <span class="font-600 font-13">{{ $sale->client->name }}</span>
-                            <i class="bi bi-plus font-20"></i>
+                            <span class="font-600 font-13">{{ $sale->client->name ?? $sale->id  }}</span>
+                            <i class="bi bi-chevron-down font-14"></i>
                         </button>
                         <div id="accordion{{ $sale->id }}" class="accordion-collapse collapse"
                              data-bs-parent="#accordion-group-6">

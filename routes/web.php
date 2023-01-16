@@ -30,8 +30,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/', [IndexController::class, 'index'])->name('admin.home');
     Route::group(['prefix' => 'categories'], function () {
-        Route::get('/', function () {
-            return redirect('/admin/categories/1');})->name('admin.categories');
+        Route::get('/', function () {return redirect('/admin/categories/1');})->name('admin.categories');
         Route::get('/{id}', [CategoryController::class, 'show'])->name('admin.category.show');
         Route::post('/store', [CategoryController::class, 'store'])->name('admin.category.store');
         Route::post('/{id}/edit', [CategoryController::class, 'edit'])->name('admin.category.edit');
@@ -55,11 +54,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     });
 });
 // Mobile App routes
-Route::group(['prefix'=>'app'], function () {
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('mobile.home');
-
+Route::group(['prefix'=>'mobile'], function () {
+    Route::get('/', function () {return view('mobile.dashboard.index');})->name('mobile.home');
     Route::group(['prefix'=>'clients'], function () {
         Route::get('/', [ClientsController::class, 'index'])->name('mobile.clients');
         Route::post('/store', [ClientsController::class, 'store'])->name('mobile.clients.store');
@@ -69,6 +65,9 @@ Route::group(['prefix'=>'app'], function () {
         Route::get('/', [ProductsController::class, 'index'])->name('mobile.products');
         Route::get('/create', [ProductsController::class, 'create'])->name('mobile.products.create');
         Route::post('/store', [ProductsController::class, 'store'])->name('mobile.products.store');
+        Route::get('/{id}/edit', [ProductsController::class, 'edit'])->name('mobile.products.edit');
+        Route::post('/{id}/update', [ProductsController::class, 'update'])->name('mobile.products.update');
+        Route::get('/{id}', [ProductsController::class, 'show'])->name('mobile.products.show');
 
     });
     Route::group(['prefix'=>'sales'], function () {

@@ -11,7 +11,7 @@
     <a class="{{ request()->is() ? "active-nav" : "" }}" href="{{ route('mobile.sales') }}">
         <i class="bi bi-arrow-down-up"></i>
     </a>
-    <a class="{{ request()->is() ? "active-nav" : "" }}" href="#" data-menu="menu-settings">
-        <i class="bi bi-gear-fill"></i>
+    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar">
+        <i class="bi bi-three-dots"></i>
     </a>
 </div>

@@ -7,8 +7,7 @@
                 <h1 class="color-theme mb-0 font-18">Products</h1>
             </div>
             <div class="align-self-center ms-auto">
-                <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"
-                   class="icon icon-xxs gradient-highlight color-white shadow-bg shadow-bg-xs rounded-s pt-2">
+                <a href="{{ route('mobile.products.create') }}" class="icon icon-xxs gradient-highlight color-white shadow-bg shadow-bg-xs rounded-s pt-2">
                     <i class="bi bi-bag-plus-fill"></i>
                 </a>
             </div>
@@ -26,7 +25,7 @@
                         <p class="m-0">Stock: {{ $product->stock }}</p>
                     </div>
                     <div class="pt-1 ms-auto">
-                        <img src="images/pictures/6l.jpg" class="img-fluid rounded-s" width="110">
+                        <img src="{{ asset('storage/'. $product->image) ?? ''}}" class="img-fluid rounded-s" width="110">
                     </div>
                 </div>
             </div>

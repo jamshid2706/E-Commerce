@@ -13,9 +13,9 @@
                         data-tw-target="#faq-accordion-collapse-5" aria-expanded="true"
                         aria-controls="faq-accordion-collapse-5">
                     <div class="9">
-                        <h2>Sale Number: {{ $sale->id }}</h2>
-                        <h2>Sold to : {{$sale->client->name}}</h2>
-                        <h2>Amount : {{ $sale->amount }}</h2>
+                        <h2>Sale Number: {{ !is_null($sale->id) ? $sale->id : '' }}</h2>
+                        <h2>Sold to : {{!is_null($sale->client->name) ? $sale->client->name : ''}}</h2>
+                        <h2>Amount : {{ !is_null($sale->amount) ? $sale->amount : '' }}</h2>
                     </div>
                 </button>
             </div>

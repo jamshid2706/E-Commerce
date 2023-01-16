@@ -42,7 +42,7 @@ class CategoryController extends Controller
         return redirect()->back();
     }
 
-    public function delete()
+    public function delete($id)
     {
 
     }

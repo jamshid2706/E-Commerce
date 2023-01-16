@@ -28,15 +28,14 @@
                     @if($category->id == $selected->id)
                         <a class="col-span-12 sm:col-span-3 2xl:col-span-3 box bg-primary p-5 cursor-pointer zoom-in">
                             <div class="font-medium text-base text-white">{{ $category->title }}</div>
-                            <div
-                                class="text-white text-opacity-80 dark:text-slate-500">{{ count($category->products) }} {{ count($category->products) == 1 ? 'Item' : 'Items'}}</div>
+                            <div class="text-white text-opacity-80 dark:text-slate-500">{{ count($category->products) }} {{ count($category->products) == 1 ? 'Item' : 'Items'}}</div>
+                            <i data-lucide="edit-2"></i>
                         </a>
                     @else
                         <a href="/admin/categories/{{ $category->id }}"
                            class="col-span-12 sm:col-span-3 2xl:col-span-3 box p-5 cursor-pointer zoom-in">
                             <div class="font-medium text-base">{{ $category->title }}</div>
-                            <div
-                                class="text-slate-500">{{ count($category->products) }} {{ count($category->products) == 1 ? 'Item' : 'Items'}}</div>
+                            <div class="text-slate-500">{{ count($category->products) }} {{ count($category->products) == 1 ? 'Item' : 'Items'}}</div>
                         </a>
                     @endif
                 @endforeach

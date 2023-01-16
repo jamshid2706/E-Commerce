@@ -26,6 +26,9 @@
     </div>
     <div class="card card-style">
         <div class="content">
+            <div style="margin-top: 50px">
+                Client Nomi, CHeck Raqami
+            </div>
             <form action="{{ route('mobile.sales.store') }}" method="post">
                 @csrf
                 <div class="form_content">
@@ -44,6 +47,7 @@
                 <div class="actions">
                 <button type="button" onclick="add()" class="btn btn-s btn-success" >Add</button>
                 <button type="submit" class="btn btn-s btn-primary">Submit</button>
+                    Summasi, input: to'langan puli
                 </div>
             </form>
         </div>
