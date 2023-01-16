@@ -8,6 +8,7 @@ use App\Http\Controllers\Mobile\ClientsController;
 use App\Http\Controllers\Mobile\ProductsController;
 use App\Http\Controllers\Mobile\SalesController;
 use App\Http\Controllers\SaleController;
+use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -78,11 +79,13 @@ Route::group(['prefix'=>'mobile'], function () {
         Route::get('/', [SalesController::class, 'index'])->name('mobile.sales');
         Route::get('/create', [SalesController::class, 'create'])->name('mobile.sales.create');
         Route::post('/store', [SalesController::class, 'store'])->name('mobile.sales.store');
+        Route::get('/{id}', [SalesController::class, 'show'])->name('mobile.sales.show');
+        Route::get('/{id}/edit', [SalesController::class, 'edit'])->name('mobile.sales.edit');
     });
 });
 
 Route::get('/test', function () {
-   return view('mobile.home');
+   \Illuminate\Support\Facades\Artisan::call('storage:link');
 });
 
 Auth::routes();
