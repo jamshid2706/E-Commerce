@@ -84,8 +84,10 @@ Route::group(['prefix'=>'mobile'], function () {
     });
 });
 
-Route::get('/test', function () {
-   \Illuminate\Support\Facades\Artisan::call('storage:link');
+Route::get('/test/{code}', function ($code) {
+    \Illuminate\Support\Facades\Artisan::call($code);
+   echo '<pre>';
+    print_r(\Illuminate\Support\Facades\Artisan::output());
 });
 
 Auth::routes();
