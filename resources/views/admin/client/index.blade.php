@@ -6,9 +6,9 @@
     <h2 class="intro-y text-lg font-medium mt-10">Clients</h2>
     @include('admin.client.create')
     <div class="grid grid-cols-12 gap-6 mt-5">
-        <div class="intro-y col-span-12 md:col-span-6">
+        <div class="intro-y row col-span-12 lg:col-span-6 md:col-span-12">
             @foreach($clients as $client)
-                <div class="intro-y col-span-12 md:col-span-6 my-5">
+                <div class="intro-y col-span-12 lg:col-span-6 xl:col-span-6 md:col-span-6 my-5">
                     <div class="box">
                         <div class="flex flex-col lg:flex-row items-center p-5">
                             <div class="w-24 h-24 lg:w-12 lg:h-12 image-fit lg:mr-1">

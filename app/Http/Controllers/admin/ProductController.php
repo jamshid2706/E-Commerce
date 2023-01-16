@@ -37,7 +37,7 @@ class ProductController extends Controller
     {
 
         $data = $request->validated();
-        if(array_key_exists('image', $data))$data['image'] = Storage::put('/images', $request['image']);
+        if (array_key_exists('image', $data)) $data['image'] = Storage::put('/images', $request['image']);
         $product = Product::find($id);
         $product->update($data);
         return redirect()->route('admin.products');

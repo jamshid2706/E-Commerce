@@ -1,8 +1,8 @@
 <!-- START: Modal Toggle -->
 <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#static-backdrop-modal-preview-{{$category->id}}"
-   class="flex items-center text-primary mr-auto">
-    <i data-lucide="edit" class="mr-1"></i>
-    Edit</a>
+   class="">
+    <i data-lucide="edit"></i>
+</a>
 <!-- END: Modal Toggle -->
 
 <!-- BEGIN: Modal Content -->

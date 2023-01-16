@@ -10,9 +10,8 @@
         <div class="intro-y col-span-12 lg:col-span-12">
             <div class="lg:flex intro-y">
                 <div class="relative">
-                    <input type="text" class="form-control py-3 px-4 w-full lg:w-64 box pr-10"
-                           placeholder="Search item..." control-id="ControlID-3">
-                    <i data-lucide="search"></i>
+                    <input type="text" class="form-control py-3 px-4 w-full lg:w-64 box pr-10" placeholder="Search item...">
+                    <i data-lucide="search" class="lucide lucide-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0 text-slate-500"></i>
                 </div>
                 <select class="form-select py-3 px-4 box w-full lg:w-auto mt-3 lg:mt-0 ml-auto"
                         control-id="ControlID-4">
@@ -26,16 +25,21 @@
             <div class="grid grid-cols-12 gap-5 mt-5">
                 @foreach($categories as $key => $category)
                     @if($category->id == $selected->id)
-                        <a class="col-span-12 sm:col-span-3 2xl:col-span-3 box bg-primary p-5 cursor-pointer zoom-in">
+                        <div class="col-span-12 sm:col-span-3 2xl:col-span-3 box bg-primary p-5 cursor-pointer zoom-in">
                             <div class="font-medium text-base text-white">{{ $category->title }}</div>
-                            <div class="text-white text-opacity-80 dark:text-slate-500">{{ count($category->products) }} {{ count($category->products) == 1 ? 'Item' : 'Items'}}</div>
-                            <i data-lucide="edit-2"></i>
-                        </a>
+                            <div
+                                class="text-white text-opacity-80 dark:text-slate-500">{{ count($category->products) }} {{ count($category->products) == 1 ? 'Item' : 'Items'}}</div>
+                            <div
+                                class="w-10 h-10 flex items-center justify-center absolute top-0 right-0 text-xs text-white rounded-full  font-medium -mt-1 -mr-1">
+                               @include('admin.category.edit')
+                            </div>
+                        </div>
                     @else
                         <a href="/admin/categories/{{ $category->id }}"
                            class="col-span-12 sm:col-span-3 2xl:col-span-3 box p-5 cursor-pointer zoom-in">
                             <div class="font-medium text-base">{{ $category->title }}</div>
-                            <div class="text-slate-500">{{ count($category->products) }} {{ count($category->products) == 1 ? 'Item' : 'Items'}}</div>
+                            <div
+                                class="text-slate-500">{{ count($category->products) }} {{ count($category->products) == 1 ? 'Item' : 'Items'}}</div>
                         </a>
                     @endif
                 @endforeach
@@ -80,13 +84,45 @@
                                     <i data-lucide="eye" class="mr-1"></i>
                                     Preview
                                 </a>
-                                @include('admin.category.edit')
-                                <a class="flex items-center text-danger"
-                                   {{--href="{{ route('admin.products.destroy', $product->id) }}"--}} data-tw-toggle="modal"
-                                   data-tw-target="#delete-confirmation-modal">
-                                    <i data-lucide="trash-2" class="mr-1"></i>
-                                    Delete
-                                </a>
+                                @include('admin.category.productedit')
+                                <!-- BEGIN: Modal Toggle -->
+                                <a href="javascript:;" data-tw-toggle="modal"
+                                   data-tw-target="#delete-modal-preview-{{$product->id}}"
+                                   class="flex items-center text-danger">
+                                    <i data-lucide="trash-2" class="px-1 text-danger"></i>
+                                    Delete</a>
+                                <!-- END: Modal Toggle -->
+                                <!-- BEGIN: Modal Content -->
+                                <div id="delete-modal-preview-{{$product->id}}" class="modal" tabindex="-1"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body p-0">
+                                                <div class="p-5 text-center">
+                                                    <i data-lucide="x-circle"
+                                                       class="w-16 h-16 text-danger mx-auto mt-3"></i>
+                                                    <div class="text-3xl mt-5">Are you sure?</div>
+                                                    <div class="text-slate-500 mt-2">Do you really want to delete these
+                                                        records? <br>This process cannot be undone.
+                                                    </div>
+                                                </div>
+                                                <div class="px-5 pb-8 text-center">
+                                                    <form action="{{ route('admin.category.productdelete', $product->id) }}"
+                                                          method="post">
+                                                        <button type="button" data-tw-dismiss="modal"
+                                                                class="btn btn-outline-secondary w-24 mr-1">Cancel
+                                                        </button>
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-outline-danger w-24">Yes
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END: Modal Content -->
                             </div>
                         </div>
                     </div>
