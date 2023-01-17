@@ -8,6 +8,9 @@
     <a class="{{ request()->is('/') ? "active-nav" : "" }}" href="{{ route('mobile.home') }}">
         <i class="bi bi-house-fill"></i>
     </a>
+    <a class="{{ request()->is('/categories') ? "active-nav" : "" }}" href="{{ route('mobile.categories') }}">
+        <i class="bi bi-bookmarks"></i>
+    </a>
     <a class="{{ request()->is() ? "active-nav" : "" }}" href="{{ route('mobile.sales') }}">
         <i class="bi bi-arrow-down-up"></i>
     </a>

@@ -2,25 +2,23 @@
 @section('content')
     <div class="pt-3">
         <div class="page-title d-flex">
-            <div class="align-self-center me-auto">
-                <h1 class="color-theme mb-0 font-18">Products</h1>
-            </div>
-            <div class="align-self-center ms-auto">
-                <a href="{{ route('mobile.products.create') }}"
-                   class="icon icon-xxs gradient-highlight color-white shadow-bg shadow-bg-xs rounded-s pt-2">
-                    <i class="bi bi-bag-plus-fill"></i>
+            <div class="align-self-center">
+                <a href="#" data-back-button
+                   class="me-3 ms-0 icon icon-xxs bg-theme rounded-s shadow-m pt-2">
+                    <i class="bi bi-chevron-left color-theme font-14"></i>
                 </a>
+            </div>
+            <div class="align-self-center me-auto">
+                <h1 class="color-theme mb-0 font-18">{{ $category->title }}</h1>
             </div>
         </div>
     </div>
-    @if($sales->isEmpty())
-        <p class="color-theme text-center font-20">
-            Nothing to show!
-        </p>
-    @else
-        @foreach ($products as $product)
-            <div class="card card-style mb-3">
-                <div class="content">
+
+    <h4 class="color-theme m-3 font-18">Products</h4>
+    @foreach ($category->products as $product)
+        <div class="card card-style mb-3">
+            <div class="content">
+                <a href="{{ route('mobile.products.show', $product->id) }}">
                     <div class="d-flex">
                         <div class="pe-3 me-auto">
                             <strong class="opacity-30 color-theme font-11">{{ $product->category->title }}</strong>
@@ -34,8 +32,8 @@
                                  width="110">
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
-        @endforeach
-    @endif
+        </div>
+    @endforeach
 @endsection

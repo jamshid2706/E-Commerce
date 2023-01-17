@@ -3,10 +3,10 @@
     <style>
         .form_content{
             overflow: scroll;
-            height: 60vh;
+            max-height: 40vh;
         }
     </style>
-    <div class="pt-3">
+    <div class="">
         <div class="page-title d-flex">
             <div class="align-self-center">
                 <a href="#" data-back-button class="me-3 ms-0 icon icon-xxs bg-theme rounded-s shadow-m pt-2">
@@ -26,28 +26,24 @@
     </div>
     <div class="card card-style">
         <div class="content">
-            <div style="margin-top: 50px">
+            <div>
                 Client Nomi, CHeck Raqami
             </div>
             <form action="{{ route('mobile.sales.store') }}" method="post">
                 @csrf
                 <div class="form_content">
-                    <div class="form-custom form-label input-group rounded-xs" >
-                        <input onkeyup="onChange(this)" name="product[]" type="text" class="form-control"
-                               placeholder="Product"
-                               aria-label="Username">
-                        <input onkeyup="onChange(this)" id="price" name="price[]" type="number" class="form-control"
-                               placeholder="price" aria-label="Server">
-                        <input onkeyup="onChange(this)" id="count" name="count[]" type="number" class="form-control"
-                               placeholder="count" aria-label="Server">
-                        <input onkeyup="onChange(this)" id="amount" name="amount[]" type="number" class="form-control"
-                               placeholder="amount" aria-label="Server">
+                    <div class="form-custom form-label input-group rounded-xs">
+                        <input onkeyup="onChange(this)" name="product[]" type="text" class="form-control" placeholder="Product">
+                        <input onkeyup="onChange(this)" name="price[]" type="number" class="form-control" placeholder="Price">
+                        <input onkeyup="onChange(this)" name="count[]" type="number" class="form-control" placeholder="Count">
+                        <input onkeyup="onChange(this)" name="amount[]" type="number" class="form-control" placeholder="amount">
                     </div>
                 </div>
                 <div class="actions">
                 <button type="button" onclick="add()" class="btn btn-s btn-success" >Add</button>
                 <button type="submit" class="btn btn-s btn-primary">Submit</button>
-                    Summasi, input: to'langan puli
+                    <label for="total">Total:</label>
+                    <input id="total" type="number" class="input-active">
                 </div>
             </form>
         </div>

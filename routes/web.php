@@ -4,25 +4,13 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ClientController;
 use App\Http\Controllers\admin\IndexController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\Mobile\CategoriesController;
 use App\Http\Controllers\Mobile\ClientsController;
 use App\Http\Controllers\Mobile\ProductsController;
 use App\Http\Controllers\Mobile\SalesController;
 use App\Http\Controllers\SaleController;
-use App\Models\Product;
-use App\Models\Sale;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('index');
@@ -81,6 +69,11 @@ Route::group(['prefix'=>'mobile'], function () {
         Route::post('/store', [SalesController::class, 'store'])->name('mobile.sales.store');
         Route::get('/{id}', [SalesController::class, 'show'])->name('mobile.sales.show');
         Route::get('/{id}/edit', [SalesController::class, 'edit'])->name('mobile.sales.edit');
+    });
+    Route::group(['prefix'=>'categories'], function () {
+       Route::get('/', [CategoriesController::class, 'index'])->name('mobile.categories');
+       Route::post('/store', [CategoriesController::class, 'store'])->name('mobile.categories.store');
+       Route::get('/{id}', [CategoriesController::class, 'show'])->name('mobile.categories.show');
     });
 });
 

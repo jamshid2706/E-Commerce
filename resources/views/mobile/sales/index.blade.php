@@ -6,14 +6,19 @@
                 <h1 class="color-theme mb-0 font-20">Sales</h1>
             </div>
             <div class="align-self-center ms-auto">
-                <a href="#" data-auto-hide-target="#menu-auto-hide-modal"
+                <a href="{{ route('mobile.sales.create') }}" data-auto-hide-target="#menu-auto-hide-modal"
                    data-auto-hide-time="15000"
                    class="icon icon-xxs gradient-highlight color-white shadow-bg shadow-bg-xs rounded-s pt-2">
-                    <i class="bi bi-person-plus font-20"></i>
+                    <i class="bi bi-plus font-20"></i>
                 </a>
             </div>
         </div>
     </div>
+    @if($sales->isEmpty())
+        <p class="color-theme text-center font-20">
+            Nothing to show!
+        </p>
+    @else
     <div class="card card-style">
         <div class="content mb-0">
             <h6 class="font-700 opacity-50">Sales</h6>
@@ -38,5 +43,5 @@
             </div>
         </div>
     </div>
-
+    @endif
 @endsection
