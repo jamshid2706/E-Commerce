@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    @if($sales->isEmpty())
+    @if($products->isEmpty())
         <p class="color-theme text-center font-20">
             Nothing to show!
         </p>
