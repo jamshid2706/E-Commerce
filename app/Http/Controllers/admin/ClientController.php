@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientRequest;
 use App\Models\Client;
+use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -45,5 +46,16 @@ class ClientController extends Controller
     {
         Client::destroy($id);
         return redirect()->route('admin.clients');
+    }
+
+    public function search(Request $request)
+    {
+        $clients = Client::where('name', 'like', '%' . $request->search . '%')->
+        orWhere('phone_number', 'like', '%' . $request->search . '%')->get();
+        foreach ($clients as $client) {
+            $output .=
+                '<a href="" class="font-medium">' . $client->name . '</a>';
+        }
+        return 'hey';
     }
 }

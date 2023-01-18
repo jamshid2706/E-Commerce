@@ -5,6 +5,18 @@
 @section('content')
     <h2 class="intro-y text-lg font-medium mt-10">Clients</h2>
     @include('admin.client.create')
+    <div class="lg:flex intro-y">
+        <div class="intro-y col-span-12 flex flex-wrap items-center mt-2">
+            <div class="relative">
+                <input type="text" name="search"
+                       class="form-control py-3 px-4 w-full lg:w-64 box mr-2 pr-10"
+                       placeholder="Search for name..." id="search">
+                <i data-lucide="search"
+                   class="lucide lucide-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0 text-slate-500"></i>
+            </div>
+        </div>
+    </div>
+
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y row col-span-12 lg:col-span-6 md:col-span-12">
             @foreach($clients as $client)
@@ -15,7 +27,7 @@
                                 <img alt="Midone - HTML Admin Template" class="rounded-full"
                                      src="https://enigma.left4code.com/dist/images/profile-8.jpg">
                             </div>
-                            <div class="lg:ml-2 lg:mr-auto text-center lg:text-left mt-3 lg:mt-0">
+                            <div id="Content" class="lg:ml-2 lg:mr-auto text-center lg:text-left mt-3 lg:mt-0">
                                 <a href="" class="font-medium">{{ $client->name ?? '' }}</a>
                                 <div class="text-slate-500 text-xs mt-0.5">{{ $client->phone_number ?? '' }} </div>
                                 <div class="text-slate-500 text-xs mt-0.5">{{ $client->address ?? '' }} </div>
@@ -75,57 +87,20 @@
         </div>
     </div>
 @endsection
-
 @section('scripts')
-    @parent
-    <script>
-        $(function () {
-            let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-            @can('client_delete')
-            let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
-            let deleteButton = {
-                text: deleteButtonTrans,
-                url: "{{ route('admin.clients.massDestroy') }}",
-                className: 'btn-danger',
-                action: function (e, dt, node, config) {
-                    var ids = $.map(dt.rows({selected: true}).nodes(), function (entry) {
-                        return $(entry).data('entry-id')
-                    });
+    <script type="text/javascript">
+        $('#search').on('keyup', function () {
+            const $value = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('search')}}',
+                data: {'search': $value},
 
-                    if (ids.length === 0) {
-                        alert('{{ trans('global.datatables.zero_selected') }}')
-
-                        return
-                    }
-
-                    if (confirm('{{ trans('global.areYouSure') }}')) {
-                        $.ajax({
-                            headers: {'x-csrf-token': _token},
-                            method: 'POST',
-                            url: config.url,
-                            data: {ids: ids, _method: 'DELETE'}
-                        })
-                            .done(function () {
-                                location.reload()
-                            })
-                    }
+                success: function (data) {
+                    console.log(data);
+                    $('#Content').html(data)
                 }
-            }
-            dtButtons.push(deleteButton)
-            @endcan
-
-            $.extend(true, $.fn.dataTable.defaults, {
-                orderCellsTop: true,
-                order: [[1, 'desc']],
-                pageLength: 25,
-            });
-            let table = $('.datatable-Client:not(.ajaxTable)').DataTable({buttons: dtButtons})
-            $('a[data-toggle="tab"]').on('shown.bs.tab click', function (e) {
-                $($.fn.dataTable.tables(true)).DataTable()
-                    .columns.adjust();
-            });
-
-        })
-
+            })
+        });
     </script>
 @endsection
