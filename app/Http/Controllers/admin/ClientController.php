@@ -50,12 +50,14 @@ class ClientController extends Controller
 
     public function search(Request $request)
     {
+
         $clients = Client::where('name', 'like', '%' . $request->search . '%')->
         orWhere('phone_number', 'like', '%' . $request->search . '%')->get();
+
+        $output = "hey\n\n\n\n";
         foreach ($clients as $client) {
-            $output .=
-                '<a href="" class="font-medium">' . $client->name . '</a>';
+            $output .= '<a href="" class="font-medium">' . $client->name . '</a>';
         }
-        return 'hey';
+        return response($output);
     }
 }

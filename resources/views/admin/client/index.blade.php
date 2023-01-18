@@ -16,7 +16,11 @@
             </div>
         </div>
     </div>
+<div class="grid grid-cols-12 gap-6 mt-5">
+    <div id="Content" class="intro-y row col-span-12 lg:col-span-6 md:col-span-12">
 
+    </div>
+</div>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y row col-span-12 lg:col-span-6 md:col-span-12">
             @foreach($clients as $client)
@@ -27,7 +31,7 @@
                                 <img alt="Midone - HTML Admin Template" class="rounded-full"
                                      src="https://enigma.left4code.com/dist/images/profile-8.jpg">
                             </div>
-                            <div id="Content" class="lg:ml-2 lg:mr-auto text-center lg:text-left mt-3 lg:mt-0">
+                            <div class="lg:ml-2 lg:mr-auto text-center lg:text-left mt-3 lg:mt-0">
                                 <a href="" class="font-medium">{{ $client->name ?? '' }}</a>
                                 <div class="text-slate-500 text-xs mt-0.5">{{ $client->phone_number ?? '' }} </div>
                                 <div class="text-slate-500 text-xs mt-0.5">{{ $client->address ?? '' }} </div>
@@ -88,19 +92,5 @@
     </div>
 @endsection
 @section('scripts')
-    <script type="text/javascript">
-        $('#search').on('keyup', function () {
-            const $value = $(this).val();
-            $.ajax({
-                type: 'get',
-                url: '{{ URL::to('search')}}',
-                data: {'search': $value},
 
-                success: function (data) {
-                    console.log(data);
-                    $('#Content').html(data)
-                }
-            })
-        });
-    </script>
 @endsection

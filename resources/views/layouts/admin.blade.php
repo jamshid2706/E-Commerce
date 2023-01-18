@@ -7,7 +7,7 @@
     @yield('css')
     <link rel="stylesheet" href="{{ asset('/css/app2.css') }}"/>
     <link rel="icon" type="image/icon" href="/svgexport-13.svg">
-    <script src="{{ asset('js/ajax.js') }}"></script>
+{{--    <script src="{{ asset('js/ajax.js') }}"></script>--}}
 </head>
 <body>
 @include('admin.partials.mobile-menu')
@@ -20,6 +20,26 @@
 </div>
 @yield('scripts')
 <script src="{{ asset('/js/enigma.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $('#search').on('keyup', function () {
+        const $value = $(this).val();
+        $.ajax({
+            type:'get',
+            url:'{{ route('admin.clients.search') }}',
+            data:{'search':$value},
 
+            success:function(data){
+                console.log(data);
+                $('#Content').html(data);
+                alert(data);
+            },
+            error: function (request, status, error) {
+                alert(request.responseText);
+            }
+
+        });
+    });
+</script>
 </body>
 </html>
