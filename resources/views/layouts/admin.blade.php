@@ -22,7 +22,11 @@
 @yield('scripts')
 <script src="{{ asset('/js/enigma.js') }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script type="text/javascript">
+{{--<script type="text/javascript">
+    $( "option" ).on('click', function() {
+        alert( "Handler for called." );
+    });
+
     $('#search').on('keyup', function () {
         $value = $(this).val();
         $.ajax({
@@ -36,6 +40,6 @@
             },
         });
     });
-</script>
+</script>--}}
 </body>
 </html>
