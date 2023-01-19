@@ -4,8 +4,10 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientRequest;
+use App\Models\Category;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
@@ -48,15 +50,16 @@ class ClientController extends Controller
         return redirect()->route('admin.clients');
     }
 
-    public function search(Request $request): string
+    public function search(Request $request)
     {
-
-        $clients = Client::where('name', 'Like', '%' . $request->search . '%')->
-        orWhere('phone_number', 'Like', '%' . $request->search . '%')->get();
-
-        $output = "";
-        foreach ($clients as $client) {
-            $output .= view('admin.client.client-box', compact('client'));
+        $array = explode('/', $request->search['url']);
+        $clients = DB::table(end($array))
+            ->where('title', 'Like', '%' . $request->search['search'] . '%')
+            ->orderBy($request->search['sort'])->get();
+        $output = '';
+        $categories = Category::all();
+        foreach ($clients as $product) {
+            $output .= view('admin.partials.cards.products', compact('product', 'categories'));
         }
         return $output;
     }
