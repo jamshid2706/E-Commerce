@@ -84,4 +84,9 @@ Route::get('/test/{code}', function ($code) {
     print_r(\Illuminate\Support\Facades\Artisan::output());
 });
 
+Route::get('/tes/test', function (){
+    $products = \App\Models\Product::all()->toArray();
+    print_r(json_encode($products));
+});
+
 Auth::routes();

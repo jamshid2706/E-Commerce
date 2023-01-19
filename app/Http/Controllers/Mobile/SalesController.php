@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mobile;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\Sale;
 use App\Models\SaleProduct;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class SalesController extends Controller
     }
 
     public function create() {
-        return view('mobile.sales.create');
+        $products = Product::all();
+        return view('mobile.sales.create', compact('products'));
     }
 
     public function store()

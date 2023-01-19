@@ -48,7 +48,7 @@ class ClientController extends Controller
         return redirect()->route('admin.clients');
     }
 
-    public function search(Request $request)
+    public function search(Request $request): string
     {
 
         $clients = Client::where('name', 'like', '%' . $request->search . '%')->

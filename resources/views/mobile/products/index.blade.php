@@ -23,7 +23,7 @@
                 <div class="content">
                     <div class="d-flex">
                         <div class="pe-3 me-auto">
-                            <strong class="opacity-30 color-theme font-11">{{ $product->category->title }}</strong>
+                            <strong class="opacity-30 color-theme font-11">{{ $product->category->title ?? '' }}</strong>
                             <h3 class="mt-n2 pb-2">{{ $product->title }}</h3>
                             <p class="m-0">Buy: {{ $product->buy }}</p>
                             <p class="m-0">Sell: {{ $product->sell }}</p>
