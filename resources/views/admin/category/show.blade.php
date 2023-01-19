@@ -15,11 +15,11 @@
                 </div>
                 <select class="form-select py-3 px-4 box w-full lg:w-auto mt-3 lg:mt-0 ml-auto"
                         control-id="ControlID-4">
-                    <option>Sort By</option>
-                    <option>A to Z</option>
-                    <option>Z to A</option>
-                    <option>Lowest Price</option>
-                    <option>Highest Price</option>
+                    <option class="ajafilter">A to Z</option>
+                    <option class="ajafilter">Sort By</option>
+                    <option class="ajafilter">Z to A</option>
+                    <option class="ajafilter">Lowest Price</option>
+                    <option class="ajafilter">Highest Price</option>
                 </select>
             </div>
             <div class="grid grid-cols-12 gap-5 mt-5">
@@ -134,12 +134,12 @@
 @section('scripts')
     @parent
     <script>
+
         $(".category").click(function () {
             alert("hey");
             $(this).slideUp();
         });
         $(function () {
-            c
             let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
             @can('category_delete')
             let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
