@@ -8,13 +8,17 @@
     <div class="lg:flex intro-y">
         <div class="intro-y col-span-12 flex flex-wrap items-center mt-2">
             <div class="relative">
-                <input type="text" name="search" id="search"
-                       class="form-control py-3 px-4 w-full lg:w-64 box mr-2 pr-10"
+                <input type="text" name="search" id="search" class="form-control py-3 px-4 w-full lg:w-64 box mr-2 pr-10"
                        placeholder="Search for name..." >
                 <i data-lucide="search"
                    class="lucide lucide-search w-5 h-5 absolute my-auto inset-y-0 mr-4 right-0 text-slate-500"></i>
             </div>
         </div>
+        <select id="sort" class="px-10 form-select box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" control-id="ControlID-4">
+            <option value="name" selected>By Name</option>
+            <option value="address" >By Address</option>
+            <option value="phone_number" >By Phone Number</option>
+        </select>
     </div>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div id="Content" class="intro-y row col-span-12 lg:col-span-6 md:col-span-12">
@@ -87,5 +91,23 @@
     </div>
 @endsection
 @section('scripts')
-
+    <script type="text/javascript">
+        function update() {
+            let value = {
+                'search': $('#search').val(),
+                'sort': $('#sort').val()
+            }
+            $.ajax({
+                type: 'get',
+                url: '{{URL::to('/admin/clients/search')}}',
+                data: value,
+                success: function (data) {
+                    console.log(data);
+                    $('#Content').html(data);
+                },
+            });
+        }
+        $('#search').on('keyup', update);
+        $('#sort').on('change', update);
+    </script>
 @endsection
