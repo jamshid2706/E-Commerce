@@ -51,13 +51,13 @@ class ClientController extends Controller
     public function search(Request $request): string
     {
 
-        $clients = Client::where('name', 'like', '%' . $request->search . '%')->
-        orWhere('phone_number', 'like', '%' . $request->search . '%')->get();
+        $clients = Client::where('name', 'Like', '%' . $request->search . '%')->
+        orWhere('phone_number', 'Like', '%' . $request->search . '%')->get();
 
-        $output = "hey\n\n\n\n";
+        $output = "";
         foreach ($clients as $client) {
-            $output .= '<a href="" class="font-medium">' . $client->name . '</a>';
+            $output .= view('admin.client.client-box', compact('client'));
         }
-        return response($output);
+        return $output;
     }
 }

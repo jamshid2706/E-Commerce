@@ -16,6 +16,8 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/search', [ClientController::class, 'search'])->name('admin.clients.search');
+
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/', [IndexController::class, 'index'])->name('admin.home');
     Route::group(['prefix' => 'categories'], function () {
@@ -41,7 +43,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::post('/{id}/edit', [ClientController::class, 'edit'])->name('admin.clients.edit');
         Route::get('/{id}', [ClientController::class, 'show'])->name('admin.clients.show');
         Route::delete('/{id}', [ClientController::class, 'destroy'])->name('admin.clients.delete');
-        Route::get('/search', [ClientController::class, 'search'])->name('admin.clients.search');
     });
     Route::group(['prefix' => 'sales'], function () {
         Route::get('/', [SaleController::class, 'index'])->name('admin.sales');

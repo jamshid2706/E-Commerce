@@ -8,21 +8,16 @@
     <div class="lg:flex intro-y">
         <div class="intro-y col-span-12 flex flex-wrap items-center mt-2">
             <div class="relative">
-                <input type="text" name="search"
+                <input type="text" name="search" id="search"
                        class="form-control py-3 px-4 w-full lg:w-64 box mr-2 pr-10"
-                       placeholder="Search for name..." id="search">
+                       placeholder="Search for name..." >
                 <i data-lucide="search"
-                   class="lucide lucide-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0 text-slate-500"></i>
+                   class="lucide lucide-search w-5 h-5 absolute my-auto inset-y-0 mr-4 right-0 text-slate-500"></i>
             </div>
         </div>
     </div>
-<div class="grid grid-cols-12 gap-6 mt-5">
-    <div id="Content" class="intro-y row col-span-12 lg:col-span-6 md:col-span-12">
-
-    </div>
-</div>
     <div class="grid grid-cols-12 gap-6 mt-5">
-        <div class="intro-y row col-span-12 lg:col-span-6 md:col-span-12">
+        <div id="Content" class="intro-y row col-span-12 lg:col-span-6 md:col-span-12">
             @foreach($clients as $client)
                 <div class="intro-y col-span-12 lg:col-span-6 xl:col-span-6 md:col-span-6 my-5">
                     <div class="box">
