@@ -16,6 +16,7 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/search', [ProductController::class, 'search'])->name('admin.products.search');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/', [IndexController::class, 'index'])->name('admin.home');
@@ -35,7 +36,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::post('/store', [ProductController::class, 'store'])->name('admin.products.store');
         Route::post('/{id}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
         Route::delete('/{id}', [ProductController::class, 'destroy'])->name('admin.products.delete');
-        Route::get('/search', [ProductController::class, 'search'])->name('admin.clients.search');
     });
     Route::group(['prefix' => 'clients'], function () {
         Route::get('/', [ClientController::class, 'index'])->name('admin.clients');

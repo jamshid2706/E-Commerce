@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $categories = Category::all();
-        $products = Product::all();
+        $products = Product::orderBy('created_at', 'desc')->paginate(12);
         return view('admin.product.index', compact('products', 'categories'));
     }
 
@@ -53,15 +53,15 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        $array = explode('/', $request->search['url']);
-        $clients = DB::table(end($array))
-            ->where('title', 'Like', '%' . $request->search['search'] . '%')
-            ->orderBy($request->search['sort'])->get();
+        $products = Product::where('title', 'Like', '%' . $request->search . '%')
+            ->orWhere('description', 'Like', '%' . $request->search . '%')
+            ->get();
         $output = '';
         $categories = Category::all();
-        foreach ($clients as $product) {
-            $output .= view('admin.partials.cards.products', compact('product', 'categories'));
+        foreach ($products as $product) {
+            $output .= view('admin.product.search.productSearch', compact('product', 'categories'));
         }
         return $output;
     }
+
 }
