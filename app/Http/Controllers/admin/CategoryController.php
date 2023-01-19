@@ -14,7 +14,9 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('admin.category.index', compact('categories'));
+        return $categories->isEmpty() ?
+            view('admin.category.index') :
+            redirect()->route('admin.category.show', $categories->toArray()[0]['id']);
     }
 
     public function show($id)
