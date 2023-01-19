@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\File;
 
@@ -47,5 +49,19 @@ class ProductController extends Controller
     {
         Product::destroy($id);
         return redirect()->route('admin.products');
+    }
+
+    public function search(Request $request)
+    {
+        $array = explode('/', $request->search['url']);
+        $clients = DB::table(end($array))
+            ->where('title', 'Like', '%' . $request->search['search'] . '%')
+            ->orderBy($request->search['sort'])->get();
+        $output = '';
+        $categories = Category::all();
+        foreach ($clients as $product) {
+            $output .= view('admin.partials.cards.products', compact('product', 'categories'));
+        }
+        return $output;
     }
 }
