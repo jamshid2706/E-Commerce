@@ -38,6 +38,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::delete('/{id}', [ProductController::class, 'destroy'])->name('admin.products.delete');
     });
     Route::group(['prefix' => 'clients'], function () {
+        Route::get('/search', [ClientController::class, 'search'])->name('admin.clients.search');
         Route::get('/', [ClientController::class, 'index'])->name('admin.clients');
         Route::post('/store', [ClientController::class, 'store'])->name('admin.clients.store');
         Route::post('/{id}/edit', [ClientController::class, 'edit'])->name('admin.clients.edit');

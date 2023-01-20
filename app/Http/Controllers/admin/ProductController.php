@@ -7,9 +7,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rules\File;
 
 class ProductController extends Controller
 {
@@ -55,7 +53,7 @@ class ProductController extends Controller
     {
         $products = Product::where('title', 'Like', '%' . $request->search . '%')
             ->orWhere('description', 'Like', '%' . $request->search . '%')
-            ->get();
+            ->paginate(8);
         $output = '';
         $categories = Category::all();
         foreach ($products as $product) {

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientRequest;
-use App\Models\Category;
 use App\Models\Client;
 use Illuminate\Http\Request;
 
@@ -12,7 +11,7 @@ class ClientController extends Controller
 {
     public function index()
     {
-        $clients = Client::all();
+        $clients = Client::orderBy('created_at', 'desc')->paginate(8);
         return view('admin.client.index', compact('clients'));
     }
 
