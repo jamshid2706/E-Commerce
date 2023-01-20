@@ -7,6 +7,8 @@ use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use http\Env\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
@@ -68,4 +70,5 @@ class CategoryController extends Controller
         Product::destroy($id);
         return redirect()->route('admin.categories');
     }
+
 }

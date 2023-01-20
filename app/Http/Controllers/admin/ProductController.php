@@ -51,9 +51,9 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        $products = Product::where('title', 'Like', '%' . $request->search . '%')
+        $products = Product::where('title', 'Like', '%' . $request['search'] . '%')
             ->orWhere('description', 'Like', '%' . $request->search . '%')
-            ->paginate(8);
+            ->orderBy($request->sort)->paginate(8);
         $output = '';
         $categories = Category::all();
         foreach ($products as $product) {

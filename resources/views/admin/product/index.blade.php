@@ -197,13 +197,14 @@
     <script type="text/javascript">
 
         function update() {
-            $value = {
+            let value = {
                 'search': $('#search').val(),
+                'sort': $('#sort').val()
             }
             $.ajax({
                 type: 'get',
-                url: '{{URL::to('/search')}}',
-                data: $value,
+                url: '{{URL::to('/admin/products/search')}}',
+                data: value,
                 success: function (data) {
                     console.log(data);
                     $('#Content').html(data);
@@ -212,6 +213,7 @@
         }
 
         $('#search').on('keyup', update);
+        $('#sort').on('change', update);
     </script>
 @endsection
 
