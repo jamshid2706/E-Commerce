@@ -218,6 +218,7 @@
 @section('scripts')
     @parent
     <script>
+
         $(".category").click(function() {
             alert("hey");
             $( this ).slideUp();

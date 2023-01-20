@@ -27,8 +27,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::post('/{id}/productedit', [CategoryController::class, 'productedit'])->name('admin.category.product.edit');
         Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('admin.category.delete');
         Route::delete('/{id}', [CategoryController::class, 'destroyproduct'])->name('admin.category.productdelete');
-
-
+        Route::get('/search', [CategoriesController::class, 'search'])->name('admin.category.search');
     });
     Route::group(['prefix' => 'products'], function () {
         Route::get('/', [ProductController::class, 'index'])->name('admin.products');

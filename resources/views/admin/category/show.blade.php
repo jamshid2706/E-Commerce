@@ -10,19 +10,19 @@
         <div class="intro-y col-span-12 lg:col-span-12">
             <div class="lg:flex intro-y">
                 <div class="relative">
-                    <input type="text" class="form-control py-3 px-4 w-full lg:w-64 box pr-10" placeholder="Search item...">
+                    <input id="search" type="text" class="form-control py-3 px-4 w-full lg:w-64 box pr-10" placeholder="Search item...">
                     <i data-lucide="search" class="lucide lucide-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0 text-slate-500"></i>
                 </div>
-                <select class="form-select py-3 px-4 box w-full lg:w-auto mt-3 lg:mt-0 ml-auto"
+                <select id="sort" class="form-select py-3 px-4 box w-full lg:w-auto mt-3 lg:mt-0 ml-auto"
                         control-id="ControlID-4">
-                    <option class="ajafilter">A to Z</option>
-                    <option class="ajafilter">Sort By</option>
-                    <option class="ajafilter">Z to A</option>
-                    <option class="ajafilter">Lowest Price</option>
-                    <option class="ajafilter">Highest Price</option>
+                    <option>A to Z</option>
+                    <option>Sort By</option>
+                    <option>Z to A</option>
+                    <option>Lowest Price</option>
+                    <option>Highest Price</option>
                 </select>
             </div>
-            <div class="grid grid-cols-12 gap-5 mt-5">
+            <div id="Content" class="grid grid-cols-12 gap-5 mt-5">
                 @foreach($categories as $key => $category)
                     @if($category->id == $selected->id)
                         <div class="col-span-12 sm:col-span-3 2xl:col-span-3 box bg-primary p-5 cursor-pointer zoom-in">
@@ -133,6 +133,24 @@
 @section('scripts')
     @parent
     <script>
+        function update() {
+            let value = {
+                'search': $('#search').val(),
+                'sort': $('#sort').val()
+            }
+            $.ajax({
+                type: 'get',
+                url: '{{URL::to('/admin/categories/search')}}',
+                data: value,
+                success: function (data) {
+                    console.log(data);
+                    $('#Content').html(data);
+                },
+            });
+        }
+
+        $('#search').on('keyup', update);
+        $('#sort').on('change', update);
 
         $(".category").click(function () {
             alert("hey");

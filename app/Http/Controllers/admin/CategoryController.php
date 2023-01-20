@@ -10,6 +10,7 @@ use App\Models\Product;
 use http\Env\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use mysql_xdevapi\Exception;
 
 class CategoryController extends Controller
 {
@@ -71,4 +72,24 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories');
     }
 
+    public function search(Request $request)
+    {
+        $output = 'hey';
+//        try {
+//            $categories = Category::where('title', 'Like', '%' . $request['search'] . '%')
+//                ->orderBy($request['sort'])->paginate(8);
+//        } catch (Exception $e){
+//            $output = "\n\n\n".$e->getMessage()."\n\n\n";
+//        }
+//        if ($categories){
+//            foreach ($categories as $category) {
+//                $output .= "$category\n\n";
+////            $output .= view('admin.product.search.productSearch', compact('category'));
+//            }
+//        } else {
+//            $output = "error";
+//        }
+
+        return $output;
+    }
 }
