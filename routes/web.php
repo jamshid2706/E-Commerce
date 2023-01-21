@@ -46,7 +46,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::delete('/{id}', [ClientController::class, 'destroy'])->name('admin.clients.delete');
     });
     Route::group(['prefix' => 'sales'], function () {
-        Route::get('/', [SaleController::class, 'index'])->name('admin.sales');
+        Route::get('/', [SaleController::class, 'index'])->name('admin.sales');Route::post('/store', [SaleController::class, 'store'])->name('admin.sales.store');
     });
 });
 // Mobile App routes
