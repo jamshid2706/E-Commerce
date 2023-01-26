@@ -1,3 +1,25 @@
+<style>
+
+    .center {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form-input2 img {
+        width: 10rem;
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form-input2 input {
+        display: none;
+    }
+
+</style>
+
 <!-- BEGIN: Modal Toggle -->
 <div class="my-4">
     <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#static-backdrop-modal-preview"
@@ -18,20 +40,15 @@
                         <div class="flex items-center justify-center w-full">
                             <label class="flex flex-col w-full h-32 border-4 border-dashed dropzone"
                                    style="cursor: pointer">
-                                <div class="flex flex-col items-center justify-center pt-7">
-                                    @foreach($products as $key => $product)
-                                        <img src="{{ 'storage/'.$product->image}}" alt="" class="w-52">
-                                    @endforeach
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                         class="w-12 h-12 text-gray-400 group-hover:text-gray-600"
-                                         viewBox="0 0 20 20"
-                                         fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                              d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-                                              clip-rule="evenodd"/>
-                                    </svg>
+                                <div class="flex flex-col items-center justify-center pt-7 center">
+                                    <div class="form-input2">
+                                            <img class="w-100 h-32" id="file-ip-1-preview">
+                                        <input type="file" style="cursor: pointer" class="opacity-0 fallback"
+                                               name="image"
+                                               id="file-ip-1"
+                                               accept="image/*" onchange="showPreview(event);"/>
+                                    </div>
                                 </div>
-                                <input type="file" class="opacity-0 fallback" name="image"/>
                             </label>
                         </div>
 
@@ -82,3 +99,13 @@
     </div>
 </div>
 <!-- END: Modal Content -->
+<script type="text/javascript">
+    function showPreview(event) {
+        if (event.target.files.length > 0) {
+            var src = URL.createObjectURL(event.target.files[0]);
+            var preview = document.getElementById("file-ip-1-preview");
+            preview.src = src;
+            preview.style.display = "block";
+        }
+    }
+</script>
