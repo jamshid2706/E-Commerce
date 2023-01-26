@@ -14,8 +14,9 @@
                         <label for="vertical-form-1" class="form-label">Category Name</label>
                         <input id="vertical-form-1" type="text" class="form-control" name="title"
                                placeholder="Category Name" required>
+                        <p id="Content2" class="pt-2 text-warning "></p>
                         <button class="btn btn-secondary mt-5 w-24 mr-2" data-tw-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary w-24 text-">Ok</button>
+                        <button id="addbtn" type="submit" class="btn btn-primary w-24 text-">Ok</button>
                     </form>
                 </div>
             </div>

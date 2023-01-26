@@ -7,10 +7,8 @@ use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
-use http\Env\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use mysql_xdevapi\Exception;
 
 class CategoryController extends Controller
 {
@@ -74,22 +72,22 @@ class CategoryController extends Controller
 
     public function search(Request $request)
     {
-        $output = 'hey';
-//        try {
-//            $categories = Category::where('title', 'Like', '%' . $request['search'] . '%')
-//                ->orderBy($request['sort'])->paginate(8);
-//        } catch (Exception $e){
-//            $output = "\n\n\n".$e->getMessage()."\n\n\n";
-//        }
-//        if ($categories){
-//            foreach ($categories as $category) {
-//                $output .= "$category\n\n";
-////            $output .= view('admin.product.search.productSearch', compact('category'));
-//            }
-//        } else {
-//            $output = "error";
-//        }
+        $output = '';
+
+
+
+        $categories = Category::where('title', 'Like', '%' . $request['search'] . '%')->get();
+
+        foreach ($categories as $category) {
+            $output .= view('admin.category.Search.categoriesSearch', compact('category'));
+        }
 
         return $output;
+    }
+
+    public function add(Request $request)
+    {
+        $categories = Category::where('title', $request['search'])->get();
+        return $categories->isEmpty() ? 'Not Found' : $categories;
     }
 }

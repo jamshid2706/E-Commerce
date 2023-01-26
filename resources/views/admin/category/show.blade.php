@@ -13,14 +13,6 @@
                     <input id="search" type="text" class="form-control py-3 px-4 w-full lg:w-64 box pr-10" placeholder="Search item...">
                     <i data-lucide="search" class="lucide lucide-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0 text-slate-500"></i>
                 </div>
-                <select id="sort" class="form-select py-3 px-4 box w-full lg:w-auto mt-3 lg:mt-0 ml-auto"
-                        control-id="ControlID-4">
-                    <option>A to Z</option>
-                    <option>Sort By</option>
-                    <option>Z to A</option>
-                    <option>Lowest Price</option>
-                    <option>Highest Price</option>
-                </select>
             </div>
             <div id="Content" class="grid grid-cols-12 gap-5 mt-5">
                 @foreach($categories as $key => $category)
@@ -133,6 +125,25 @@
 @section('scripts')
     @parent
     <script>
+        $('#vertical-form-1').on('keyup', function(){
+           value = $(this).val();
+
+           $.ajax({
+               type: 'get',
+               url: '{{URL::to('/admin/categories/add')}}',
+               data: {'search':value},
+               success:function (data){
+                   if(data === 'Not Found'){
+                       $('#Content2').html('');
+                       $('#addbtn').prop("disabled",false);
+                   } else {
+                       $('#Content2').html('Category with this name is already exists');
+                       $('#addbtn').prop("disabled", true);
+                   }
+               },
+           });
+        });
+
         function update() {
             let value = {
                 'search': $('#search').val(),

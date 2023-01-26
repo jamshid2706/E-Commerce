@@ -21,13 +21,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/', [IndexController::class, 'index'])->name('admin.home');
     Route::group(['prefix' => 'categories'], function () {
         Route::get('/', function () {return redirect('/admin/categories/1');})->name('admin.categories');
+        Route::get('/add', [CategoryController::class, 'add'])->name('admin.categories.add');
+        Route::get('/search', [CategoryController::class, 'search'])->name('admin.category.search');
         Route::get('/{id}', [CategoryController::class, 'show'])->name('admin.category.show');
         Route::post('/store', [CategoryController::class, 'store'])->name('admin.category.store');
         Route::post('/{id}/edit', [CategoryController::class, 'edit'])->name('admin.category.edit');
         Route::post('/{id}/productedit', [CategoryController::class, 'productedit'])->name('admin.category.product.edit');
         Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('admin.category.delete');
         Route::delete('/{id}', [CategoryController::class, 'destroyproduct'])->name('admin.category.productdelete');
-        Route::get('/search', [CategoriesController::class, 'search'])->name('admin.category.search');
     });
     Route::group(['prefix' => 'products'], function () {
         Route::get('/', [ProductController::class, 'index'])->name('admin.products');
@@ -35,7 +36,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::post('/{id}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
         Route::delete('/{id}', [ProductController::class, 'destroy'])->name('admin.products.delete');
         Route::get('/search', [ProductController::class, 'search'])->name('admin.products.search');
-
     });
     Route::group(['prefix' => 'clients'], function () {
         Route::get('/search', [ClientController::class, 'search'])->name('admin.clients.search');
