@@ -188,10 +188,11 @@
                 </div>
             </div>
         @endforeach
+        <div class="mt-10 col-span-12">
+            {{$products->withQueryString()->links()}}
+        </div>
     </div>
-    <div class="mt-10">
-        {{$products->withQueryString()->links()}}
-    </div>
+
 @endsection
 @section('scripts')
     <script type="text/javascript">
