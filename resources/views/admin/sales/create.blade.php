@@ -1,7 +1,7 @@
 <style>
 
     .ajaresult::-webkit-scrollbar {
-        width: 0px;
+        width: 0;
     }
 
     .ajaresult {
@@ -71,7 +71,7 @@
                                 </div>
                             </div>
 
-                            <div class="absolute hidden bg-slate-200 w-52 ajaresult" style="padding: 0px">
+                            <div class="absolute hidden bg-slate-200 w-52 ajaresult" style="padding: 0">
 
                             </div>
                         </div>
@@ -159,7 +159,7 @@
             $('.price-tooltip').removeClass('hidden');
         } else {
             $('.price-tooltip').addClass('hidden');
-            if ($('#count-input').val != ''){
+            if ($('#count-input').val != '' && $('.count-tooltip').hasClass('hidden')){
                 $('#amount-input').val(parseInt($(this).val()) * parseInt($('#count-input').val()));
             }
         }
@@ -169,7 +169,7 @@
         equal = parseInt($(this).val()) > $('.count-tooltip').attr('value');
         if (equal){
             $('#amount-input').val('');
-            $('.count-tooltip').removeClass('hidden').text('Product left:' + $('.count-tooltip').attr('value'));
+            $('.count-tooltip').removeClass('hidden').html('Product left:' + $('.count-tooltip').attr('value') + '<div class="tooltip-arrow absolute"></div>');
         }else{
             $('.count-tooltip').addClass('hidden');
             if ($('#price-input').val != ''){
