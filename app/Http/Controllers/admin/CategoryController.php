@@ -73,9 +73,6 @@ class CategoryController extends Controller
     public function search(Request $request)
     {
         $output = '';
-
-
-
         $categories = Category::where('title', 'Like', '%' . $request['search'] . '%')->get();
 
         foreach ($categories as $category) {

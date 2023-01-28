@@ -37,12 +37,15 @@ class SaleController extends Controller
     public function search(Request $request)
     {
         $products = Product::where('title', 'Like', '%' . $request->search . '%')->orWhere('description', 'Like', '%' . $request->search . '%')->get();
+        $prod = Product::where('title', $request->search)->get();
         $output = "";
 
         foreach ($products as $product){
             $output .= '<div class="col-span-12 p-3 bg-white mb-1 ajacontent" style="border-radius: 4px; cursor: pointer">'. $product->title .'</div>';
         }
 
-        return $output;
+        $data['data'] = $output;
+        $data['warning'] = $prod->isEmpty() ? 'Product not found' : '';
+        return $data;
     }
 }
