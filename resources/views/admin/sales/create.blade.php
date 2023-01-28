@@ -1,7 +1,7 @@
 <style>
 
     .ajaresult::-webkit-scrollbar {
-        width: 5px;
+        width: 0px;
     }
 
     .ajaresult {
@@ -28,7 +28,8 @@
                     <h2 class="font-medium text-base mr-auto">New Sale</h2>
                     <div class="col-span-12 sm:col-span-3 mr-2">
                         <input onkeyup="onChange(this)" type="text" name=""
-                               class="form-control" placeholder="Client Name">
+                               class="form-control" placeholder="Client Name"
+                        >
                     </div>
                     <div class="col-span-12 sm:col-span-3">
                         <button type="button" onclick="add()" class="btn btn-primary w-24 text-">Add</button>
@@ -44,15 +45,18 @@
                             <div class="relative w-full">
                                 <input id="productname"
                                        onkeyup="onChange(this)" type="text" name=""
-                                       class="form-control search__input"
-                                       placeholder="Product Name" required>
-                                <p class="ajawarning text-warning"></p>
+                                       class="tooltip form-control search__input"
+                                       placeholder="Product Name"
+                                       autocomplete="off" required
+                                       data-trigger="click"
+                                       title="This is awesome tooltip example!">
                                 <div id="btn" class="absolute top-0 right-0 p-2 text-gray-600 cursor-pointer hidden">
                                     x
                                 </div>
+{{--                                <p class="ajawarning text-warning"></p>--}}
                             </div>
 
-                            <div class="absolute hidden bg-slate-200 w-52 p-1 ajaresult">
+                            <div class="absolute hidden bg-slate-200 w-52 ajaresult" style="padding: 0px">
 
                             </div>
                         </div>
@@ -60,11 +64,13 @@
                             <label for="modal-form-2" class="form-label">Price</label>
                             <input onkeyup="onChange(this)" type="number" name="price[]"
                                    class="form-control" placeholder="Price" required>
+                            <p class="priceitem text-primary"></p>
                         </div>
                         <div class="col-span-12 sm:col-span-3">
                             <label for="modal-form-3" class="form-label">Count</label>
                             <input onkeyup="onChange(this)" type="number" name="count[]"
                                    class="form-control" placeholder="Count" required>
+                            <p class="countitem text-primary"></p>
                         </div>
                         <div class="col-span-12 sm:col-span-3 mb-4">
                             <label for="modal-form-4" class="form-label">Amount</label>
@@ -90,9 +96,10 @@
 
 <script>
 
-    function update() {
+    function update($comingfrom) {
         let value = {
             'search': $('#productname').val(),
+            'id': $('#productname').attr('value')
         }
         $.ajax({
             type: 'get',
@@ -100,9 +107,23 @@
             data: value,
             success: function (data) {
                 $('.ajaresult').html(data['data']);
-                $('.ajawarning').html(data['warning'])
+                if (data['warning'] === 'Product not found'){
+                    $('.ajawarning').html(data['warning']);
+                } else {
+                    $('.ajawarning').html('');
+                    $('.countitem').html(data['amount']);
+                    $('.priceitem').html(data['price']);
+                    if ($comingfrom == ''){
+                        $('#productname').attr('value', data['warning']);
+                        getProdData();
+                    }
+                }
             },
         });
+    }
+
+    function getProdData(){
+        update('datacheck');
     }
 
     function xbutton() {
@@ -116,7 +137,7 @@
 
     $('#productname').on('focus', function () {
         $('.ajaresult').removeClass('hidden');
-        update();
+        update('');
     });
 
     $('#productname').on('focusout', function () {
@@ -127,7 +148,7 @@
     });
 
     $('#productname').on('keyup', function () {
-        update();
+        update('');
         xbutton();
     });
 
@@ -137,8 +158,9 @@
     });
 
     $(document).on('click', '.ajacontent', function () {
-        $('#productname').val($(this).text());
-        update();
+        update('list');
+        $('#productname').val($(this).children('.title').text());
+        $('#productname').attr('value', $(this).attr('id'));
         xbutton();
     });
 

@@ -41,11 +41,21 @@ class SaleController extends Controller
         $output = "";
 
         foreach ($products as $product){
-            $output .= '<div class="col-span-12 p-3 bg-white mb-1 ajacontent" style="border-radius: 4px; cursor: pointer">'. $product->title .'</div>';
+            $output .= '<div id='. $product->id .' class="col-span-12 p-1 bg-white ajacontent" style="border: 2px solid lightgray; border-radius: 4px; cursor: pointer"><p class="title pl-1">'. $product->title .'</p>
+        <p class="text-slate-400 font-8 pt-1">'.substr($product->description, 0, 26) .'</p></div>';
+        }
+
+        $data['amount'] = $request->id;
+        $data['price'] = '';
+
+        if ($request->id != ''){
+            $getProdData = Product::find($request->id);
+            $data['amount'] = $getProdData->stock;
+            $data['price'] = $getProdData->buy;
         }
 
         $data['data'] = $output;
-        $data['warning'] = $prod->isEmpty() ? 'Product not found' : '';
+        $data['warning'] = $prod->isEmpty() ? 'Product not found' : $prod[0]['id'];
         return $data;
     }
 }
