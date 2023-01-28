@@ -9,6 +9,18 @@
         overflow-y: scroll;
     }
 
+    .tooltip-info{
+        top:-5px;
+        background-color: rgb(248 113 113);
+    }
+    .tooltip-arrow{
+        transform: translate3d(60.8px, 0px, 0px);
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 12px solid rgb(248 113 113);
+        width: 0;
+        height: 0;
+    }
 
 </style>
 
@@ -36,45 +48,54 @@
                     </div>
 
                 </div>
+
                 <!-- END: Modal Header -->
                 <div class="modal-body">
                     <div class="grid grid-cols-12">
                         @csrf
                         <div class="col-span-12 sm:col-span-3 relative">
                             <label for="modal-form-1" class="form-label">Product</label>
+                            <div value='' class=" hidden product-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0" >Product not found
+                                <div class="tooltip-arrow absolute"></div>
+                            </div>
                             <div class="relative w-full">
                                 <input id="productname"
                                        onkeyup="onChange(this)" type="text" name=""
                                        class="tooltip form-control search__input"
                                        placeholder="Product Name"
                                        autocomplete="off" required
-                                       data-trigger="click"
+                                       data-tooltip-target="tooltip-default"
                                        title="This is awesome tooltip example!">
                                 <div id="btn" class="absolute top-0 right-0 p-2 text-gray-600 cursor-pointer hidden">
                                     x
                                 </div>
-{{--                                <p class="ajawarning text-warning"></p>--}}
                             </div>
 
                             <div class="absolute hidden bg-slate-200 w-52 ajaresult" style="padding: 0px">
 
                             </div>
                         </div>
-                        <div class="col-span-12 sm:col-span-3">
+                        <div class="col-span-12 sm:col-span-3 relative">
                             <label for="modal-form-2" class="form-label">Price</label>
-                            <input onkeyup="onChange(this)" type="number" name="price[]"
-                                   class="form-control" placeholder="Price" required>
-                            <p class="priceitem text-primary"></p>
+                            <div value='' class=" hidden price-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0" >
+                                Enter higher amount
+                                <div class="tooltip-arrow absolute"></div>
+                            </div>
+                            <input id="price-input" onkeyup="onChange(this)" type="number" name="price[]"
+                                   class="form-control" placeholder="Price" required disabled>
                         </div>
-                        <div class="col-span-12 sm:col-span-3">
+                        <div class="col-span-12 sm:col-span-3 relative">
                             <label for="modal-form-3" class="form-label">Count</label>
-                            <input onkeyup="onChange(this)" type="number" name="count[]"
-                                   class="form-control" placeholder="Count" required>
-                            <p class="countitem text-primary"></p>
+                            <div value='' class=" hidden count-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0" >
+                                Please enter the right amount
+                                <div class="tooltip-arrow absolute"></div>
+                            </div>
+                            <input id="count-input" onkeyup="onChange(this)" type="number" name="count[]"
+                                   class="form-control" placeholder="Count" required disabled>
                         </div>
                         <div class="col-span-12 sm:col-span-3 mb-4">
                             <label for="modal-form-4" class="form-label">Amount</label>
-                            <input onkeyup="onChange(this)" id="modal-form-4" type="number" name="amount[]"
+                            <input id="amount-input" onkeyup="onChange(this)" id="modal-form-4" type="number" name="amount[]"
                                    class="form-control"
                                    placeholder="Amount" disabled>
                         </div>
@@ -108,11 +129,20 @@
             success: function (data) {
                 $('.ajaresult').html(data['data']);
                 if (data['warning'] === 'Product not found'){
-                    $('.ajawarning').html(data['warning']);
+                    $('.product-tooltip').attr('value', data['warning']);
+                    $('.count-tooltip').attr('value', '');
+                    $('.price-tooltip').attr('value', '');
+                    $('#productname').attr('value', '');
+                    $('#price-input').attr('disabled', true);
+                    $('#count-input').attr('disabled', true);
                 } else {
+                    $('.product-tooltip').attr('value', '');
+                    $('.product-tooltip').addClass('hidden');
+                    $('#price-input').attr('disabled', false);
+                    $('#count-input').attr('disabled', false);
                     $('.ajawarning').html('');
-                    $('.countitem').html(data['amount']);
-                    $('.priceitem').html(data['price']);
+                    $('.count-tooltip').attr('value', data['amount']);
+                    $('.price-tooltip').attr('value', data['price']);
                     if ($comingfrom == ''){
                         $('#productname').attr('value', data['warning']);
                         getProdData();
@@ -121,6 +151,32 @@
             },
         });
     }
+
+    $('#price-input').on('keyup', function(){
+        equal = parseInt($(this).val()) <= $('.price-tooltip').attr('value');
+        if (equal){
+            $('#amount-input').val('');
+            $('.price-tooltip').removeClass('hidden');
+        } else {
+            $('.price-tooltip').addClass('hidden');
+            if ($('#count-input').val != ''){
+                $('#amount-input').val(parseInt($(this).val()) * parseInt($('#count-input').val()));
+            }
+        }
+    });
+
+    $('#count-input').on('keyup', function(){
+        equal = parseInt($(this).val()) > $('.count-tooltip').attr('value');
+        if (equal){
+            $('#amount-input').val('');
+            $('.count-tooltip').removeClass('hidden').text('Product left:' + $('.count-tooltip').attr('value'));
+        }else{
+            $('.count-tooltip').addClass('hidden');
+            if ($('#price-input').val != ''){
+                $('#amount-input').val(parseInt($(this).val()) * parseInt($('#price-input').val()));
+            }
+        }
+    });
 
     function getProdData(){
         update('datacheck');
@@ -141,10 +197,14 @@
     });
 
     $('#productname').on('focusout', function () {
+        if ($('.product-tooltip').attr('value') !== ''){
+            $('.product-tooltip').removeClass('hidden');
+        } else{
+            $('.product-tooltip').addClass('hidden');
+        }
         setTimeout(function () {
             $('.ajaresult').addClass('hidden');
         }, 500);
-
     });
 
     $('#productname').on('keyup', function () {
@@ -158,9 +218,10 @@
     });
 
     $(document).on('click', '.ajacontent', function () {
-        update('list');
+        $('.product-tooltip').addClass('hidden');
         $('#productname').val($(this).children('.title').text());
         $('#productname').attr('value', $(this).attr('id'));
+        update('list');
         xbutton();
     });
 
