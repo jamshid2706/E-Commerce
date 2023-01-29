@@ -1,35 +1,3 @@
-<style>
-
-    .ajaresult::-webkit-scrollbar {
-        width: 0;
-    }
-
-    .ajaresult {
-        max-height: 200px;
-        overflow-y: scroll;
-    }
-
-    .tooltip-info{
-        top:-5px;
-        background-color: rgb(248 113 113);
-    }
-    .tooltip-arrow{
-        transform: translate3d(60.8px, 0px, 0px);
-        border-left: 7px solid transparent;
-        border-right: 7px solid transparent;
-        border-top: 12px solid rgb(248 113 113);
-        width: 0;
-        height: 0;
-    }
-
-</style>
-
-<!-- BEGIN: Super Large Modal Toggle -->
-<a href="javascript:" data-tw-toggle="modal" data-tw-target="#superlarge-modal-size-preview"
-   class="btn btn-primary mr-1 mb-4 mt-2">Add Sales</a>
-<!-- END: Super Large Modal Toggle -->
-
-<!-- BEGIN: Super Large Modal Content -->
 <div id="superlarge-modal-size-preview" class="modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content ">
@@ -37,14 +5,14 @@
                   enctype="multipart/form-data">
                 <!-- BEGIN: Modal Header -->
                 <div class="modal-header">
-                    <h2 class="font-medium text-base mr-auto">New Sale</h2>
+                    <label for="client_name" class="font-medium text-base mr-auto">New Sale</label>
                     <div class="col-span-12 sm:col-span-3 mr-2">
-                        <input onkeyup="onChange(this)" type="text" name=""
+                        <input id="client_name" onkeyup="onChange(this)" type="text" name=""
                                class="form-control" placeholder="Client Name"
                         >
                     </div>
                     <div class="col-span-12 sm:col-span-3">
-                        <button type="button" onclick="add()" class="btn btn-primary w-24 text-">Add</button>
+                        <button id="addProduct" type="button" onclick="add()" class="btn btn-primary w-24 text-">Add</button>
                     </div>
 
                 </div>
@@ -59,9 +27,9 @@
                                 <div class="tooltip-arrow absolute"></div>
                             </div>
                             <div class="relative w-full">
-                                <input id="productname"
-                                       onkeyup="onChange(this)" type="text" name=""
-                                       class="tooltip form-control search__input"
+                                <input id="product_name"
+                                       type="text" name=""
+                                       class="tool-clear form-control search__input"
                                        placeholder="Product Name"
                                        autocomplete="off" required
                                        data-tooltip-target="tooltip-default"
@@ -71,36 +39,43 @@
                                 </div>
                             </div>
 
-                            <div class="absolute hidden bg-slate-200 w-52 ajaresult" style="padding: 0">
+                            <div class="absolute hidden bg-slate-200 w-52 ajax_result" style="padding: 0">
 
                             </div>
                         </div>
                         <div class="col-span-12 sm:col-span-3 relative">
-                            <label for="modal-form-2" class="form-label">Price</label>
-                            <div value='' class=" hidden price-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0" >
-                                Enter higher amount
+                            <label for="price-input" class="form-label">Price</label>
+                            <div value='' class="tool-clear hidden price-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0" >
+                                Enter higher price
                                 <div class="tooltip-arrow absolute"></div>
                             </div>
-                            <input id="price-input" onkeyup="onChange(this)" type="number" name="price[]"
-                                   class="form-control" placeholder="Price" required disabled>
+                            <input id="price-input" type="number" name="price[]"
+                                   class="disable-it form-control" placeholder="Price" required disabled>
                         </div>
                         <div class="col-span-12 sm:col-span-3 relative">
-                            <label for="modal-form-3" class="form-label">Count</label>
-                            <div value='' class=" hidden count-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0" >
+                            <label for="count-input" class="form-label">Count</label>
+                            <div value='' class="tool-clear hidden count-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0" >
                                 Please enter the right amount
                                 <div class="tooltip-arrow absolute"></div>
                             </div>
-                            <input id="count-input" onkeyup="onChange(this)" type="number" name="count[]"
-                                   class="form-control" placeholder="Count" required disabled>
+                            <input id="count-input" type="number" name="count[]"
+                                   class="disable-it form-control" placeholder="Count" required disabled>
                         </div>
-                        <div class="col-span-12 sm:col-span-3 mb-4">
+                        <div class="col-span-12 sm:col-span-3">
                             <label for="modal-form-4" class="form-label">Amount</label>
-                            <input id="amount-input" onkeyup="onChange(this)" id="modal-form-4" type="number" name="amount[]"
+                            <input onkeyup="onChange(this)" id="modal-form-4" type="number" name="amount[]"
                                    class="form-control"
                                    placeholder="Amount" disabled>
                         </div>
-                        <label for="modal-form-5" class="form-label pt-2">Total:</label>
-                        <input id="total" type="number" class="form-control col-span-5" disabled>
+
+
+                        <div class="col-span-12 grid grid-cols-12 mb-3 form-content">
+
+                        </div>
+
+
+                        <label for="total" class="form-label pt-2">Total:</label>
+                        <input id="total" type="number" class="form-control col-span-5" value="0" disabled>
                         <div class="col-span-12 mt-2">
                         </div>
                         <div class="col-span-12">
@@ -113,156 +88,217 @@
         </div>
     </div>
 </div>
+
+<!-- BEGIN: Super Large Modal Toggle -->
+<!-- END: Super Large Modal Toggle -->
+<style>
+
+    .ajax_result {
+        max-height: 200px;
+        overflow-y: scroll;
+    }
+
+    .tooltip-info{
+        top:-5px;
+        background-color: rgb(248 113 113);
+    }
+
+    .tooltip-arrow{
+        transform: translate3d(60.8px, 0px, 0px);
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 12px solid rgb(248 113 113);
+        width: 0;
+        height: 0;
+    }
+    .price-tooltip{
+        background-color: rgb(255 153 0);
+    }
+    .price-tooltip .tooltip-arrow{
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 12px solid rgb(255 153 0);
+    }
+    .ajax_result::-webkit-scrollbar {
+
+        width: 0;
+    }
+
+
+</style>
+
+<!-- BEGIN: Super Large Modal Content -->
+<a href="javascript:" data-tw-toggle="modal" data-tw-target="#superlarge-modal-size-preview"
+   class="btn btn-primary mr-1 mb-4 mt-2">Add Sales</a>
 <!-- END: Super Large Modal Content -->
 
 <script>
+    const list = [];
+    let $countInput = $('#count-input');
+    let $productName = $('#product_name');
+    let $priceInput = $('#price-input');
+    let $priceTooltip = $('.price-tooltip');
+    let $countTooltip = $('.count-tooltip');
+    let $productTooltip = $('.product-tooltip');
+    let $btn = $('#btn');
+    let $overall = $('#modal-form-4');
+    let $total = $('#total');
 
-    function update($comingfrom) {
+    function update($comingFrom) {
         let value = {
-            'search': $('#productname').val(),
-            'id': $('#productname').attr('value')
+            'search': $productName.val(),
+            'id': $productName.attr('value')
         }
         $.ajax({
             type: 'get',
             url: '{{URL::to('/admin/sales/search')}}',
             data: value,
             success: function (data) {
-                $('.ajaresult').html(data['data']);
+                $('.ajax_result').html(data['data']);
                 if (data['warning'] === 'Product not found'){
-                    $('.product-tooltip').attr('value', data['warning']);
-                    $('.count-tooltip').attr('value', '');
-                    $('.price-tooltip').attr('value', '');
-                    $('#productname').attr('value', '');
-                    $('#price-input').attr('disabled', true);
-                    $('#count-input').attr('disabled', true);
+                    $productTooltip.attr('value', data['warning']);
+                    $('.tool-clear').attr('value', '');
+                    $('.disable-it').attr('disabled', true);
                 } else {
-                    $('.product-tooltip').attr('value', '');
-                    $('.product-tooltip').addClass('hidden');
-                    $('#price-input').attr('disabled', false);
-                    $('#count-input').attr('disabled', false);
-                    $('.ajawarning').html('');
-                    $('.count-tooltip').attr('value', data['amount']);
-                    $('.price-tooltip').attr('value', data['price']);
-                    if ($comingfrom == ''){
-                        $('#productname').attr('value', data['warning']);
+                    $productTooltip.attr('value', '').addClass('hidden');
+                    $('.disable-it').attr('disabled', false);
+                    $countTooltip.attr('value', data['amount']);
+                    $priceTooltip.attr('value', data['price']);
+                    if ($comingFrom === ''){
+                        $productName.attr('value', data['warning']);
                         getProdData();
                     }
                 }
             },
         });
+
     }
 
-    $('#price-input').on('keyup', function(){
-        equal = parseInt($(this).val()) <= $('.price-tooltip').attr('value');
+    $priceInput.on('keyup', function(){
+        let equal = parseInt($(this).val()) <= $priceTooltip.attr('value');
         if (equal){
-            $('#amount-input').val('');
-            $('.price-tooltip').removeClass('hidden');
+            $priceTooltip.removeClass('hidden');
         } else {
-            $('.price-tooltip').addClass('hidden');
-            if ($('#count-input').val != '' && $('.count-tooltip').hasClass('hidden')){
-                $('#amount-input').val(parseInt($(this).val()) * parseInt($('#count-input').val()));
-            }
+            $priceTooltip.addClass('hidden');
         }
-    });
-
-    $('#count-input').on('keyup', function(){
-        equal = parseInt($(this).val()) > $('.count-tooltip').attr('value');
-        if (equal){
-            $('#amount-input').val('');
-            $('.count-tooltip').removeClass('hidden').html('Product left:' + $('.count-tooltip').attr('value') + '<div class="tooltip-arrow absolute"></div>');
+        if ($countInput.val() !== '' && $countTooltip.hasClass('hidden') && $(this).val() !== ''){
+            $overall.val(parseInt($(this).val()) * parseInt($countInput.val()));
         }else{
-            $('.count-tooltip').addClass('hidden');
-            if ($('#price-input').val != ''){
-                $('#amount-input').val(parseInt($(this).val()) * parseInt($('#price-input').val()));
-            }
+            $overall.val('');
         }
     });
 
+    $countInput.on('keyup', function(){
+        let equal = parseInt($(this).val()) > $countTooltip.attr('value');
+        if (equal){
+            $overall.val('');
+            $countTooltip.removeClass('hidden').html('Product left:' + $countTooltip.attr('value') + '<div class="tooltip-arrow absolute"></div>');
+        }else{
+            $countTooltip.addClass('hidden');
+            if ($priceInput.val() !== '' && $(this).val() !== ''){
+                $overall.val(parseInt($(this).val()) * parseInt($priceInput.val()));
+            }else{
+                $overall.val('');
+            }
+        }
+    });
     function getProdData(){
-        update('datacheck');
+        update('dataCheck');
+
+    }
+    function xButton() {
+        if ($productName.val() === '') {
+            $btn.addClass('hidden');
+        } else {
+            $btn.removeClass('hidden');
+        }
+
     }
 
-    function xbutton() {
-        if ($('#productname').val() === '') {
-            $('#btn').addClass('hidden');
-        } else {
-            $('#btn').removeClass('hidden');
-        }
-        ;
-    };
+    $(document).on('click', '.delete-product', function (){
+      let divClassId = $(this).attr('id');
 
-    $('#productname').on('focus', function () {
-        $('.ajaresult').removeClass('hidden');
+      let overall = $('.prod-overall-'+ divClassId +'').text();
+      let id = $(this).attr('value');
+
+      for(let i=0; i < list.length; i++){
+         if(list[i]['id'] === id && list[i]['overall'] === overall){
+                list.splice(i, 1);
+         }
+      }
+      $('.deleteId-'+ divClassId +'').remove();
+      console.log(list);
+    })
+
+    $productName.on('focus', function () {
+        $('.ajax_result').removeClass('hidden');
         update('');
     });
 
-    $('#productname').on('focusout', function () {
-        if ($('.product-tooltip').attr('value') !== ''){
-            $('.product-tooltip').removeClass('hidden');
+    $productName.on('focusout', function () {
+        if ($productTooltip.attr('value') !== ''){
+            $productTooltip.removeClass('hidden');
+            $overall.val('');
+            $('.disable-it').val('');
+            $countTooltip.addClass('hidden');
+            $priceTooltip.addClass('hidden');
         } else{
-            $('.product-tooltip').addClass('hidden');
+            $productTooltip.addClass('hidden');
         }
         setTimeout(function () {
-            $('.ajaresult').addClass('hidden');
+            $('.ajax_result').addClass('hidden');
         }, 500);
     });
 
-    $('#productname').on('keyup', function () {
+    $productName.on('keyup', function () {
         update('');
-        xbutton();
+        xButton();
     });
 
-    $('#btn').on('click', function () {
-        $('#productname').val('');
-        $('#btn').addClass('hidden');
+    $btn.on('click', function () {
+        $productName.val('');
+        $btn.addClass('hidden');
     });
 
-    $(document).on('click', '.ajacontent', function () {
-        $('.product-tooltip').addClass('hidden');
-        $('#productname').val($(this).children('.title').text());
-        $('#productname').attr('value', $(this).attr('id'));
+    $(document).on('click', '.ajax_content', function () {
+        $productTooltip.addClass('hidden');
+        $productName.val($(this).children('.title').text());
+        $productName.attr('value', $(this).attr('id'));
         update('list');
-        xbutton();
+        xButton();
     });
 
-    function onChange(element) {
-        let total = querySelector('#total');
-        let amounts = document.getElementById('amount');
-        let amount = element.parentElement.querySelector('#amount');
-        let price = element.parentElement.querySelector('#price');
-        let count = element.parentElement.querySelector('#count');
-        amount.value = price.value * count.value;
-        console.log(amount.value);
-        // for (let i = 0; i < amounts.length; i++) {
-        //     total.value +=;
-        // }
-    }
+    function add(){
+        let count = $countInput.val();
+        let price = $priceInput.val();
+        let name = $productName.val();
+        let overall = $overall.val();
+        let id = $productName.attr('value');
 
-    function add() {
-        $(".form_content").append(
-            `<div class="col-span-12 sm:col-span-3">
-                        <label for="modal-form-1" class="form-label">Product</label>
-                        <input onkeyup="onChange(this)" type="text" name="product[]"
-                               class="form-control"
-                               placeholder="Product Name" required>
-                    </div>
-                    <div class="col-span-12 sm:col-span-3">
-                        <label for="modal-form-2" class="form-label">Price</label>
-                        <input onkeyup="onChange(this)" type="number" name="price[]"
-                               class="form-control" placeholder="Price" required>
-                    </div>
-                    <div class="col-span-12 sm:col-span-3">
-                        <label for="modal-form-3" class="form-label">Count</label>
-                        <input onkeyup="onChange(this)" type="number" name="count[]"
-                               class="form-control" placeholder="Count" required>
-                    </div>
-                    <div class="col-span-12 sm:col-span-3">
-                        <label for="modal-form-4" class="form-label">Amount</label>
-                        <input onkeyup="onChange(this)" type="number" name="amount[]"
-                               class="form-control"
-                               placeholder="Amount ">
-                    </div>`
-        )
+        if (count !== '' && $countTooltip.hasClass('hidden') &&
+            price !== '' &&
+            name !== '' && $productTooltip.hasClass('hidden')){
+
+            list.push({id: id, count: count, price: price, overall: overall, client_id: '', });
+            let total = parseInt($total.val()) + parseInt(overall);
+
+            $total.val(total);
+
+            $(".form-content").append(
+                `<div class="prod-name-`+ id + price + count + ` deleteId-`+ id + price + count + ` col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold">`+ name +`</div>
+             <div class="prod-price-`+ id + price + count + ` deleteId-`+ id + price + count + ` col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold">`+ price +`</div>
+             <div class="prod-count-`+ id + price + count + ` deleteId-`+ id + price + count + ` col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold">` + count + `</div>
+             <div class="prod-overall-`+ id + price + count + ` deleteId-`+ id + price + count + ` relative col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold">`+ overall +`<a value="`+ id +`" id="`+ id + price + count + `"
+            class="delete-product btn mx-1 absolute right-0 top-0 p-1" style="width: 30px; height: 30px;"><svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 48 48"><path fill="#d85b53" d="M32 11H16a1 1 0 0 1-1-1V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v4a1 1 0 0 1-1 1ZM17 9h14V6a1 1 0 0 0-1-1H18a1 1 0 0 0-1 1Z" class="color232323 svgShape"></path><path fill="#d85b53" d="M31.443 45H16.557a5 5 0 0 1-4.966-4.416L8.007 10.117A1 1 0 0 1 9 9h30a1 1 0 0 1 0 2H10.125l3.453 29.351A3 3 0 0 0 16.557 43h14.886a3 3 0 0 0 2.979-2.649l3.037-25.814a1 1 0 0 1 1.987.234l-3.037 25.813A5 5 0 0 1 31.443 45Z" class="color232323 svgShape"></path><path fill="#d85b53" d="M42 11H6a1 1 0 0 1 0-2h36a1 1 0 0 1 0 2Z" class="color232323 svgShape"></path><path fill="#26d7fe" d="M28.006 31.974a1 1 0 0 1-1-1l-.012-11.937a1 1 0 0 1 1-1 1 1 0 0 1 1 1l.012 11.937a1 1 0 0 1-1 1zm-8-.011a1 1 0 0 1-1-1l-.012-11.937a1 1 0 0 1 1-1 1 1 0 0 1 1 1l.012 11.937a1 1 0 0 1-1 1z" class="color7fbde7 svgShape"></path></svg></a></div>`
+            )
+            $countInput.val('');
+            $priceInput.val('');
+            $productName.val('');
+            $overall.val('0');
+            $productName.attr('value', '');
+
+            console.log(list);
+        }
     }
 
 </script>

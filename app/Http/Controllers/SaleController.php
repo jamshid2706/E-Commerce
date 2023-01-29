@@ -41,7 +41,7 @@ class SaleController extends Controller
         $output = "";
 
         foreach ($products as $product){
-            $output .= '<div id='. $product->id .' class="col-span-12 p-1 bg-white ajacontent" style="border: 2px solid lightgray; border-radius: 4px; cursor: pointer"><p class="title pl-1">'. $product->title .'</p>
+            $output .= '<div id='. $product->id .' class="col-span-12 p-1 bg-white ajax_content" style="border: 2px solid lightgray; border-radius: 4px; cursor: pointer"><p class="title pl-1">'. $product->title .'</p>
         <p class="text-slate-400 font-8 pt-1">'.substr($product->description, 0, 26) .'</p></div>';
         }
 
