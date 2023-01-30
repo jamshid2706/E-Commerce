@@ -29,6 +29,7 @@ class SaleController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
         $insertion = Sale::create($request->all());
         return redirect()->route('admin.sales');
     }
