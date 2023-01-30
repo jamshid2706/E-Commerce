@@ -1,3 +1,4 @@
+<i data-lucide="trash-2" class="hidden text-danger"></i>
 <div id="superlarge-modal-size-preview" class="modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content ">
@@ -32,20 +33,15 @@
                                 <div class="tooltip-arrow absolute"></div>
                             </div>
                             <div class="relative w-full">
-                                <input id="product_name"
-                                       type="text" name="product[]"
+                                <input
+                                    id="product_name"
+                                       type="text"
                                        class="tool-clear form-control search__input"
                                        placeholder="Product Name"
-                                       autocomplete="off" required
+                                       autocomplete="off"
                                        data-tooltip-target="tooltip-default">
-                                <div id="btn" class="absolute top-0 right-0 p-2 text-gray-600 cursor-pointer hidden">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                         stroke-linejoin="round" icon-name="x" data-lucide="x"
-                                         class="lucide lucide-x w-8 h-8 text-slate-400">
-                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                    </svg>
+                                <div id="btn" class="text-danger absolute top-0 right-0 mt-1 p-1 text-gray-600 cursor-pointer hidden">
+                                    <i data-lucide="x-circle" height="20px"></i>
                                 </div>
                             </div>
 
@@ -60,8 +56,8 @@
                                 Enter higher price
                                 <div class="tooltip-arrow absolute"></div>
                             </div>
-                            <input id="price-input" type="number" name="price[]"
-                                   class="disable-it form-control" placeholder="Price" required disabled>
+                            <input id="price-input" type="number"
+                                   class="disable-it form-control" placeholder="Price" disabled>
                         </div>
                         <div class="col-span-12 sm:col-span-3 relative">
                             <label for="count-input" class="form-label">Count</label>
@@ -70,14 +66,14 @@
                                 Please enter the right amount
                                 <div class="tooltip-arrow absolute"></div>
                             </div>
-                            <input id="count-input" type="number" name="count[]"
-                                   class="disable-it form-control" placeholder="Count" required disabled>
+                            <input id="count-input" type="number"
+                                   class="disable-it form-control" placeholder="Count" disabled>
                         </div>
                         <div class="col-span-12 sm:col-span-3">
                             <label for="modal-form-4" class="form-label">Amount</label>
-                            <input onkeyup="onChange(this)" id="modal-form-4" type="number" name="amount[]"
+                            <input onkeyup="onChange(this)" id="modal-form-4" type="number"
                                    class="form-control"
-                                   placeholder="Amount" disabled>
+                                   placeholder="Amount" readonly>
                         </div>
 
 
@@ -235,9 +231,9 @@
     $(document).on('click', '.delete-product', function () {
         let divClassId = $(this).attr('id');
 
-        let overall = $('.prod-overall-' + divClassId + '').text();
+        let overall = $('.prod-overall-input-' + divClassId + '').val();
         let id = $(this).attr('value');
-
+        $total.val(parseInt($total.val()) - overall);
         for (let i = 0; i < list.length; i++) {
             if (list[i]['id'] === id && list[i]['overall'] === overall) {
                 list.splice(i, 1);
@@ -302,11 +298,15 @@
             $total.val(total);
 
             $(".form-content").append(
-                `<div class="prod-name-` + id + price + count + ` deleteId-` + id + price + count + ` col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold">` + name + `</div>
-             <div class="prod-price-` + id + price + count + ` deleteId-` + id + price + count + ` col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold">` + price + `</div>
-             <div class="prod-count-` + id + price + count + ` deleteId-` + id + price + count + ` col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold">` + count + `</div>
-             <div class="prod-overall-` + id + price + count + ` deleteId-` + id + price + count + ` relative col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold">` + overall + `<a value="` + id + `" id="` + id + price + count + `"
-            class="delete-product btn mx-1 absolute right-0 top-0 p-1" style="width: 30px; height: 30px;"><svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 48 48"><path fill="#d85b53" d="M32 11H16a1 1 0 0 1-1-1V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v4a1 1 0 0 1-1 1ZM17 9h14V6a1 1 0 0 0-1-1H18a1 1 0 0 0-1 1Z" class="color232323 svgShape"></path><path fill="#d85b53" d="M31.443 45H16.557a5 5 0 0 1-4.966-4.416L8.007 10.117A1 1 0 0 1 9 9h30a1 1 0 0 1 0 2H10.125l3.453 29.351A3 3 0 0 0 16.557 43h14.886a3 3 0 0 0 2.979-2.649l3.037-25.814a1 1 0 0 1 1.987.234l-3.037 25.813A5 5 0 0 1 31.443 45Z" class="color232323 svgShape"></path><path fill="#d85b53" d="M42 11H6a1 1 0 0 1 0-2h36a1 1 0 0 1 0 2Z" class="color232323 svgShape"></path><path fill="#26d7fe" d="M28.006 31.974a1 1 0 0 1-1-1l-.012-11.937a1 1 0 0 1 1-1 1 1 0 0 1 1 1l.012 11.937a1 1 0 0 1-1 1zm-8-.011a1 1 0 0 1-1-1l-.012-11.937a1 1 0 0 1 1-1 1 1 0 0 1 1 1l.012 11.937a1 1 0 0 1-1 1z" class="color7fbde7 svgShape"></path></svg></a></div>`
+                `<input readonly name="product[]" class="prod-name-` + id + price + count + ` deleteId-` + id + price + count + ` col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold" value="` + name + `"/>
+            <input readonly name="price[]" class="prod-price-` + id + price + count + ` deleteId-` + id + price + count + ` col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold" value="` + price + `"/>
+            <input readonly name="count[]" class="prod-count-` + id + price + count + ` deleteId-` + id + price + count + ` col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold" value="` + count + `"/>
+            <div class="prod-overall-` + id + price + count + ` deleteId-` + id + price + count + ` relative col-span-12 sm:col-span-3 ">
+               <input readonly name="amount[]" class="prod-overall-input-` + id + price + count + ` w-full rounded bg-slate-50 p-2 border-2 font-bold" type="text" name="" id="" value="` + overall + `"/>
+               <a value="` + id + `" id="` + id + price + count + `" class="text-danger mt-1 delete-product btn mx-1 absolute right-0 top-0 p-1" style="width: 30px; height: 30px;">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="trash-2" data-lucide="trash-2" class="lucide lucide-trash-2 block mx-auto"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+               </a>
+            </div>`
             )
             $countInput.val('');
             $priceInput.val('');

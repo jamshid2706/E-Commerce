@@ -66,36 +66,35 @@
             amount.value = price.value * count.value;
             console.log(amount.value);
             for (let i = 0; i < amounts.length; i++) {
-                total.value +=;
+                total.value += '';
             }
         }
 
-        function add() {
-            $(".form_content").append(
-                `<div class="col-span-12 sm:col-span-3">
-                        <label for="modal-form-1" class="form-label">Product</label>
-                        <input onkeyup="onChange(this)" type="text" name="product[]"
-                               class="form-control"
-                               placeholder="Product Name" required>
-                    </div>
-                    <div class="col-span-12 sm:col-span-3">
-                        <label for="modal-form-2" class="form-label">Price</label>
-                        <input onkeyup="onChange(this)" type="number" name="price[]"
-                               class="form-control" placeholder="Price" required>
-                    </div>
-                    <div class="col-span-12 sm:col-span-3">
-                        <label for="modal-form-3" class="form-label">Count</label>
-                        <input onkeyup="onChange(this)" type="number" name="count[]"
-                               class="form-control" placeholder="Count" required>
-                    </div>
-                    <div class="col-span-12 sm:col-span-3">
-                        <label for="modal-form-4" class="form-label">Amount</label>
-                        <input onkeyup="onChange(this)" type="number" name="amount[]"
-                               class="form-control"
-                               placeholder="Amount ">
-                    </div>`
-            )
-        }
+        // function add() {
+        //     $(".form_content").append(
+        //         `<div class="col-span-12 sm:col-span-3">
+        //                 <label for="modal-form-1" class="form-label">Product</label>
+        //                 <input onkeyup="onChange(this)" type="text" name="product[]"
+        //                        class="form-control"
+        //                        placeholder="Product Name" required>
+        //             </div>
+        //             <div class="col-span-12 sm:col-span-3">
+        //                 <label for="modal-form-2" class="form-label">Price</label>
+        //                 <input onkeyup="onChange(this)" type="number" name="price[]"
+        //                        class="form-control" placeholder="Price" required>
+        //             </div>
+        //             <div class="col-span-12 sm:col-span-3">
+        //                 <label for="modal-form-3" class="form-label">Count</label>
+        //                 <input onkeyup="onChange(this)" type="number" name="count[]"
+        //                        class="form-control" placeholder="Count" required>
+        //             </div>
+        //             <div class="col-span-12 sm:col-span-3">
+        //                 <label for="modal-form-4" class="form-label">Amount</label>
+        //                 <input onkeyup="onChange(this)" type="number" name="amount[]"
+        //                        class="form-control"
+        //                        placeholder="Amount ">
+        //             </div>`
+        //     )
 
     </script>
 @endsection
