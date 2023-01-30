@@ -93,4 +93,19 @@ Route::get('/tes/test', function (){
     print_r(json_encode($products));
 });
 
+Route::get('/test', function (){
+    return view('console');
+});
+
+Route::get('/console', function (Request $request) {
+    \Illuminate\Support\Facades\Artisan::call($request->search);
+    $output = '<pre>';
+    $output .= \Illuminate\Support\Facades\Artisan::output();
+    $output .= '<div class="actions">
+    <label for="code">php artisan </label>
+    <input id="code" onKeyDown="if(event.keyCode == 13)update()"/>
+</div>';
+    return $output;
+});
+
 Auth::routes();

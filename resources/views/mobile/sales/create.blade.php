@@ -69,7 +69,7 @@
             amount.value = price.value * count.value;
             console.log(amount.value);
             for(let i = 0; i < amounts.length; i++) {
-                total.value += ;
+                total.value += 0;
             }
         }
 

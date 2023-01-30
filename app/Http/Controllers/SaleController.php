@@ -22,15 +22,15 @@ class SaleController extends Controller
     public function create()
     {
         $saleProduct = SaleProduct::all();
-        $clients = Client::all();
+        $clients = Client::all()->pluck('name')->toArray();
         $sales = Sale::all();
         return view('admin.sales.create', compact('sales', 'clients', 'saleProduct'));
     }
 
-    public function store(SalesRequest $request)
+    public function store(Request $request)
     {
+        dd($request->all());
         $insertion = Sale::create($request->all());
-
         return redirect()->route('admin.sales');
     }
 

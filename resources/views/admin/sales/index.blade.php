@@ -13,9 +13,9 @@
                         data-tw-target="#faq-accordion-collapse-5" aria-expanded="true"
                         aria-controls="faq-accordion-collapse-5">
                     <div class="9">
-                        <h2>Sale Number: {{ !is_null($sale->id) ? $sale->id : '' }}</h2>
-                        <h2>Sold to : {{!is_null($sale->client->name) ? $sale->client->name : ''}}</h2>
-                        <h2>Amount : {{ !is_null($sale->amount) ? $sale->amount : '' }}</h2>
+                        <h2>Sale Number: {{ $sale->id ?? '' }}</h2>
+                        <h2>Sold to : {{ $sale->client->name ?? ''}}</h2>
+                        <h2>Amount : {{ $sale->amount ?? '' }}</h2>
                     </div>
                 </button>
             </div>
@@ -54,4 +54,48 @@
         </div>
     @endforeach
     </div>
+@endsection
+@section('scripts')
+    <script type="text/javascript">
+        function onChange(element) {
+            let total = querySelector('#total');
+            let amounts = document.getElementById('amount');
+            let amount = element.parentElement.querySelector('#amount');
+            let price = element.parentElement.querySelector('#price');
+            let count = element.parentElement.querySelector('#count');
+            amount.value = price.value * count.value;
+            console.log(amount.value);
+            for (let i = 0; i < amounts.length; i++) {
+                total.value +=;
+            }
+        }
+
+        function add() {
+            $(".form_content").append(
+                `<div class="col-span-12 sm:col-span-3">
+                        <label for="modal-form-1" class="form-label">Product</label>
+                        <input onkeyup="onChange(this)" type="text" name="product[]"
+                               class="form-control"
+                               placeholder="Product Name" required>
+                    </div>
+                    <div class="col-span-12 sm:col-span-3">
+                        <label for="modal-form-2" class="form-label">Price</label>
+                        <input onkeyup="onChange(this)" type="number" name="price[]"
+                               class="form-control" placeholder="Price" required>
+                    </div>
+                    <div class="col-span-12 sm:col-span-3">
+                        <label for="modal-form-3" class="form-label">Count</label>
+                        <input onkeyup="onChange(this)" type="number" name="count[]"
+                               class="form-control" placeholder="Count" required>
+                    </div>
+                    <div class="col-span-12 sm:col-span-3">
+                        <label for="modal-form-4" class="form-label">Amount</label>
+                        <input onkeyup="onChange(this)" type="number" name="amount[]"
+                               class="form-control"
+                               placeholder="Amount ">
+                    </div>`
+            )
+        }
+
+    </script>
 @endsection

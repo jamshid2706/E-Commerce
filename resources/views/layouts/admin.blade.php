@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title> Royal @yield('title')</title>
     @yield('css')
     <link rel="stylesheet" href="{{ asset('/css/app2.css') }}"/>
@@ -19,7 +20,6 @@
         @yield('content')
     </div>
 </div>
-@yield('scripts')
 <script src="{{ asset('/js/enigma.js') }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 {{--<script type="text/javascript">
@@ -41,5 +41,7 @@
         });
     });
 </script>--}}
+@yield('scripts')
+
 </body>
 </html>
