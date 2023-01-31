@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,6 +42,20 @@
     });
 </script>--}}
 @yield('scripts')
-
+<script type="text/javascript">
+    if($('html').hasClass('dark')){
+        $('.dark-mode-switcher__toggle').addClass('dark-mode-switcher__toggle--active')
+    }else{
+        $('.dark-mode-switcher__toggle').removeClass('dark-mode-switcher__toggle--active')
+    }
+    function switchDark(){
+        $('html').toggleClass('dark')
+        if($('html').hasClass('dark')){
+            $('.dark-mode-switcher__toggle').addClass('dark-mode-switcher__toggle--active')
+        }else{
+            $('.dark-mode-switcher__toggle').removeClass('dark-mode-switcher__toggle--active')
+        }
+    }
+</script>
 </body>
 </html>

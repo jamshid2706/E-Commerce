@@ -27,11 +27,35 @@ class SaleController extends Controller
         return view('admin.sales.create', compact('sales', 'clients', 'saleProduct'));
     }
 
-    public function store(Request $request)
+    public function store()
     {
-        dd($request->all());
-        $insertion = Sale::create($request->all());
-        return redirect()->route('admin.sales');
+        $data = request()->all();
+        dd($data);
+        $client = Client::where('name', $data['client'])->get()->first();
+        $clientId = $client->id;
+        $sale = Sale::create([
+            'client_id' => $clientId,
+            'amount'=> rand(100000,999999)
+        ]);
+
+        $product = $data['product'];
+        $price = $data['price'];
+        $count = $data['count'];
+        $amount = $data['amount'];
+        for($i = 0; $i < count($product); $i++){
+            $prod = Product::where('title', $product[$i])->get()->first();
+            SaleProduct::create([
+                'sale_id' => (int)$sale->id,
+                'product_id' => $prod->id,
+                'price' => (int)$price[$i],
+                'count' => (int)$count[$i],
+                'total' => (int)$amount[$i]
+            ]);
+        }
+        dump($sale);
+        dump('products');
+        dump($sale->products);
+
     }
 
     public function search(Request $request)
