@@ -7,10 +7,12 @@ use App\Models\Client;
 use App\Models\Product;
 use App\Models\Sale;
 use App\Models\SaleProduct;
+use Illuminate\Database\Eloquent\Relations\Concerns\ComparesRelatedModels;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
 {
+
     public function index()
     {
         $saleProduct = SaleProduct::all();
@@ -34,7 +36,7 @@ class SaleController extends Controller
         $clientId = $client->id;
         $sale = Sale::create([
             'client_id' => $clientId,
-            'amount'=> rand(100000,999999)
+            'amount'=> $data['total']
         ]);
 
         $product = $data['product'];
@@ -62,7 +64,7 @@ class SaleController extends Controller
         $output = "";
 
         foreach ($products as $product){
-            $output .= '<div id='. $product->id .' class="col-span-12 p-1 bg-white ajax_content" style="border: 2px solid lightgray; border-radius: 4px; cursor: pointer"><p class="title pl-1">'. $product->title .'</p>
+            $output .= '<div id='. $product->id .' class="col-span-12 p-1 dark:bg-darkmode-300 dark:border-darkmode-800/80 bg-white ajax_content border-2" style=" border-radius: 4px; cursor: pointer"><p class="title pl-1">'. $product->title .'</p>
         <p class="text-slate-400 font-8 pt-1">'.substr($product->description, 0, 26) .'</p></div>';
         }
 
@@ -80,9 +82,8 @@ class SaleController extends Controller
         return $data;
     }
 
-    function delete($id){
+    public function destroy($id){
         Sale::destroy($id);
-        SaleProduct::where('sale_id', '=', $id)->delete();
         return redirect()->route('admin.sales');
     }
 }

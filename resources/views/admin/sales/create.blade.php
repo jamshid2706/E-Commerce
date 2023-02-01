@@ -44,7 +44,7 @@
                                     <i data-lucide="x-circle" height="20px"></i>
                                 </div>
                             </div>
-                            <div class="absolute hidden bg-slate-200 w-52 ajax_result" style="padding: 0">
+                            <div class="absolute hidden dark:bg-darkmode-400/70 bg-slate-200 w-52 ajax_result" style="padding: 0">
 
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                         </div>
 
                         <label for="total" class="form-label pt-2">Total:</label>
-                        <input id="total" type="number" class="form-control col-span-5" value="0" disabled>
+                        <input name="total" id="total" type="number" class="form-control col-span-5" value="0" readonly>
                         <div class="col-span-12 mt-2">
                         </div>
                         <div class="col-span-12">
@@ -254,11 +254,11 @@
 
         if (count !== '' && $countTooltip.hasClass('hidden') && price !== '' && name !== '' && $productTooltip.hasClass('hidden')) {
             $total.val(parseInt($total.val()) + parseInt(overall));
-            $(".form-content").append(`<input readonly name="product[]" class="deleteId-` + id + price + count + ` col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold" value="` + name + `"/>
-                <input readonly name="price[]" class="deleteId-` + id + price + count + ` col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold" value="` + price + `"/>
-                <input readonly name="count[]" class="deleteId-` + id + price + count + ` col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold" value="` + count + `"/>
+            $(".form-content").append(`<input readonly name="product[]" class="deleteId-` + id + price + count + ` dark:bg-darkmode-400 col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold" value="` + name + `"/>
+                <input readonly name="price[]" class="deleteId-` + id + price + count + ` col-span-12 dark:bg-darkmode-400 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold" value="` + price + `"/>
+                <input readonly name="count[]" class="deleteId-` + id + price + count + ` col-span-12 dark:bg-darkmode-400 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold" value="` + count + `"/>
                 <div class="deleteId-` + id + price + count + ` relative col-span-12 sm:col-span-3 ">
-                    <input readonly name="amount[]" class="prod-overall-input-` + id + price + count + ` w-full rounded bg-slate-50 p-2 border-2 font-bold" type="text" name="" id="" value="` + overall + `"/>
+                    <input readonly name="amount[]" class="prod-overall-input-` + id + price + count + ` w-full rounded dark:bg-darkmode-400 bg-slate-50 p-2 border-2 font-bold" type="text" name="" id="" value="` + overall + `"/>
                     <a value="` + id + `" id="` + id + price + count + `" class="text-danger mt-1 delete-product btn mx-1 absolute right-0 top-0 p-1" style="width: 30px; height: 30px;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="trash-2" data-lucide="trash-2" class="lucide lucide-trash-2 block mx-auto"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></a></div>`);
             $flushProduct.click();
