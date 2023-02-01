@@ -30,7 +30,6 @@ class SaleController extends Controller
     public function store()
     {
         $data = request()->all();
-        dd($data);
         $client = Client::where('name', $data['client'])->get()->first();
         $clientId = $client->id;
         $sale = Sale::create([
@@ -52,9 +51,7 @@ class SaleController extends Controller
                 'total' => (int)$amount[$i]
             ]);
         }
-        dump($sale);
-        dump('products');
-        dump($sale->products);
+        return redirect()->back();
 
     }
 
@@ -81,5 +78,11 @@ class SaleController extends Controller
         $data['data'] = $output;
         $data['warning'] = $prod->isEmpty() ? 'Product not found' : $prod[0]['id'];
         return $data;
+    }
+
+    function delete($id){
+        Sale::destroy($id);
+        SaleProduct::where('sale_id', '=', $id)->delete();
+        return redirect()->route('admin.sales');
     }
 }

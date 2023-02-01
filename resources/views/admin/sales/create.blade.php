@@ -7,7 +7,7 @@
                 <div class="modal-header">
                     <label for="client_name" class="font-medium text-base mr-auto">New Sale</label>
                     <div class="col-span-12 sm:col-span-3 mr-2">
-                        <input id="client_name" onkeyup="onChange(this)" type="text" list="clients" name="client" class="form-control" placeholder="Client Name">
+                        <input id="client_name" type="text" list="clients" name="client" class="form-control" placeholder="Client Name">
                         <datalist id="clients">
                             @foreach($clients as $client)
                                 <option id="{{ $client->id }}" value="{{ $client->name }}">
@@ -70,7 +70,7 @@
                         </div>
                         <div class="col-span-12 sm:col-span-3">
                             <label for="modal-form-4" class="form-label">Amount</label>
-                            <input onkeyup="onChange(this)" id="modal-form-4" type="number"
+                            <input id="modal-form-4" type="number"
                                    class="form-control"
                                    placeholder="Amount" readonly>
                         </div>
