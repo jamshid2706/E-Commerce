@@ -17,7 +17,7 @@ class SaleController extends Controller
     {
         $saleProduct = SaleProduct::all();
         $clients = Client::all();
-        $sales = Sale::all();
+        $sales = Sale::withTrashed()->get();
         return view('admin.sales.index', compact('sales', 'clients', 'saleProduct'));
     }
 
@@ -25,7 +25,7 @@ class SaleController extends Controller
     {
         $saleProduct = SaleProduct::all();
         $clients = Client::all()->pluck('name')->toArray();
-        $sales = Sale::all();
+        $sales = Sale::onlyTrashed()->get();
         return view('admin.sales.create', compact('sales', 'clients', 'saleProduct'));
     }
 
