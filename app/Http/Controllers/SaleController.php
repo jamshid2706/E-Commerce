@@ -16,8 +16,8 @@ class SaleController extends Controller
     public function index()
     {
         $saleProduct = SaleProduct::all();
-        $clients = Client::all();
-        $sales = Sale::withTrashed()->get();
+        $clients = Client::withTrashed()->get();
+        $sales = Sale::orderBy('id', 'DESC')->get();
         return view('admin.sales.index', compact('sales', 'clients', 'saleProduct'));
     }
 
@@ -25,7 +25,7 @@ class SaleController extends Controller
     {
         $saleProduct = SaleProduct::all();
         $clients = Client::all()->pluck('name')->toArray();
-        $sales = Sale::onlyTrashed()->get();
+        $sales = Sale::all();
         return view('admin.sales.create', compact('sales', 'clients', 'saleProduct'));
     }
 
@@ -44,13 +44,16 @@ class SaleController extends Controller
         $count = $data['count'];
         $amount = $data['amount'];
         for($i = 0; $i < count($product); $i++){
-            $prod = Product::where('title', $product[$i])->get()->first();
+            $prod = Product::find($data['productId'][$i]);
             SaleProduct::create([
                 'sale_id' => (int)$sale->id,
                 'product_id' => $prod->id,
                 'price' => (int)$price[$i],
                 'count' => (int)$count[$i],
                 'total' => (int)$amount[$i]
+            ]);
+            $prod->update([
+               'stock'=> $prod->stock-$count[$i]
             ]);
         }
         return redirect()->back();
@@ -83,6 +86,13 @@ class SaleController extends Controller
     }
 
     public function destroy($id){
+        $sale = Sale::find($id);
+        foreach ($sale->products as $prod) {
+            $product = Product::find($prod->product_id);
+            $product->update([
+                'stock'=>$product->stock + $prod->count
+            ]);
+        }
         Sale::destroy($id);
         return redirect()->route('admin.sales');
     }

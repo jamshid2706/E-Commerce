@@ -21,9 +21,54 @@
                             <div class="font-medium text-base text-white">{{ $category->title }}</div>
                             <div
                                 class="text-white text-opacity-80 dark:text-slate-500">{{ count($category->products) }} {{ count($category->products) == 1 ? 'Item' : 'Items'}}</div>
-                            <div
-                                class="w-10 h-10 flex items-center justify-center absolute top-0 right-0 text-xs text-white rounded-full  font-medium -mt-1 -mr-1">
-                               @include('admin.category.edit')
+                            <div class="w-10 h-10 flex items-center justify-center absolute top-0 right-0 text-xs text-white rounded-full  font-medium -mt-1 -mr-1">
+                                @include('admin.category.edit')
+                            </div>
+                            <div class="w-10 h-10 flex items-center justify-center absolute right-0 text-xs text-white rounded-full font-medium" style="top: 2rem;">
+                                <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-modal-category-{{$category->id}}"
+                                   class="text-danger"><i data-lucide="trash"></i></a>
+                            </div>
+                            <div class="flex justify-end items-center absolute right-0 p-3">
+                                <!-- BEGIN: Modal Content -->
+                                <div id="delete-modal-category-{{$category->id}}" class="modal" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body p-0">
+                                                <div class="p-5 text-center">
+                                                    <i data-lucide="x-circle"
+                                                       class="w-16 h-16 text-danger mx-auto mt-3"></i>
+                                                    <div class="text-3xl mt-5">Are you sure?</div>
+                                                    <div class="text-slate-500 mt-2">
+                                                        Do you really want to delete these records? <br>This process cannot be undone.
+                                                    </div>
+                                                </div>
+                                                <div class="px-5 pb-8 text-center">
+                                                    <form action="{{ route('admin.category.deletecategoryproduct', $category->id) }}"
+                                                          method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-outline-danger w-48">
+                                                            Delete with products
+                                                        </button>
+                                                    </form>
+                                                    <form action="{{ route('admin.category.delete', $category->id) }}"
+                                                          method="post"
+                                                          class="mt-1.5">
+                                                        <button type="button" data-tw-dismiss="modal"
+                                                                class="btn btn-outline-secondary w-24 mr-0.5">Cancel
+                                                        </button>
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-outline-danger w-24">
+                                                            Delete
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END: Modal Content -->
                             </div>
                         </div>
                     @else

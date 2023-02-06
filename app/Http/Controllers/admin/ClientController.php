@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientRequest;
 use App\Models\Client;
+use App\Models\Sale;
+use App\Models\SaleProduct;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -17,8 +19,10 @@ class ClientController extends Controller
 
     public function show($id)
     {
+        $sales = Sale::where('client_id', $id)->orderBy('id', 'DESC')->get();
         $client = Client::find($id);
-        return view('admin.client.show', compact('client'));
+        $saleProduct = SaleProduct::all();
+        return view('admin.client.show', compact('client','sales'));
     }
 
     public function create()

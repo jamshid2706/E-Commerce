@@ -7,9 +7,9 @@
     @include('admin.sales.create')
     <div id="faq-accordion-2" class="accordion accordion-boxed py-5">
         @foreach($sales as $sale)
-            <div class="accordion-item" style="border: none;">
+            <div class="accordion-item box dark:bg-darkmode-300 bg-slate-200" style="border: none;">
                 <div id="faq-accordion-content-5" class="accordion-header">
-                    <div class="rounded-md accordion-button dark:bg-darkmode-600 collapsed"
+                    <div class="accordion-button dark:bg-darkmode-600 collapsed"
                             data-tw-toggle="collapse"
                             data-tw-target="#faq-accordion-collapse-5" aria-expanded="true"
                             aria-controls="faq-accordion-collapse-5">

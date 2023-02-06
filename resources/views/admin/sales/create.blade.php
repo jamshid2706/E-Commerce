@@ -7,6 +7,10 @@
                 <div class="modal-header">
                     <label for="client_name" class="font-medium text-base mr-auto">New Sale</label>
                     <div class="col-span-12 sm:col-span-3 mr-2">
+                        <div class="hidden client-name-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded">
+                            Please choose client
+                            <div class="tooltip-arrow absolute"></div>
+                        </div>
                         <input id="client_name" type="text" list="clients" name="client" class="form-control" placeholder="Client Name">
                         <datalist id="clients">
                             @foreach($clients as $client)
@@ -146,6 +150,7 @@
     let $flushProduct = $('#btn');
     let $overall = $('#modal-form-4');
     let $total = $('#total');
+    let $productId = '';
 
     function update($comingFrom) {
         let value = {
@@ -164,9 +169,11 @@
                 } else {
                     $productTooltip.attr('value', '').addClass('hidden');
                     $('.disable-it').attr('disabled', false);
+                    $productId = data['warning'];
                     $countTooltip.attr('value', data['amount']);
                     $priceTooltip.attr('value', data['price']);
                     if ($comingFrom === '') {
+                        $productId = data['warning'];
                         $productName.attr('value', data['warning']);
                         getProdData();
                     }
@@ -209,6 +216,7 @@
         $productTooltip.addClass('hidden');
         $productName.val($(this).children('.title').text());
         $productName.attr('value', $(this).attr('id'));
+        $productId = $(this).id;
         xButton();
         update('list');
     });
@@ -252,16 +260,22 @@
         let overall = $overall.val();
         let id = $productName.attr('value');
 
-        if (count !== '' && $countTooltip.hasClass('hidden') && price !== '' && name !== '' && $productTooltip.hasClass('hidden')) {
-            $total.val(parseInt($total.val()) + parseInt(overall));
-            $(".form-content").append(`<input readonly name="product[]" class="deleteId-` + id + price + count + ` dark:bg-darkmode-400 col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold" value="` + name + `"/>
+        if ($('#client_name').val() !== ''){
+            $('.client-name-tooltip').addClass('hidden');
+            if (count !== '' && $countTooltip.hasClass('hidden') && price !== '' && name !== '' && $productTooltip.hasClass('hidden')) {
+                $total.val(parseInt($total.val()) + parseInt(overall));
+                $(".form-content").append(`<input readonly name="product[]" class="deleteId-` + id + price + count + ` dark:bg-darkmode-400 col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold" value="` + name + `"/>
+                <input readonly name="productId[]" class="hidden deleteId-` + id + price + count + `"  value="` + $productId + `"/>
                 <input readonly name="price[]" class="deleteId-` + id + price + count + ` col-span-12 dark:bg-darkmode-400 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold" value="` + price + `"/>
                 <input readonly name="count[]" class="deleteId-` + id + price + count + ` col-span-12 dark:bg-darkmode-400 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold" value="` + count + `"/>
                 <div class="deleteId-` + id + price + count + ` relative col-span-12 sm:col-span-3 ">
                     <input readonly name="amount[]" class="prod-overall-input-` + id + price + count + ` w-full rounded dark:bg-darkmode-400 bg-slate-50 p-2 border-2 font-bold" type="text" name="" id="" value="` + overall + `"/>
                     <a value="` + id + `" id="` + id + price + count + `" class="text-danger mt-1 delete-product btn mx-1 absolute right-0 top-0 p-1" style="width: 30px; height: 30px;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="trash-2" data-lucide="trash-2" class="lucide lucide-trash-2 block mx-auto"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></a></div>`);
-            $flushProduct.click();
+                $flushProduct.click();
+            }
+        } else {
+            $('.client-name-tooltip').removeClass('hidden');
         }
     }
 </script>

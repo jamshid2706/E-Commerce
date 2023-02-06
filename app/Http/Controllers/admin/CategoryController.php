@@ -64,6 +64,12 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories');
     }
 
+    public function destroycatproduct($id){
+        Product::where('category_id', $id)->delete();
+        Category::destroy($id);
+        return redirect()->route('admin.categories');
+    }
+
     public function destroyproduct($id)
     {
         Product::destroy($id);
