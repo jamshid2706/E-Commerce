@@ -16,7 +16,7 @@
                         <div class="grid-cols-10 grid">
                             <div class="pl-5 flex items-center">{{ $sale->id ?? '' }}</div>
                             <div class="col-span-2 flex items-center">{{ $sale->client->name ?? ''}}</div>
-                            <div class="col-span-3 flex items-center"><i data-lucide="map-pin" class="px-1 h-full"></i>{{ $sale->client->address }}</div>
+                            <div class="col-span-3 flex items-center"><i data-lucide="map-pin" class="px-1 h-full"></i>{{ $sale->client->address ?? '' }}</div>
                             <div class="flex items-center"><i data-lucide="banknote" class="px-1 h-full"></i>{{ $sale->amount ?? '' }}</div>
                             <div class="flex items-center justify-end">{{ $sale->created_at->format('d-m-Y') ?? '' }}</div>
                             <div class="col-span-2 table-report__action">

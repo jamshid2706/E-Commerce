@@ -3,7 +3,7 @@
     <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#static-backdrop-modal-preview" class="btn btn-primary">Show Modal</a>
     <h2 class="intro-y text-lg font-medium mt-10">Categories</h2>
 
-    wqee <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown" control-id="ControlID-3">
+     <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown" control-id="ControlID-3">
                     <span class="w-5 h-5 flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

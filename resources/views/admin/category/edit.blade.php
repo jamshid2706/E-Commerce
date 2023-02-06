@@ -1,12 +1,12 @@
 <!-- START: Modal Toggle -->
-<a href="javascript:;" data-tw-toggle="modal" data-tw-target="#static-backdrop-modal-preview-{{$category->id}}"
+<a href="javascript:;" data-tw-toggle="modal" data-tw-target="#static-backdrop-modal-category-{{$category->id}}"
    class="">
     <i data-lucide="edit"></i>
 </a>
 <!-- END: Modal Toggle -->
 
 <!-- BEGIN: Modal Content -->
-<div id="static-backdrop-modal-preview-{{$category->id}}" class="modal" data-tw-backdrop="static" tabindex="-1"
+<div id="static-backdrop-modal-category-{{$category->id}}" class="modal" data-tw-backdrop="static" tabindex="-1"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

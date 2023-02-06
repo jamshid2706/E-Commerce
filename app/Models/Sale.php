@@ -20,6 +20,10 @@ class Sale extends Model
     }
 
     public function client() {
-        return $this->belongsTo(Client::class, 'client_id', 'id');
-}
+        return $this->belongsTo(Client::class, 'client_id', 'id')->withTrashed();
+    }
+
+    public function finance() {
+        return $this->hasOne(Finance::class, 'sale_id', 'id');
+    }
 }

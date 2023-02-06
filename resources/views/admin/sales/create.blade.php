@@ -11,10 +11,10 @@
                             Please choose client
                             <div class="tooltip-arrow absolute"></div>
                         </div>
-                        <input id="client_name" type="text" list="clients" name="client" class="form-control" placeholder="Client Name">
+                        <input id="client_name" type="text" list="clients" name="client" class="form-control" placeholder="Client Name" autocomplete="off">
                         <datalist id="clients">
-                            @foreach($clients as $client)
-                                <option id="{{ $client->id }}" value="{{ $client->name }}">
+                            @foreach($client as $client1)
+                                <option id="{{ $client1->id }}" value="{{ $client1->name }}">
                             @endforeach
                         </datalist>
                     </div>
@@ -84,11 +84,13 @@
                         </div>
 
                         <label for="total" class="form-label pt-2">Total:</label>
-                        <input name="total" id="total" type="number" class="form-control col-span-5" value="0" readonly>
+                        <input name="total" id="total" type="number" class="total form-control col-span-5" value="0" readonly>
+                        <label for="paid" class="form-label p-2">Paid:</label>
+                        <input name="paid" id="paid" type="number" class="total form-control col-span-5" value="0" placeholder="Paid">
                         <div class="col-span-12 mt-2">
                         </div>
                         <div class="col-span-12">
-                            <button class="btn btn-secondary mt-5 w-24 mr-2" data-tw-dismiss="modal">Cancel</button>
+                            <a class="btn btn-secondary mt-5 w-24 mr-2" data-tw-dismiss="modal">Cancel</a>
                             <button type="submit" class="btn btn-primary w-24 text-">Ok</button>
                         </div>
                     </div>
@@ -150,6 +152,7 @@
     let $flushProduct = $('#btn');
     let $overall = $('#modal-form-4');
     let $total = $('#total');
+    let $paid = $('#paid');
     let $productId = '';
 
     function update($comingFrom) {
@@ -202,6 +205,7 @@
         let divClassId = $(this).attr('id');
         let overall = $('.prod-overall-input-' + divClassId + '').val();
         $total.val(parseInt($total.val()) - overall);
+        $paid.val(parseInt($paid.val()) - overall);
         $('.deleteId-' + divClassId + '').remove();
     })
 
@@ -264,6 +268,7 @@
             $('.client-name-tooltip').addClass('hidden');
             if (count !== '' && $countTooltip.hasClass('hidden') && price !== '' && name !== '' && $productTooltip.hasClass('hidden')) {
                 $total.val(parseInt($total.val()) + parseInt(overall));
+                $paid.val(parseInt($paid.val()) + parseInt(overall));
                 $(".form-content").append(`<input readonly name="product[]" class="deleteId-` + id + price + count + ` dark:bg-darkmode-400 col-span-12 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold" value="` + name + `"/>
                 <input readonly name="productId[]" class="hidden deleteId-` + id + price + count + `"  value="` + $productId + `"/>
                 <input readonly name="price[]" class="deleteId-` + id + price + count + ` col-span-12 dark:bg-darkmode-400 sm:col-span-3 rounded bg-slate-50 p-2 border-2 font-bold" value="` + price + `"/>

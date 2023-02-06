@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SalesRequest;
 use App\Models\Client;
+use App\Models\Finance;
 use App\Models\Product;
 use App\Models\Sale;
 use App\Models\SaleProduct;
 use Illuminate\Database\Eloquent\Relations\Concerns\ComparesRelatedModels;
 use Illuminate\Http\Request;
+use function PHPUnit\Framework\assertIsNotNumeric;
 
 class SaleController extends Controller
 {
@@ -17,8 +19,9 @@ class SaleController extends Controller
     {
         $saleProduct = SaleProduct::all();
         $clients = Client::withTrashed()->get();
+        $client = Client::all();
         $sales = Sale::orderBy('id', 'DESC')->get();
-        return view('admin.sales.index', compact('sales', 'clients', 'saleProduct'));
+        return view('admin.sales.index', compact('sales', 'clients', 'saleProduct', 'client'));
     }
 
     public function create()
@@ -39,6 +42,14 @@ class SaleController extends Controller
             'amount'=> $data['total']
         ]);
 
+        $debt = ($data['paid'] === '' || !is_numeric($data['paid']) ) ? $data['total'] : $data['total'] - $data['paid'];
+        $paid = $data['total'] - $debt;
+
+        $finance = Finance::create([
+            'sale_id' => $sale->id,
+            'given' => $paid,
+            'debt' => $debt
+        ]);
         $product = $data['product'];
         $price = $data['price'];
         $count = $data['count'];

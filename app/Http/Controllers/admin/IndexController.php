@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Client;
 use App\Models\Product;
 use App\Models\Sale;
 use App\Models\SaleProduct;
@@ -31,28 +32,42 @@ class IndexController extends Controller
         $saleProduct = SaleProduct::whereBetween('created_at', [$date['start_month'], $date['end_month']])->get();
         $sales = Sale::whereBetween('created_at', [$date['start_month'], $date['end_month']])->get();
 
-        $totalSold = $sales->pluck('amount')->sum();
-
         $cost = 0;
         foreach ($saleProduct as $sold){
             $product = Product::find($sold['product_id']);
             $cost += $sold['count'] * $product['buy'];
         }
 
+        $clients = Client::all();
+
+        foreach ($clients as $client){
+            $total = 0;
+            foreach ($client->sales as $sale){
+                $total += $sale->amount;
+            }
+        }
+
         $client = [];
         foreach ($sales as $sale){
-            (!array_key_exists($sale['client_id'], $client)) ? $client[$sale['client_id']] = $sale['client_id'] : null;
+            if(!array_key_exists($sale['client_id'], $client)){
+                $client[$sale['client_id']]['id'] = $sale['client_id'];
+                $client[$sale['client_id']]['name'] = $sale->client->name;
+                $client[$sale['client_id']]['address'] = $sale->client->address;
+                $client[$sale['client_id']]['overall_amount'] = $sale['amount'];
+                $client[$sale['client_id']]['overall_debt'] = $sale->finance['debt'];
+            } else{
+                $client[$sale['client_id']]['overall_amount'] += $sale['amount'];
+                $client[$sale['client_id']]['overall_debt'] += $sale->finance['debt'];
+            }
         }
 
         $activeClients = count($client);
-        $profit = $totalSold - $cost;
-        $profitPercentage = 100 - ($cost / $totalSold * 100);
-        $totalSold = number_format($totalSold, 0, '.', ' ');
+        $profit = $sales->pluck('amount')->sum() - $cost;
+        $profitPercentage = 100 - ($cost / $sales->pluck('amount')->sum() * 100);
         $profitPercentage = number_format($profitPercentage, 1);
         $profit = number_format($profit, 0, '.', ' ');
-        $totalCount = number_format($saleProduct->pluck('count')->sum(), 0, '.', ' ');
 
-        return view('admin.index', compact('totalSold','profit', 'profitPercentage', 'totalCount', 'activeClients'));
+        return view('admin.index', compact('profit', 'profitPercentage', 'saleProduct', 'activeClients', 'cost', 'sales', 'client'));
     }
 }
 
