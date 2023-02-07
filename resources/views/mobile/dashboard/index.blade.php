@@ -1,6 +1,5 @@
 @extends('layouts.mobile')
 @section('content')
-
     <div class="pt-3">
         <div class="page-title d-flex">
             <div class="align-self-center me-auto">

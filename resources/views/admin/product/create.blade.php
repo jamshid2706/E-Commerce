@@ -41,7 +41,7 @@
                             <label class="flex flex-col w-full h-32 border-4 border-dashed dropzone"
                                    style="cursor: pointer">
                                 <div class="flex flex-col items-center justify-center pt-7 center">
-                                    <div class="form-input2">
+                                        <div class="form-input2">
                                             <img class="w-100 h-32" id="file-ip-1-preview">
                                         <input type="file" style="cursor: pointer" class="opacity-0 fallback"
                                                name="image"
