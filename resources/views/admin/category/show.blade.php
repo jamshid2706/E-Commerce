@@ -26,7 +26,7 @@
                             </div>
                             <div class="w-10 h-10 flex items-center justify-center absolute right-0 text-xs text-white rounded-full font-medium" style="top: 2rem;">
                                 <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-modal-category-{{$category->id}}"
-                                   class="text-danger"><i data-lucide="trash"></i></a>
+                                   class="text-danger"><i data-lucide="trash-2"></i></a>
                             </div>
                             <div class="flex justify-end items-center absolute right-0 p-3">
                                 <!-- BEGIN: Modal Content -->
