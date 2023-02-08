@@ -52,6 +52,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('/', [SaleController::class, 'index'])->name('admin.sales');
         Route::post('/store', [SaleController::class, 'store'])->name('admin.sales.store');
         Route::get('/search', [SaleController::class, 'search'])->name('admin.sales.search');
+        Route::get('/create', [SaleController::class, 'create'])->name('admin.sales.create');
         Route::delete('/{id}',[SaleController::class, 'destroy'])->name('admin.sales.delete');
     });
 });

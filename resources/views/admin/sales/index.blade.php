@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <h2 class="intro-y text-lg font-medium mt-10">Sales</h2>
-    @include('admin.sales.create')
+    <a href="{{route('admin.sales.create')}}" class="btn btn-primary mb-3">Create</a>
     <div id="faq-accordion-2" class="accordion accordion-boxed py-5">
         @foreach($sales as $sale)
             <div class="accordion-item box dark:bg-darkmode-300 bg-slate-200" style="border: none;">
