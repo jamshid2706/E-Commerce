@@ -36,7 +36,9 @@
                     <tr class="intro-x">
                         <td class="w-40">
                             <div class="flex">
-                                @if($category->products->isEmpty())<div class="w-10 h-10 image-fit zoom-in"></div>@else
+                                @if($category->products->isEmpty())
+                                    <div class="w-10 h-10 image-fit zoom-in"></div>
+                                @else
                                     @foreach($category->products->take(5) as $key => $product)
                                         <div class="w-10 h-10 image-fit zoom-in {{ $key != 0 ? '-ml-5' : '' }}">
                                             <img alt="{{ $product->title }}" class="tooltip rounded-full"
@@ -48,7 +50,8 @@
                             </div>
                         </td>
                         <td>
-                            <a href="{{ route('admin.category.show', $category->id) }}" class="font-medium whitespace-nowrap">{{ $category->title }}</a>
+                            <a href="{{ route('admin.category.show', $category->id) }}"
+                               class="font-medium whitespace-nowrap">{{ $category->title }}</a>
                         </td>
                         <td>
                             @if($category->products->isEmpty())

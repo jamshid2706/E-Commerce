@@ -3,60 +3,121 @@
     | Sales
 @endsection
 @section('content')
-    <h2 class="intro-y text-lg font-medium mt-10">Adding Sale</h2>
+    <h2 class=" text-lg font-medium mt-10">Adding Sale</h2>
 
-    <div class="intro-y box overflow-hidden mt-5">
-        <div class="px-5 sm:px-16">
-            <div class="overflow-x-auto">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">DESCRIPTION</th>
-                        <th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">QTY</th>
-                        <th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">PRICE</th>
-                        <th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">SUBTOTAL</th>
-                    </tr>
-                    </thead>
-                    <tbody class="overflow-scroll" style="max-height: 10vh">
-                    <tr>
-                        <td class="border-b dark:border-darkmode-400">
-                            <div class="font-medium whitespace-nowrap">Midone HTML Admin Template</div>
-                            <div class="text-slate-500 text-sm mt-0.5 whitespace-nowrap">Regular License</div>
-                        </td>
-                        <td class="text-right border-b dark:border-darkmode-400 w-32">2</td>
-                        <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
-                        <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$50</td>
-                    </tr>
-                    <tr>
-                        <td class="border-b dark:border-darkmode-400">
-                            <div class="font-medium whitespace-nowrap">Vuejs Admin Template</div>
-                            <div class="text-slate-500 text-sm mt-0.5 whitespace-nowrap">Regular License</div>
-                        </td>
-                        <td class="text-right border-b dark:border-darkmode-400 w-32">1</td>
-                        <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
-                        <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$25</td>
-                    </tr>
-                    <tr>
-                        <td class="border-b dark:border-darkmode-400">
-                            <div class="font-medium whitespace-nowrap">React Admin Template</div>
-                            <div class="text-slate-500 text-sm mt-0.5 whitespace-nowrap">Regular License</div>
-                        </td>
-                        <td class="text-right border-b dark:border-darkmode-400 w-32">1</td>
-                        <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
-                        <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$25</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="font-medium whitespace-nowrap">Laravel Admin Template</div>
-                            <div class="text-slate-500 text-sm mt-0.5 whitespace-nowrap">Regular License</div>
-                        </td>
-                        <td class="text-right w-32">3</td>
-                        <td class="text-right w-32">$25</td>
-                        <td class="text-right w-32 font-medium">$75</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+    <div class="intro-y box mt-5">
+        <div class="px-5 sm:px-16 overflow-y-scroll scrollbar-hidden" style="height: 300px">
+            <table class="table max-h-full">
+                <thead class="fixed-top">
+                <tr>
+                    <th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">DESCRIPTION</th>
+                    <th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">QTY</th>
+                    <th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">PRICE</th>
+                    <th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">SUBTOTAL</th>
+                </tr>
+                </thead>
+                <tbody class="overflow-y-scroll">
+                <tr>
+                    <td class="border-b dark:border-darkmode-400">
+                        <div class="font-medium whitespace-nowrap">Midone HTML Admin Template</div>
+                        <div class="text-slate-500 text-sm mt-0.5 whitespace-nowrap">Regular License</div>
+                    </td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">2</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$50</td>
+                </tr>
+                <tr>
+                    <td class="border-b dark:border-darkmode-400">
+                        <div class="font-medium whitespace-nowrap">Vuejs Admin Template</div>
+                        <div class="text-slate-500 text-sm mt-0.5 whitespace-nowrap">Regular License</div>
+                    </td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">1</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$25</td>
+                </tr>
+                <tr>
+                    <td class="border-b dark:border-darkmode-400">
+                        <div class="font-medium whitespace-nowrap">Vuejs Admin Template</div>
+                        <div class="text-slate-500 text-sm mt-0.5 whitespace-nowrap">Regular License</div>
+                    </td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">1</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$25</td>
+                </tr>
+                <tr>
+                    <td class="border-b dark:border-darkmode-400">
+                        <div class="font-medium whitespace-nowrap">Vuejs Admin Template</div>
+                        <div class="text-slate-500 text-sm mt-0.5 whitespace-nowrap">Regular License</div>
+                    </td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">1</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$25</td>
+                </tr>
+                <tr>
+                    <td class="border-b dark:border-darkmode-400">
+                        <div class="font-medium whitespace-nowrap">Vuejs Admin Template</div>
+                        <div class="text-slate-500 text-sm mt-0.5 whitespace-nowrap">Regular License</div>
+                    </td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">1</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$25</td>
+                </tr>
+                <tr>
+                    <td class="border-b dark:border-darkmode-400">
+                        <div class="font-medium whitespace-nowrap">Midone HTML Admin Template</div>
+                        <div class="text-slate-500 text-sm mt-0.5 whitespace-nowrap">Regular License</div>
+                    </td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">2</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$50</td>
+                </tr>
+                <tr>
+                    <td class="border-b dark:border-darkmode-400">
+                        <div class="font-medium whitespace-nowrap">Vuejs Admin Template</div>
+                        <div class="text-slate-500 text-sm mt-0.5 whitespace-nowrap">Regular License</div>
+                    </td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">1</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$25</td>
+                </tr>
+                <tr>
+                    <td class="border-b dark:border-darkmode-400">
+                        <div class="font-medium whitespace-nowrap">Midone HTML Admin Template</div>
+                        <div class="text-slate-500 text-sm mt-0.5 whitespace-nowrap">Regular License</div>
+                    </td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">2</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$50</td>
+                </tr>
+                <tr>
+                    <td class="border-b dark:border-darkmode-400">
+                        <div class="font-medium whitespace-nowrap">Vuejs Admin Template</div>
+                        <div class="text-slate-500 text-sm mt-0.5 whitespace-nowrap">Regular License</div>
+                    </td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">1</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$25</td>
+                </tr>
+                <tr>
+                    <td class="border-b dark:border-darkmode-400">
+                        <div class="font-medium whitespace-nowrap">React Admin Template</div>
+                        <div class="text-slate-500 text-sm mt-0.5 whitespace-nowrap">Regular License</div>
+                    </td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">1</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$25</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="font-medium whitespace-nowrap">Laravel Admin Template</div>
+                        <div class="text-slate-500 text-sm mt-0.5 whitespace-nowrap">Regular License</div>
+                    </td>
+                    <td class="text-right w-32">3</td>
+                    <td class="text-right w-32">$25</td>
+                    <td class="text-right w-32 font-medium">$75</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
         <div class="px-5 sm:px-20 flex flex-col-reverse sm:flex-row">
             <div class="text-center sm:text-left mt-10 sm:mt-0">
@@ -75,7 +136,8 @@
                     @csrf
                     <div class="col-span-12 sm:col-span-3 relative">
                         {{--<label for="modal-form-1" class="form-label">Product</label>--}}
-                        <div class=" hidden product-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0">
+                        <div
+                            class=" hidden product-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0">
                             Product not found
                             <div class="tooltip-arrow absolute"></div>
                         </div>
@@ -89,11 +151,13 @@
                                 placeholder="Product Name"
                                 autocomplete="off"
                                 data-tooltip-target="tooltip-default">
-                            <div id="btn" class="text-danger absolute top-0 right-0 mt-1 p-1 text-gray-600 cursor-pointer hidden">
+                            <div id="btn"
+                                 class="text-danger absolute top-0 right-0 mt-1 p-1 text-gray-600 cursor-pointer hidden">
                                 <i data-lucide="x-circle" height="20px"></i>
                             </div>
                         </div>
-                        <div class="absolute hidden dark:bg-darkmode-400/70 bg-slate-200 w-52 ajax_result" style="padding: 0">
+                        <div class="absolute hidden dark:bg-darkmode-400/70 bg-slate-200 w-52 ajax_result"
+                             style="padding: 0">
 
                         </div>
                     </div>
@@ -154,7 +218,8 @@
                 <div class="modal-header">
                     <label for="client_name" class="font-medium text-base mr-auto">New Sale</label>
                     <div class="col-span-12 sm:col-span-3 mr-2">
-                        <div class="hidden client-name-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded">
+                        <div
+                            class="hidden client-name-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded">
                             Please choose client
                             <div class="tooltip-arrow absolute"></div>
                         </div>
@@ -171,7 +236,8 @@
                         @csrf
                         <div class="col-span-12 sm:col-span-3 relative">
                             <label for="modal-form-1" class="form-label">Product</label>
-                            <div class=" hidden product-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0">
+                            <div
+                                class=" hidden product-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0">
                                 Product not found
                                 <div class="tooltip-arrow absolute"></div>
                             </div>
@@ -180,16 +246,18 @@
                                     onkeyup="focusKeyup()"
                                     onfocus="focusKeyup()"
                                     id="product_name"
-                                       type="text"
-                                       class="form-control search__input"
-                                       placeholder="Product Name"
-                                       autocomplete="off"
-                                       data-tooltip-target="tooltip-default">
-                                <div id="btn" class="text-danger absolute top-0 right-0 mt-1 p-1 text-gray-600 cursor-pointer hidden">
+                                    type="text"
+                                    class="form-control search__input"
+                                    placeholder="Product Name"
+                                    autocomplete="off"
+                                    data-tooltip-target="tooltip-default">
+                                <div id="btn"
+                                     class="text-danger absolute top-0 right-0 mt-1 p-1 text-gray-600 cursor-pointer hidden">
                                     <i data-lucide="x-circle" height="20px"></i>
                                 </div>
                             </div>
-                            <div class="absolute hidden dark:bg-darkmode-400/70 bg-slate-200 w-52 ajax_result" style="padding: 0">
+                            <div class="absolute hidden dark:bg-darkmode-400/70 bg-slate-200 w-52 ajax_result"
+                                 style="padding: 0">
 
                             </div>
                         </div>
@@ -225,9 +293,11 @@
                         </div>
 
                         <label for="total" class="form-label pt-2">Total:</label>
-                        <input name="total" id="total" type="number" class="total form-control col-span-5" value="0" readonly>
+                        <input name="total" id="total" type="number" class="total form-control col-span-5" value="0"
+                               readonly>
                         <label for="paid" class="form-label p-2">Paid:</label>
-                        <input name="paid" id="paid" type="number" class="total form-control col-span-5" value="0" placeholder="Paid">
+                        <input name="paid" id="paid" type="number" class="total form-control col-span-5" value="0"
+                               placeholder="Paid">
                         <div class="col-span-12 mt-2">
                         </div>
                         <div class="col-span-12">
@@ -346,7 +416,7 @@
     })
 
     $productName.on('focusout', function () {
-        ($productTooltip.attr('value') === '' ||  $productName.val() === '') ? $productTooltip.addClass('hidden') : empty('show', 'saveName');
+        ($productTooltip.attr('value') === '' || $productName.val() === '') ? $productTooltip.addClass('hidden') : empty('show', 'saveName');
         setTimeout(function () {
             $('.ajax_result').addClass('hidden');
         }, 300);
@@ -361,7 +431,7 @@
         update('list');
     });
 
-    function multiply(){
+    function multiply() {
         ($countInput.val() !== '' && $priceInput.val() !== '' && $countTooltip.hasClass('hidden')) ? $overall.val(parseInt($priceInput.val()) * parseInt($countInput.val())) : $overall.val('');
     }
 
@@ -370,7 +440,7 @@
         empty();
     });
 
-    function empty(toolName, name){
+    function empty(toolName, name) {
         (name !== 'saveName') ? $productName.val('') : null;
         (toolName === 'show') ? $productTooltip.removeClass('hidden') : $productTooltip.addClass('hidden');
         $('.disable-it').attr('disabled', true).val('');
@@ -379,7 +449,7 @@
         $productName.attr('value', '');
     }
 
-    function focusKeyup(){
+    function focusKeyup() {
         $('.ajax_result').removeClass('hidden');
         update('');
         xButton();
@@ -400,7 +470,7 @@
         let overall = $overall.val();
         let id = $productName.attr('value');
 
-        if ($('#client_name').val() !== ''){
+        if ($('#client_name').val() !== '') {
             $('.client-name-tooltip').addClass('hidden');
             if (count !== '' && $countTooltip.hasClass('hidden') && price !== '' && name !== '' && $productTooltip.hasClass('hidden')) {
                 $total.val(parseInt($total.val()) + parseInt(overall));
