@@ -18,12 +18,11 @@ Route::get('/', function () {
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
-    Route::get('/', [IndexController::class, 'index'])->name('admin.home');
+    Route::get('/', function () {
+        return `<div></div>`;
+    })->name('admin.home');
     Route::group(['prefix' => 'categories'], function () {
-        Route::get('/', function () {
-            $categories = \App\Models\Category::all();
-            return redirect()->route('admin.category.show', $categories[0]->id);
-        })->name('admin.categories');
+        Route::get('/', [CategoryController::class, 'index'])->name('admin.categories');
         Route::get('/add', [CategoryController::class, 'add'])->name('admin.categories.add');
         Route::get('/search', [CategoryController::class, 'search'])->name('admin.category.search');
         Route::get('/{id}', [CategoryController::class, 'show'])->name('admin.category.show');

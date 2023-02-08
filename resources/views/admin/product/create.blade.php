@@ -43,10 +43,7 @@
                                 <div class="flex flex-col items-center justify-center pt-7 center">
                                         <div class="form-input2">
                                             <img class="w-100 h-32" id="file-ip-1-preview">
-                                        <input type="file" style="cursor: pointer" class="opacity-0 fallback"
-                                               name="image"
-                                               id="file-ip-1"
-                                               accept="image/*" onchange="showPreview(event);"/>
+                                        <input type="file" style="cursor: pointer" class="opacity-0 fallback" name="image" id="file-ip-1" accept="image/*" onchange="showPreview(event);" required/>
                                     </div>
                                 </div>
                             </label>
@@ -59,21 +56,18 @@
                         </div>
                         <div class="mt-3">
                             <label for="vertical-form-2" class="form-label">Buy</label>
-                            <input id="vertical-form-2" type="number" name="buy" class="form-control" placeholder="Buy"
-                                   required>
+                            <input id="vertical-form-2" type="number" name="buy" class="form-control" placeholder="Buy" required>
                         </div>
                         <div class="mt-3">
                             <label for="vertical-form-3" class="form-label">Sell</label>
-                            <input id="vertical-form-3" name="sell" type="number" class="form-control"
-                                   placeholder="Sell" required>
+                            <input id="vertical-form-3" name="sell" type="number" class="form-control" placeholder="Sell" required>
                         </div>
                         <div class="mt-3">
                             <label for="vertical-form-4" class="form-label">Stock</label>
-                            <input id="vertical-form-4" type="number" name="stock" class="form-control"
-                                   placeholder="Stock" required>
+                            <input id="vertical-form-4" type="number" name="stock" class="form-control" placeholder="Stock" required>
                         </div>
                         <label for="category_id" class="form-label mt-3">Category Id</label>
-                        <select class="tom-select w-full" id="category_id" name="category_id">
+                        <select class="tom-select w-full" id="category_id" name="category_id" required>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}">
                                     {{ $category->title }}
@@ -88,7 +82,7 @@
                             </label>
                             <textarea id="description" class="form-control" name="description"
                                       placeholder="Type your comments"
-                                      minlength="5"></textarea>
+                                      minlength="5" required></textarea>
                         </div>
                         <button class="btn btn-secondary mt-5 w-24 mr-2" data-tw-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-primary w-24 text-">Ok</button>
