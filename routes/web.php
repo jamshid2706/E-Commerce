@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ClientController;
+use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\IndexController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\Mobile\CategoriesController;
@@ -18,9 +19,7 @@ Route::get('/', function () {
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
-    Route::get('/', function () {
-        return `<div></div>`;
-    })->name('admin.home');
+    Route::get('/', [DashboardController::class, 'index'])->name('admin.home');
     Route::group(['prefix' => 'categories'], function () {
         Route::get('/', [CategoryController::class, 'index'])->name('admin.categories');
         Route::get('/add', [CategoryController::class, 'add'])->name('admin.categories.add');
