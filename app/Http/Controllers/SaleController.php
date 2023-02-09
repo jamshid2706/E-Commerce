@@ -35,6 +35,7 @@ class SaleController extends Controller
     public function store()
     {
         $data = request()->all();
+        dd($data);
         $client = Client::where('name', $data['client'])->get()->first();
         $clientId = $client->id;
         $sale = Sale::create([
