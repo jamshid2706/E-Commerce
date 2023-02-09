@@ -20,31 +20,6 @@
                 </tr>
                 </thead>
                 <tbody id="body" class="overflow-y-scroll">
-                <tr>
-                    <td class="border-b dark:border-darkmode-400">
-                        <div class="font-medium whitespace-nowrap">Midone HTML Admin Template</div>
-                        <div class="text-slate-500 text-sm mt-0.5 whitespace-nowrap">Regular License</div>
-                    </td>
-                    <td class="text-right border-b dark:border-darkmode-400 w-32">2</td>
-                    <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
-                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$50</td>
-                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">
-                        <a class="btn btn-outline-danger flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
-                           data-tw-target="#delete-confirmation-modal">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round" icon-name="trash-2" data-lucide="trash-2"
-                                 class="lucide lucide-trash-2 w-4 h-4 mr-1">
-                                <polyline points="3 6 5 6 21 6"></polyline>
-                                <path
-                                    d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
-                                <line x1="10" y1="11" x2="10" y2="17"></line>
-                                <line x1="14" y1="11" x2="14" y2="17"></line>
-                            </svg>
-                            Delete
-                        </a>
-                    </td>
-                </tr>
                 </tbody>
             </table>
         </div>
@@ -53,7 +28,7 @@
                 <div class="text-lg text-primary font-medium mt-2"></div>
             </div>
             <div class="text-center sm:text-right sm:ml-auto">
-                <div class="text-xl text-primary font-medium mt-2">Total</div>
+                <div id="total" class="text-xl text-primary font-medium mt-2">Total</div>
             </div>
         </div>
         <div class="p-5 grid grid-cols-12">
@@ -65,9 +40,7 @@
                     <div class="tooltip-arrow absolute"></div>
                 </div>
                 <div class="relative w-full">
-                    <input id="product_name"
-                           type="text" class="form-control search__input"
-                           placeholder="Product Name" autocomplete="off" data-tooltip-target="tooltip-default">
+                    <input id="product_name" type="text" class="inputs form-control search__input" placeholder="Product Name" autocomplete="off" data-tooltip-target="tooltip-default">
                     <div id="btn" class="text-danger absolute top-0 right-0 mt-1 p-1 text-gray-600 cursor-pointer hidden">
                         <i data-lucide="x-circle" height="20px"></i>
                     </div>
@@ -106,6 +79,17 @@
 
 @section('scripts')
     <script>
+        function total(){
+            let amounts = $('.amounts')
+            console.log(amounts)
+            let total = 0;
+            for(let i =0; i < amounts.length; i++){
+                total = total + parseInt(amounts[i].value)
+            }
+            console.log(total)
+            $('#total').text(total)
+        }
+
         function add(){
             let body = $('#body')
             let cltr = $('.tableroad')
@@ -118,13 +102,14 @@
                 $('#product_price').val()+'<input type="hidden" name="product_price[]" value="'+$('#product_price').val()+'">')
             tr.append('<td class="border-b text-right dark:border-darkmode-400">'+
                 $('#product_count').val()+'<input type="hidden" name="product_count[]" value="'+$('#product_count').val()+'">')
-            tr.append('<td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$'+
-                $('#product_amount').val()+'<input type="hidden" name="product_amount[]" value="'+$('#product_amount').val()+'">')
+            tr.append('<td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">'+
+                $('#product_amount').val()+'<input class="amounts" type="hidden" name="product_amount[]" value="'+$('#product_amount').val()+'">')
             tr.append(
                 `<td class="text-right border-b dark:border-darkmode-400"><a class="btn btn-outline-danger flex items-center text-danger" onclick="$('#tableroad-' + `+cltr.length+`).remove()" data-tw-toggle="modal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"stroke-linejoin="round" icon-name="trash-2" data-lucide="trash-2"
             class="lucide lucide-trash-2 w-4 h-4 mr-1"> <polyline points="3 6 5 6 21 6"></polyline> <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path> <line x1="10" y1="11" x2="10" y2="17"></line> <line x1="14" y1="11" x2="14" y2="17"></line> </svg>
                 Delete</a>`)
+            total()
         }
 
     </script>
