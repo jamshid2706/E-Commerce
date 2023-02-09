@@ -52,7 +52,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::post('/store', [SaleController::class, 'store'])->name('admin.sales.store');
         Route::get('/search', [SaleController::class, 'search'])->name('admin.sales.search');
         Route::get('/create', [SaleController::class, 'create'])->name('admin.sales.create');
-        Route::get('/edit/{id}', [SaleController::class, 'edit'])->name('admin.sales.edit');
+        Route::get('/{id}/edit', [SaleController::class, 'edit'])->name('admin.sales.edit');
         Route::delete('/{id}',[SaleController::class, 'destroy'])->name('admin.sales.delete');
     });
 });
