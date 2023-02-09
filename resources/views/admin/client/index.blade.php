@@ -39,7 +39,7 @@
                         </div>
                         <div class="flex mt-4 lg:mt-0 mr-1">
                             <a href="{{ route('admin.clients.show', $client->id) }}"
-                               class="btn btn-outline-secondary py-1 px-2"
+                               class="btn btn-outline-primary py-1 px-2"
                                control-id="ControlID-8"><i data-lucide="eye" class="px-1"></i> Preview</a>
                         </div>
                         <!-- BEGIN: Modal Toggle -->

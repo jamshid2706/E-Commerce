@@ -20,7 +20,7 @@ class SaleController extends Controller
         $saleProduct = SaleProduct::all();
         $clients = Client::withTrashed()->get();
         $client = Client::all();
-        $sales = Sale::orderBy('id', 'DESC')->get();
+        $sales = Sale::all();
         return view('admin.sales.index', compact('sales', 'clients', 'saleProduct', 'client'));
     }
 
