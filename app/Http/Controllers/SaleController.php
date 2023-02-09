@@ -40,10 +40,10 @@ class SaleController extends Controller
         $clientId = $client->id;
         $sale = Sale::create([
             'client_id' => $clientId,
-            'amount'=> $data['total']
+            'amount' => $data['total']
         ]);
 
-        $debt = ($data['paid'] === '' || !is_numeric($data['paid']) ) ? $data['total'] : $data['total'] - $data['paid'];
+        $debt = ($data['paid'] === '' || !is_numeric($data['paid'])) ? $data['total'] : $data['total'] - $data['paid'];
         $paid = $data['total'] - $debt;
 
         $finance = Finance::create([
@@ -55,7 +55,7 @@ class SaleController extends Controller
         $price = $data['price'];
         $count = $data['count'];
         $amount = $data['amount'];
-        for($i = 0; $i < count($product); $i++){
+        for ($i = 0; $i < count($product); $i++) {
             $prod = Product::find($data['productId'][$i]);
             SaleProduct::create([
                 'sale_id' => (int)$sale->id,
@@ -65,7 +65,7 @@ class SaleController extends Controller
                 'total' => (int)$amount[$i]
             ]);
             $prod->update([
-               'stock'=> $prod->stock-$count[$i]
+                'stock' => $prod->stock - $count[$i]
             ]);
         }
         return redirect()->back();
@@ -78,15 +78,15 @@ class SaleController extends Controller
         $prod = Product::where('title', $request->search)->get();
         $output = "";
 
-        foreach ($products as $product){
-            $output .= '<div id='. $product->id .' class="col-span-12 p-1 dark:bg-darkmode-300 dark:border-darkmode-800/80 bg-white ajax_content border-2" style=" border-radius: 4px; cursor: pointer"><p class="title pl-1">'. $product->title .'</p>
-        <p class="text-slate-400 font-8 pt-1">'.substr($product->description, 0, 26) .'</p></div>';
+        foreach ($products as $product) {
+            $output .= '<div id=' . $product->id . ' class="col-span-12 p-1 dark:bg-darkmode-300 dark:border-darkmode-800/80 bg-white ajax_content border-2" style=" border-radius: 4px; cursor: pointer"><p class="title pl-1">' . $product->title . '</p>
+        <p class="text-slate-400 font-8 pt-1">' . substr($product->description, 0, 26) . '</p></div>';
         }
 
         $data['amount'] = $request->id;
         $data['price'] = '';
 
-        if ($request->id != ''){
+        if ($request->id != '') {
             $getProdData = Product::find($request->id);
             $data['amount'] = $getProdData->stock;
             $data['price'] = $getProdData->buy;
@@ -97,12 +97,20 @@ class SaleController extends Controller
         return $data;
     }
 
-    public function destroy($id){
+    public function edit($id)
+    {
+        $sale = Sale::find($id);
+        return view('admin.sales.edit', compact('sale'));
+    }
+
+
+    public function destroy($id)
+    {
         $sale = Sale::find($id);
         foreach ($sale->products as $prod) {
             $product = Product::find($prod->product_id);
             $product->update([
-                'stock'=>$product->stock + $prod->count
+                'stock' => $product->stock + $prod->count
             ]);
         }
         Sale::destroy($id);
