@@ -29,7 +29,8 @@ class SaleController extends Controller
         $saleProduct = SaleProduct::all();
         $clients = Client::all()->pluck('name')->toArray();
         $sales = Sale::all();
-        return view('admin.sales.create', compact('sales', 'clients', 'saleProduct'));
+        $products = Product::all();
+        return view('admin.sales.create', compact('sales', 'clients', 'products'));
     }
 
     public function store()
@@ -39,12 +40,8 @@ class SaleController extends Controller
         $client = Client::where('name', $data['client'])->get()->first();
         $clientId = $client->id;
         $sale = Sale::create([
-            'client_id' => $clientId,
             'amount' => $data['total']
         ]);
-
-        $debt = ($data['paid'] === '' || !is_numeric($data['paid'])) ? $data['total'] : $data['total'] - $data['paid'];
-        $paid = $data['total'] - $debt;
 
         $finance = Finance::create([
             'sale_id' => $sale->id,
