@@ -88,6 +88,12 @@
             }
             console.log(total)
             $('#total').text(total)
+            $('#total').append('<input type="hidden" name="amount" value="' + total + '">')
+        }
+
+        function del(id){
+            $('#tableroad-' + id).remove()
+            total()
         }
 
         function add(){
@@ -105,7 +111,7 @@
             tr.append('<td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">'+
                 $('#product_amount').val()+'<input class="amounts" type="hidden" name="product_amount[]" value="'+$('#product_amount').val()+'">')
             tr.append(
-                `<td class="text-right border-b dark:border-darkmode-400"><a class="btn btn-outline-danger flex items-center text-danger" onclick="$('#tableroad-' + `+cltr.length+`).remove()" data-tw-toggle="modal">
+                `<td class="text-right border-b dark:border-darkmode-400"><a class="btn btn-outline-danger flex items-center text-danger" onclick="del(`+ cltr.length +`)" data-tw-toggle="modal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"stroke-linejoin="round" icon-name="trash-2" data-lucide="trash-2"
             class="lucide lucide-trash-2 w-4 h-4 mr-1"> <polyline points="3 6 5 6 21 6"></polyline> <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path> <line x1="10" y1="11" x2="10" y2="17"></line> <line x1="14" y1="11" x2="14" y2="17"></line> </svg>
                 Delete</a>`)
