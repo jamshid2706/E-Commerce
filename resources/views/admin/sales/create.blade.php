@@ -8,12 +8,13 @@
     <div class="intro-y box mt-5">
         <div class="px-5 sm:px-16 overflow-y-scroll scrollbar-hidden" style="height: 300px">
             <table class="table max-h-full">
-                <thead class="fixed-top">
+                <thead class="relative ">
                 <tr>
-                    <th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">DESCRIPTION</th>
-                    <th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">QTY</th>
-                    <th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">PRICE</th>
-                    <th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">SUBTOTAL</th>
+                    <th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">Product</th>
+                    <th class="border-b-2 dark:border-darkmode-400 text-center whitespace-nowrap">Count</th>
+                    <th class="border-b-2 dark:border-darkmode-400 text-center whitespace-nowrap">Price</th>
+                    <th class="border-b-2 dark:border-darkmode-400 text-center whitespace-nowrap">Total</th>
+                    <th class="border-b-2 dark:border-darkmode-400 text-center whitespace-nowrap">Actions</th>
                 </tr>
                 </thead>
                 <tbody class="overflow-y-scroll">
@@ -25,6 +26,22 @@
                     <td class="text-right border-b dark:border-darkmode-400 w-32">2</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$50</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">
+                        <a class="btn btn-outline-danger flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
+                           data-tw-target="#delete-confirmation-modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" icon-name="trash-2" data-lucide="trash-2"
+                                 class="lucide lucide-trash-2 w-4 h-4 mr-1">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path
+                                    d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                            </svg>
+                            Delete
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <td class="border-b dark:border-darkmode-400">
@@ -34,6 +51,22 @@
                     <td class="text-right border-b dark:border-darkmode-400 w-32">1</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$25</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">
+                        <a class="btn btn-outline-danger flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
+                           data-tw-target="#delete-confirmation-modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" icon-name="trash-2" data-lucide="trash-2"
+                                 class="lucide lucide-trash-2 w-4 h-4 mr-1">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path
+                                    d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                            </svg>
+                            Delete
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <td class="border-b dark:border-darkmode-400">
@@ -43,6 +76,22 @@
                     <td class="text-right border-b dark:border-darkmode-400 w-32">1</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$25</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">
+                        <a class="btn btn-outline-danger flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
+                           data-tw-target="#delete-confirmation-modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" icon-name="trash-2" data-lucide="trash-2"
+                                 class="lucide lucide-trash-2 w-4 h-4 mr-1">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path
+                                    d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                            </svg>
+                            Delete
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <td class="border-b dark:border-darkmode-400">
@@ -52,6 +101,22 @@
                     <td class="text-right border-b dark:border-darkmode-400 w-32">1</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$25</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">
+                        <a class="btn btn-outline-danger flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
+                           data-tw-target="#delete-confirmation-modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" icon-name="trash-2" data-lucide="trash-2"
+                                 class="lucide lucide-trash-2 w-4 h-4 mr-1">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path
+                                    d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                            </svg>
+                            Delete
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <td class="border-b dark:border-darkmode-400">
@@ -61,6 +126,22 @@
                     <td class="text-right border-b dark:border-darkmode-400 w-32">1</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$25</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">
+                        <a class="btn btn-outline-danger flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
+                           data-tw-target="#delete-confirmation-modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" icon-name="trash-2" data-lucide="trash-2"
+                                 class="lucide lucide-trash-2 w-4 h-4 mr-1">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path
+                                    d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                            </svg>
+                            Delete
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <td class="border-b dark:border-darkmode-400">
@@ -70,6 +151,9 @@
                     <td class="text-right border-b dark:border-darkmode-400 w-32">2</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$50</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">
+
+                    </td>
                 </tr>
                 <tr>
                     <td class="border-b dark:border-darkmode-400">
@@ -79,6 +163,9 @@
                     <td class="text-right border-b dark:border-darkmode-400 w-32">1</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$25</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">
+
+                    </td>
                 </tr>
                 <tr>
                     <td class="border-b dark:border-darkmode-400">
@@ -88,6 +175,9 @@
                     <td class="text-right border-b dark:border-darkmode-400 w-32">2</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$50</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">
+
+                    </td>
                 </tr>
                 <tr>
                     <td class="border-b dark:border-darkmode-400">
@@ -97,6 +187,9 @@
                     <td class="text-right border-b dark:border-darkmode-400 w-32">1</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$25</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">
+
+                    </td>
                 </tr>
                 <tr>
                     <td class="border-b dark:border-darkmode-400">
@@ -106,6 +199,9 @@
                     <td class="text-right border-b dark:border-darkmode-400 w-32">1</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32">$25</td>
                     <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">$25</td>
+                    <td class="text-right border-b dark:border-darkmode-400 w-32 font-medium">
+
+                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -121,10 +217,10 @@
         </div>
         <div class="px-5 sm:px-20 flex flex-col-reverse sm:flex-row">
             <div class="text-center sm:text-left mt-10 sm:mt-0">
-                <div class="text-lg text-primary font-medium mt-2">Elon Musk</div>
+                <div class="text-lg text-primary font-medium mt-2"></div>
             </div>
             <div class="text-center sm:text-right sm:ml-auto">
-                <div class="text-xl text-primary font-medium mt-2">$20.600.00</div>
+                <div class="text-xl text-primary font-medium mt-2">Total</div>
             </div>
         </div>
 
@@ -134,7 +230,7 @@
             <div class="modal-body">
                 <div class="grid grid-cols-12">
                     @csrf
-                    <div class="col-span-12 sm:col-span-3 relative">
+                    <div class="col-span-2 sm:col-span-3 relative">
                         {{--<label for="modal-form-1" class="form-label">Product</label>--}}
                         <div
                             class=" hidden product-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0">
@@ -142,54 +238,40 @@
                             <div class="tooltip-arrow absolute"></div>
                         </div>
                         <div class="relative w-full">
-                            <input
-                                onkeyup="focusKeyup()"
-                                onfocus="focusKeyup()"
-                                id="product_name"
-                                type="text"
-                                class="form-control search__input"
-                                placeholder="Product Name"
-                                autocomplete="off"
-                                data-tooltip-target="tooltip-default">
-                            <div id="btn"
-                                 class="text-danger absolute top-0 right-0 mt-1 p-1 text-gray-600 cursor-pointer hidden">
+                            <input onkeyup="focusKeyup()" onfocus="focusKeyup()" id="product_name"
+                                type="text" class="form-control search__input"
+                                placeholder="Product Name" autocomplete="off" data-tooltip-target="tooltip-default">
+                            <div id="btn" class="text-danger absolute top-0 right-0 mt-1 p-1 text-gray-600 cursor-pointer hidden">
                                 <i data-lucide="x-circle" height="20px"></i>
                             </div>
                         </div>
-                        <div class="absolute hidden dark:bg-darkmode-400/70 bg-slate-200 w-52 ajax_result"
-                             style="padding: 0">
-
-                        </div>
+                        <div class="absolute hidden dark:bg-darkmode-400/70 bg-slate-200 w-52 ajax_result" style="padding: 0"></div>
                     </div>
-                    <div class="col-span-12 sm:col-span-3 relative">
+                    <div class="col-span-2 sm:col-span-3 relative">
                         {{--<label for="price-input" class="form-label">Price</label>--}}
-                        <div value=''
-                             class="tool-clear hidden price-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0">
+                        <div class="tool-clear hidden price-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0">
                             Enter higher price
                             <div class="tooltip-arrow absolute"></div>
                         </div>
-                        <input id="price-input" type="number"
-                               class="disable-it form-control" placeholder="Price" disabled>
+                        <input id="price-input" type="number" class="disable-it form-control" placeholder="Price" disabled>
                     </div>
-                    <div class="col-span-12 sm:col-span-3 relative">
+                    <div class="col-span-2 sm:col-span-3 relative">
                         {{--<label for="count-input" class="form-label">Count</label>--}}
-                        <div value=''
-                             class="tool-clear hidden count-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0">
+                        <div class="tool-clear hidden count-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0">
                             Please enter the right amount
                             <div class="tooltip-arrow absolute"></div>
                         </div>
                         <input id="count-input" type="number"
                                class="disable-it form-control" placeholder="Count" disabled>
                     </div>
-                    <div class="col-span-12 sm:col-span-3">
+                    <div class="col-span-2 sm:col-span-3 relative">
                         {{--<label for="modal-form-4" class="form-label">Amount</label>--}}
                         <input id="modal-form-4" type="number"
                                class="form-control"
                                placeholder="Amount" readonly>
                     </div>
-
-                    <div class="col-span-12 grid grid-cols-12 mb-3 form-content">
-
+                    <div class="col-span-12 sm:col-span-12 text-right p-5">
+                        <button class="btn btn-primary" >+</button>
                     </div>
 
                     {{--<label for="total" class="form-label pt-2">Total:</label>--}}
@@ -263,8 +345,7 @@
                         </div>
                         <div class="col-span-12 sm:col-span-3 relative">
                             <label for="price-input" class="form-label">Price</label>
-                            <div value=''
-                                 class="tool-clear hidden price-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0">
+                            <div class="tool-clear hidden price-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0">
                                 Enter higher price
                                 <div class="tooltip-arrow absolute"></div>
                             </div>
@@ -273,8 +354,7 @@
                         </div>
                         <div class="col-span-12 sm:col-span-3 relative">
                             <label for="count-input" class="form-label">Count</label>
-                            <div value=''
-                                 class="tool-clear hidden count-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0">
+                            <div class="tool-clear hidden count-tooltip tooltip-info z-10 absolute inline-block px-2 py-1 text-white rounded left-0">
                                 Please enter the right amount
                                 <div class="tooltip-arrow absolute"></div>
                             </div>
