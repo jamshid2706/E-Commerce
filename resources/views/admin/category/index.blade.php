@@ -67,13 +67,13 @@
                                 @include('admin.category.edit')
                                 <!-- BEGIN: Modal Toggle -->
                                 <a href="javascript:;" data-tw-toggle="modal"
-                                   data-tw-target="#delete-modal-preview-{{$product->id}}"
+                                   data-tw-target="#delete-modal-preview-{{$category->id}}"
                                    class="flex items-center text-danger">
                                     <i data-lucide="trash-2" class="px-1 text-danger"></i>
                                     Delete</a>
                                 <!-- END: Modal Toggle -->
                                 <!-- BEGIN: Modal Content -->
-                                <div id="delete-modal-preview-{{$product->id}}" class="modal" tabindex="-1"
+                                <div id="delete-modal-preview-{{$category->id}}" class="modal" tabindex="-1"
                                      aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -87,7 +87,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="px-5 pb-8 text-center">
-                                                    <form action="{{ route('admin.category.productdelete', $product->id) }}"
+                                                    <form action="{{ route('admin.category.delete', $category->id) }}"
                                                           method="post">
                                                         <button type="button" data-tw-dismiss="modal"
                                                                 class="btn btn-outline-secondary w-24 mr-1">Cancel
