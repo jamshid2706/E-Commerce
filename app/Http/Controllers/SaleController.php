@@ -27,7 +27,7 @@ class SaleController extends Controller
     public function create()
     {
         $saleProduct = SaleProduct::all();
-        $clients = Client::all()->pluck('name')->toArray();
+        $clients = Client::all();
         $sales = Sale::all();
         $products = Product::all();
         return view('admin.sales.create', compact('sales', 'clients', 'products'));
@@ -36,27 +36,19 @@ class SaleController extends Controller
     public function store()
     {
         $data = request()->all();
-        dd($data);
-        $client = Client::where('name', $data['client'])->get()->first();
-        $clientId = $client->id;
         $sale = Sale::create([
+            'client_id' => $data['client'],
             'amount' => $data['total']
-        ]);
-
-        $finance = Finance::create([
-            'sale_id' => $sale->id,
-            'given' => $paid,
-            'debt' => $debt
         ]);
         $product = $data['product'];
         $price = $data['price'];
         $count = $data['count'];
         $amount = $data['amount'];
         for ($i = 0; $i < count($product); $i++) {
-            $prod = Product::find($data['productId'][$i]);
+            $prod = Product::find($product[$i]);
             SaleProduct::create([
                 'sale_id' => (int)$sale->id,
-                'product_id' => $prod->id,
+                'product_id' => $product[$i],
                 'price' => (int)$price[$i],
                 'count' => (int)$count[$i],
                 'total' => (int)$amount[$i]
