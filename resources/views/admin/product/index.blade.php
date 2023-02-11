@@ -53,17 +53,13 @@
                     <div
                         class="flex justify-center lg:justify-end items-center p-5 border-t border-slate-200/60 dark:border-darkmode-400">
 
-                        <a class="flex items-center text-primary mr-auto" {{--href="{{ route('admin.products.show', $product->id) }}"--}}>
-                            <i data-lucide="eye" class="mr-1"></i>
-                            Preview
-                        </a>
 
                         @include('admin.product.edit')
 
                         <!-- BEGIN: Modal Toggle -->
                         <a href="javascript:;" data-tw-toggle="modal"
                            data-tw-target="#delete-modal-preview-{{$product->id}}"
-                           class="flex items-center mr-auto text-danger">
+                           class="flex text-danger">
                             <i data-lucide="trash-2" class="px-1 text-danger"></i>
                             Delete</a>
                         <!-- END: Modal Toggle -->
