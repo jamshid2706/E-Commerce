@@ -33,6 +33,12 @@ class SaleController extends Controller
         return view('admin.sales.create', compact('sales', 'clients', 'products'));
     }
 
+    public function show($id)
+    {
+        $sale = Sale::find($id);
+        return view('admin.sales.show', compact('sale'));
+    }
+
     public function store()
     {
         $data = request()->all();
