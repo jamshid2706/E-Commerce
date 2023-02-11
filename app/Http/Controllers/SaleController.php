@@ -57,7 +57,7 @@ class SaleController extends Controller
                 'stock' => $prod->stock - $count[$i]
             ]);
         }
-        return redirect()->route('admin.sale');
+        return redirect()->route('admin.sales');
 
     }
 
@@ -88,10 +88,8 @@ class SaleController extends Controller
 
     public function edit($id)
     {
-        $clients = Client::all();
-        $products = Product::all();
         $sale = Sale::find($id);
-        return view('admin.sales.edit', compact('sale','clients','products'));
+        return view('admin.sales.edit', compact('sale'));
     }
 
 

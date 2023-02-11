@@ -22,11 +22,13 @@
                 <tr class="intro-x">
                     <td class="w-40">
                         <div class="flex">
-                            <p class="font-medium whitespace-nowrap">{{$sale->id}}</p>
+                            <a href="{{ route('admin.sales.show', $sale->id) }}">
+                                <p class="font-medium whitespace-nowrap">{{$sale->id}}</p>
+                            </a>
                         </div>
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{$sale->client->name}}</a>
+                        <a href="{{ route('admin.sales.show', $sale->id) }}" class="font-medium whitespace-nowrap">{{$sale->client->name}}</a>
                     </td>
                     <td>
                         <p class="text-slate-500 flex items-center mr-3">

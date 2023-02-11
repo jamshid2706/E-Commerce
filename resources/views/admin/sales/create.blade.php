@@ -17,9 +17,7 @@
 
     </div>
     <div class="intro-y box mt-5">
-
             <div class="px-5 sm:px-16 overflow-y-scroll scrollbar-hidden" style="height: 300px">
-
                 <table class="table max-h-full">
                     <thead class="relative ">
                     <tr>
@@ -49,38 +47,27 @@
                     <div class="relative w-full">
 
                         <select class="tom-select w-full js-example-basic-single" id="product_name">
-                            @foreach($products as $client)
-                                <option value="{{ $client->id }}">{{ $client->title }}</option>
+                            @foreach($products as $product)
+                                <option value="{{ $product->id }}">{{ $product->title }}</option>
                             @endforeach
                         </select>
-
-                        {{--<input list="products" id="product_name" type="text" class="inputs form-control search__input"
-                               placeholder="Product Name" autocomplete="off" data-tooltip-target="tooltip-default">
-                        <datalist id="products">
-                            @foreach($products as $product)
-                                <option value="{{$product->title}}">
-                            @endforeach
-                        </datalist>
-
-                        <div id="btn"
-                             class="text-danger absolute top-0 right-0 mt-1 p-1 text-gray-600 cursor-pointer hidden">
-                            <i data-lucide="x-circle" height="20px"></i>
-                        </div>--}}
                     </div>
                     <div class="absolute hidden dark:bg-darkmode-400/70 bg-slate-200 w-52 ajax_result"
                          style="padding: 0"></div>
                 </div>
                 <div class="col-span-2 sm:col-span-3 relative">
-                    <input id="product_price" onkeyup="count()" type="number" class="disable-it form-control"
+                    <input id="product_price" onkeyup="changes()" type="number" class="disable-it form-control"
                            placeholder="Price">
                 </div>
                 <div class="col-span-2 sm:col-span-3 relative">
                     <input id="product_count" onkeyup="count()" type="number" class="disable-it form-control"
                            placeholder="Count">
                 </div>
-                <div class="col-span-2 sm:col-span-3 relative">
-                    <input id="product_amount" type="number" class="form-control floating-label" placeholder="Amount"
+                <div class="test col-span-2 sm:col-span-3 relative tooltip" data-trigger="click" title="Total value of your sales: $0">
+                    <input id="product_amount" type="number" class="tooltip form-control floating-label" placeholder="Amount"
+                           title="Hey"
                            disabled>
+                    <i data-lucide="alert-circle" class="tooltip w-4 h-4 ml-1.5" title="Total value of your sales: $0"></i>
                 </div>
             </div>
             <div class="text-right p-5">
@@ -141,5 +128,12 @@
 
         }
 
-    </script>
+        function changes() {
+            let test = $('.test').attr('aria-decribedby', 'tippy-1')
+        }
+
+        let products = '<?php echo $products ;?>';
+        let product = JSON.parse(products);
+        console.log(product)
+    </scr
 @endsection

@@ -53,6 +53,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('/search', [SaleController::class, 'search'])->name('admin.sales.search');
         Route::get('/create', [SaleController::class, 'create'])->name('admin.sales.create');
         Route::get('/{id}/edit', [SaleController::class, 'edit'])->name('admin.sales.edit');
+        Route::get('/{id}', [SaleController::class, 'show'])->name('admin.sales.show');
         Route::delete('/{id}',[SaleController::class, 'destroy'])->name('admin.sales.delete');
     });
 });
