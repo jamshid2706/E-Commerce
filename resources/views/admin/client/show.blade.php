@@ -94,7 +94,10 @@
     <div id="faq-accordion-2" class="accordion accordion-boxed py-5">
         @foreach($sales as $sale)
             <div class="accordion-item box" style="border: none;">
-                <div id="faq-accordion-content-5" class="accordion-header">
+{{--                <div class="text-center">--}}
+{{--                    <a href="javascript:;" class="tooltip btn btn-primary">Show Tooltip</a>--}}
+{{--                </div>--}}
+                <div id="faq-accordion-content-5" style="cursor: pointer;" title="Bosing malumotlarni ko`rasz!" class="tooltip accordion-header">
                     <div class="rounded-md accordion-button dark:bg-darkmode-600 collapsed"
                          data-tw-toggle="collapse"
                          data-tw-target="#faq-accordion-collapse-5" aria-expanded="true"

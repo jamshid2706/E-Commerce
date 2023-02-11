@@ -1,8 +1,7 @@
 <!-- START: Modal Toggle -->
 <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#static-backdrop-modal-category-{{$category->id}}"
    class="flex items-center mr-3">
-    <i class="px-1" data-lucide="edit"></i>
-    Edit
+    <i data-lucide="edit"></i>
 </a>
 <!-- END: Modal Toggle -->
 
