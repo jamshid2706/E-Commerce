@@ -134,5 +134,5 @@
         let products = '<?php echo $products ;?>';
         let product = JSON.parse(products);
         console.log(product)
-    </scr
+    </script>
 @endsection
