@@ -67,7 +67,6 @@
                     <input id="product_amount" type="number" class="tooltip form-control floating-label" placeholder="Amount"
                            title="Hey"
                            disabled>
-                    <i data-lucide="alert-circle" class="tooltip w-4 h-4 ml-1.5" title="Total value of your sales: $0"></i>
                 </div>
             </div>
             <div class="text-right p-5">
