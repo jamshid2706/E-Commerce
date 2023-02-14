@@ -46,6 +46,16 @@ class SaleController extends Controller
             'client_id' => $data['client'],
             'amount' => $data['total']
         ]);
+
+        $debt = ($data['paid'] === '' || !is_numeric($data['paid']) ) ? $data['total'] : $data['total'] - $data['paid'];
+        $paid = $data['total'] - $debt;
+
+        $finance = Finance::create([
+            'sale_id' => $sale->id,
+            'given' => $paid,
+            'debt' => $debt
+        ]);
+
         $product = $data['product'];
         $price = $data['price'];
         $count = $data['count'];
@@ -64,7 +74,6 @@ class SaleController extends Controller
             ]);
         }
         return redirect()->route('admin.sales');
-
     }
 
     public function search(Request $request)
