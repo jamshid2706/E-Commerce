@@ -27,8 +27,8 @@ class DashboardController extends Controller
                 $active = 'month';
                 break;
             case 'Weekly':
-                $start = date("Y-m-d", strtotime("monday"));
-                $end = date("Y-m-d", strtotime("sunday"));
+                $start = date("Y-m-d", strtotime("this week"));
+                $end = date("Y-m-d", strtotime("+6 days", strtotime($start)));
                 $active = 'week';
                 break;
             case 'date':
