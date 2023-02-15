@@ -1,4 +1,3 @@
-@section('content')
     <!-- BEGIN: General Report -->
     <div class="col-span-12 xl:col-span-9 mt-8">
         <div class="intro-y flex items-center h-10">
@@ -27,49 +26,33 @@
 
                 </div>
                 <div class="col-span-12 lg:col-span-8 p-8 border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-darkmode-300 border-dashed">
-                    <form class="mt-3" action="{{route('admin.home')}}" method="get">
                         <ul class="nav nav-pills col-span-12 border border-slate-300 dark:border-darkmode-300 border-dashed rounded-md p-1 mb-8" role="tablist">
                             <li id="" class="nav-item flex-1" role="presentation">
-                                <input
+                                <button
                                     name="dataForm"
-                                    class="nav-link w-full py-1.5 px-2 {{($active == 'today') ? 'active' : ''}}"
-                                    data-tw-toggle="pill"
-                                    data-tw-target="#monthly-report"
-                                    type="submit"
-                                    role="tab"
+                                    class="dataForm nav-link w-full p-2 {{($active == 'today') ? 'active' : ''}}"
                                     value="Today"
-                                >
+                                >Today</button>
                             </li>
                             <li id="" class="nav-item flex-1" role="presentation">
-                                <input
+                                <button
                                     name="dataForm"
-                                    class="nav-link w-full py-1.5 px-2 {{($active == 'week') ? 'active' : ''}}"
-                                    data-tw-toggle="pill"
-                                    data-tw-target="#weekly-report"
-                                    type="submit"
-                                    role="tab"
-                                    aria-controls="weekly-report"
+                                    class="dataForm nav-link w-full p-2 {{($active == 'week') ? 'active' : ''}}"
                                     value="Weekly"
-                                >
+                                >Weekly</button>
                             </li>
                             <li id="" class="nav-item flex-1" role="presentation">
-                                <input
+                                <button
                                     name=""
-                                    class="nav-link w-full py-1.5 px-2 {{($active == 'month') ? 'active' : ''}}"
-                                    data-tw-toggle="pill"
-                                    data-tw-target="#monthly-report"
-                                    type="submit"
-                                    role="tab"
+                                    class="dataForm nav-link w-full p-2 {{($active == 'month') ? 'active' : ''}}"
                                     value="Monthly"
-                                >
+                                >Monthly</button>
                             </li>
                             <li id="date_report" class="nav-item flex-1" role="presentation">
-                                <input name="calendar" type="text" class="datepicker form-control sm:w-56 box pl-10 active"
+                                <input type="text" class="datepicker form-control sm:w-56 box pl-10"
                                        value="{{ $calendar }}">
-                                <input id="submitDate" name="dataForm" type="submit" class="hidden" value="date">
                             </li>
                         </ul>
-                    </form>
                     <div class="tab-content px-5 pb-5">
                         <div class="tab-pane active grid grid-cols-12 gap-y-8 gap-x-10" id="weekly-report"
                              role="tabpanel" aria-labelledby="weekly-report-tab">
@@ -204,4 +187,3 @@
         </div>
     </div>
     <!-- END: General Report -->
-@endsection

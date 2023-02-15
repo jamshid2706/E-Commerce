@@ -9,37 +9,40 @@ use App\Models\Sale;
 class DashboardController extends Controller
 {
     public function index() {
+        return view('admin.dashboard.index');
+    }
+
+    public function dashboard(){
         $dataForm = request()->all();
 
-        if (!array_key_exists('dataForm', $dataForm)){
-            $start = date('Y-m-01');
-            $end = date('Y-m-t');
-            $active = 'month';
-        }else{
-            switch ($dataForm['dataForm']) {
-                case 'Today':
-                    $start = date("Y-m-d");
-                    $end = date("Y-m-d", strtotime("tomorrow"));
-                    echo "$start --- $end";
-                    $active = 'today';
-                    break;
-                case 'Weekly':
-                    $start = date("Y-m-d", strtotime("monday"));
-                    $end = date("Y-m-d", strtotime("sunday"));
-                    $active = 'week';
-                    break;
-                case 'date':
-                    $date = explode(' - ', str_replace(',', '', $dataForm['calendar']));
-                    $start = date('Y-m-d', strtotime($date[0]));
-                    $end = date('Y-m-d', strtotime($date[1]));
-                    $active = 'date';
-                    break;
-                default:
-                    $start = date('Y-m-01');
-                    $end = date('Y-m-t');
-                    $active = 'month';
-            }
+        switch ($dataForm['dataForm']) {
+            case 'Today':
+                $start = date("Y-m-d");
+                $end = date("Y-m-d", strtotime("tomorrow"));
+                $active = 'today';
+                break;
+            case 'Monthly':
+                $start = date('Y-m-01');
+                $end = date('Y-m-t');
+                $active = 'month';
+                break;
+            case 'Weekly':
+                $start = date("Y-m-d", strtotime("monday"));
+                $end = date("Y-m-d", strtotime("sunday"));
+                $active = 'week';
+                break;
+            case 'date':
+                $date = explode(' - ', str_replace(',', '', $dataForm['calendar']));
+                $start = date('Y-m-d', strtotime($date[0]));
+                $end = date('Y-m-d', strtotime($date[1]));
+                $active = 'date';
+                break;
+            default:
+                $start = date('Y-m-01');
+                $end = date('Y-m-t');
+                $active = 'month';
         }
+
 //        $date['start_lastweek'] = date("Y-m-d", strtotime("last monday", strtotime("-1 week")));
 //        $date['end_lastweek'] = date("Y-m-d", strtotime("sunday", strtotime("-1 week")));
 //        $m = date('m', strtotime("-1 month"));
@@ -76,12 +79,12 @@ class DashboardController extends Controller
             $profitPercentage = 100 - ($cost / $sales->pluck('amount')->sum() * 100);
             $profitPercentage = number_format($profitPercentage, 1);
             $profit = number_format($profit, 0, '.', ' ');
-            return view('admin.dashboard.index', compact('active', 'debts', 'profit', 'profitPercentage', 'productSold', 'activeClients', 'cost', 'sales', 'client', 'calendar'));
+            return view('admin.dashboard.showCard', compact('active', 'debts', 'profit', 'profitPercentage', 'productSold', 'activeClients', 'cost', 'sales', 'client', 'calendar'));
         } else{
             $profit = 0;
             $profitPercentage = 0;
             $activeClients = 0;
-            return view('admin.dashboard.index', compact('active', 'debts', 'profit', 'profitPercentage', 'productSold', 'activeClients', 'cost', 'sales', 'client', 'calendar'));
+            return view('admin.dashboard.showCard', compact('active', 'debts', 'profit', 'profitPercentage', 'productSold', 'activeClients', 'cost', 'sales', 'client', 'calendar'));
         }
     }
 }

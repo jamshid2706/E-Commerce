@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.home');
+    Route::get('/dashboardContent', [DashboardController::class, 'dashboard'])->name('admin.home.content');
     Route::group(['prefix' => 'categories'], function () {
         Route::get('/', [CategoryController::class, 'index'])->name('admin.categories');
         Route::get('/add', [CategoryController::class, 'add'])->name('admin.categories.add');
