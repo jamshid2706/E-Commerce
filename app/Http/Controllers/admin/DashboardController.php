@@ -22,7 +22,7 @@ class DashboardController extends Controller
         }else{
             switch ($dataForm['dataForm']) {
                 case 'Weekly':
-                    $start = date("Y-m-d", strtotime("monday"));
+                    $start = date("Y-m-d", strtotime("last monday"));
                     $end = date("Y-m-d", strtotime("sunday"));
                     echo $start."  ".$end;
                     $active = 'week';

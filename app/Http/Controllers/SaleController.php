@@ -69,6 +69,11 @@ class SaleController extends Controller
                 'stock' => $prod->stock - $count[$i]
             ]);
         }
+        $finance = Finance::create([
+            'sale_id' => $sale->id,
+            'given' => $paid,
+            'debt' => $debt
+        ]);
         return redirect()->route('admin.sales');
     }
 
