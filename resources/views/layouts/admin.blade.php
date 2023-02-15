@@ -25,14 +25,12 @@
     $( "option" ).on('click', function() {
         alert( "Handler for called." );
     });
-
     $('#search').on('keyup', function () {
         $value = $(this).val();
         $.ajax({
             type: 'get',
             url: '{{URL::to('search')}}',
             data: {'search': $value},
-
             success: function (data) {
                 console.log(data);
                 $('#Content').html(data);
@@ -42,16 +40,17 @@
 </script>--}}
 @yield('scripts')
 <script type="text/javascript">
-    if($('html').hasClass('dark')){
+    if ($('html').hasClass('dark')) {
         $('.dark-mode-switcher__toggle').addClass('dark-mode-switcher__toggle--active')
-    }else{
+    } else {
         $('.dark-mode-switcher__toggle').removeClass('dark-mode-switcher__toggle--active')
     }
-    function switchDark(){
+
+    function switchDark() {
         $('html').toggleClass('dark')
-        if($('html').hasClass('dark')){
+        if ($('html').hasClass('dark')) {
             $('.dark-mode-switcher__toggle').addClass('dark-mode-switcher__toggle--active')
-        }else{
+        } else {
             $('.dark-mode-switcher__toggle').removeClass('dark-mode-switcher__toggle--active')
         }
     }

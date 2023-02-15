@@ -18,12 +18,12 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($sales as $sale)
+            @foreach($sales as $key => $sale)
                 <tr class="intro-x">
                     <td class="w-40">
                         <div class="flex">
                             <a href="{{ route('admin.sales.show', $sale->id) }}">
-                                <p class="font-medium whitespace-nowrap">{{$sale->id}}</p>
+                                <p class="font-medium whitespace-nowrap">{{$key + 1}}</p>
                             </a>
                         </div>
                     </td>
@@ -50,7 +50,7 @@
                     </td>
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center">
-                            <a class="flex items-center mr-3" href="{{route('admin.sales.edit',$sale->id)}}">
+                            <a class="flex items-center mr-3">
                                 <i class="px-1" data-lucide="edit"></i>
                                 Edit
                             </a>

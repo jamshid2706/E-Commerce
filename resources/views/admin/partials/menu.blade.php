@@ -52,6 +52,13 @@
                 <div class="side-menu__title">Sales</div>
             </a>
         </li>
+        <li>
+            <a href="{{ route('admin.finances') }}"
+               class="side-menu side-menu{{ request()->is("admin/finances") || request()->is("admin/finances/*") ? "--active" : "" }}">
+                <div class="side-menu__icon"><i data-lucide="dollar-sign"></i></div>
+                <div class="side-menu__title">Finances</div>
+            </a>
+        </li>
     </ul>
 
     <div data-url="#" class="dark-mode-switcher cursor-pointer shadow-md fixed bottom-0 box dark:bg-dark-2 border rounded-full

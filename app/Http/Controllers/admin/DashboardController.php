@@ -13,7 +13,7 @@ class DashboardController extends Controller
 {
     public function index() {
         $dataForm = request()->all();
-
+        $product_list ='';
         if (!array_key_exists('dataForm', $dataForm)){
             $start = date('Y-m-01');
             $end = date('Y-m-t');
@@ -69,16 +69,16 @@ class DashboardController extends Controller
 
             foreach ($sales as $sale){
                 if(!array_key_exists($sale['client_id'], $client)){
-                    $client[$sale['client_id']]['id'] = $sale['client_id'];
-                    $client[$sale['client_id']]['name'] = $sale->client->name;
-                    $client[$sale['client_id']]['address'] = $sale->client->address;
-                    $client[$sale['client_id']]['overall_amount'] = $sale['amount'];
-                    $client[$sale['client_id']]['overall_debt'] = $sale->finance['debt'];
+                    $client[$sale['client_id']]['id'] = $sale['client_id']?? '';
+                    $client[$sale['client_id']]['name'] = $sale->client->name?? '';
+                    $client[$sale['client_id']]['address'] = $sale->client->address?? '';
+                    $client[$sale['client_id']]['overall_amount'] = $sale['amount']?? 0;
+                    $client[$sale['client_id']]['overall_debt'] = $sale->finance['debt']?? 0;
                 } else{
-                    $client[$sale['client_id']]['overall_amount'] += $sale['amount'];
-                    $client[$sale['client_id']]['overall_debt'] += $sale->finance['debt'];
+                    $client[$sale['client_id']]['overall_amount'] += $sale['amount']?? 0;
+                    $client[$sale['client_id']]['overall_debt'] += $sale->finance['debt']?? 0;
                 }
-                $debts += $sale->finance['debt'];
+                $debts += $sale->finance['debt']?? 0;
             }
 
 
@@ -87,7 +87,7 @@ class DashboardController extends Controller
             $profitPercentage = 100 - ($cost / $sales->pluck('amount')->sum() * 100);
             $profitPercentage = number_format($profitPercentage, 1);
             $profit = number_format($profit, 0, '.', ' ');
-            return view('admin.dashboard.index', compact('active', 'debts', 'profit', 'profitPercentage', 'saleProduct', 'activeClients', 'cost', 'sales', 'client', 'calendar'));
+            return view('admin.dashboard.index', compact('active', 'debts', 'profit','product_list', 'profitPercentage', 'saleProduct', 'activeClients', 'cost', 'sales', 'client', 'calendar'));
         } else{
             return view('admin.dashboard.404', compact('active', 'calendar'));
         }

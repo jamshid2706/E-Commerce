@@ -13,12 +13,13 @@
                     <div class="justify-start flex items-center text-slate-600 dark:text-slate-300 mt-12">
                         Total sold amount
                         <i data-lucide="alert-circle" class="tooltip w-4 h-4 ml-1.5"
-                           title="Total value of your sales: ${{ number_format($sales->pluck('amount')->sum(), 0, '.', ' ') }}"></i>
+                           title="Total value of your sales: ${{ number_format($sales->pluck('amount')->sum(), 0, '.', ' ') ?? '' }}"></i>
                     </div>
                     <div class="flex items-center justify-start mt-4">
                         <div class="relative text-2xl font-medium pl-3 ml-0.5">
                             <span
-                                class="absolute text-xl font-medium top-0 left-0 -ml-0.5">$</span> {{ number_format($sales->pluck('amount')->sum(), 0, '.', ' ')  }}
+                                class="absolute text-xl font-medium top-0 left-0 -ml-0.5">
+                                $</span> {{ number_format($sales->pluck('amount')->sum(), 0, '.', ' ') ?? '' }}
                         </div>
                         <a class="text-slate-500 ml-4" href="">
                             <i data-lucide="refresh-ccw" class="w-4 h-4"></i>
@@ -27,9 +28,11 @@
                     <div class="mt-4 text-slate-500 text-xs">Updated just now</div>
 
                 </div>
-                <div class="col-span-12 lg:col-span-8 p-8 border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-darkmode-300 border-dashed">
+                <div
+                    class="col-span-12 lg:col-span-8 p-8 border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-darkmode-300 border-dashed">
                     <form class="mt-3" action="{{route('admin.home')}}" method="get">
-                        <ul class="nav nav-pills col-span-12 border border-slate-300 dark:border-darkmode-300 border-dashed rounded-md p-1 mb-8" role="tablist">
+                        <ul class="nav nav-pills col-span-12 border border-slate-300 dark:border-darkmode-300 border-dashed rounded-md p-1 mb-8"
+                            role="tablist">
                             <li id="" class="nav-item flex-1" role="presentation">
                                 <input
                                     name="dataForm"
@@ -56,8 +59,9 @@
                                 >
                             </li>
                             <li id="date_report" class="nav-item flex-1" role="presentation">
-                                <input name="calendar" type="text" class="datepicker form-control sm:w-56 box pl-10 active"
-                                       value="{{ $calendar }}">
+                                <input name="calendar" type="text"
+                                       class="datepicker form-control sm:w-56 box pl-10 active"
+                                       value="{{ $calendar ?? '' ?? '' }}">
                                 <input id="submitDate" name="dataForm" type="submit" class="hidden" value="date">
                             </li>
                         </ul>
@@ -68,23 +72,24 @@
                             <div class="col-span-6 sm:col-span-6 md:col-span-4">
                                 <div class="text-slate-500">Profit</div>
                                 <div class="mt-1.5 flex items-center">
-                                    <div class="text-base">${{ $profit }}</div>
+                                    <div class="text-base">${{ $profit ?? '' }}</div>
                                     <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2"
-                                         title="{{ $profitPercentage }}% Higher than last month">
-                                        %{{ $profitPercentage }}<i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i>
+                                         title="{{ $profitPercentage ?? '' }}% Higher than last month">
+                                        %{{ $profitPercentage ?? '' }}<i data-lucide="chevron-up"
+                                                                         class="w-4 h-4 ml-0.5"></i>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-span-12 sm:col-span-6 md:col-span-4">
                                 <div class="text-slate-500">Active Partner</div>
                                 <div class="mt-1.5 flex items-center">
-                                    <div class="text-base">{{ $activeClients }}</div>
+                                    <div class="text-base">{{ $activeClients ?? '' }}</div>
                                 </div>
                             </div>
                             <div class="col-span-12 sm:col-span-6 md:col-span-4">
                                 <div class="text-slate-500">Products sold</div>
                                 <div class="mt-1.5 flex items-center">
-                                    <div class="text-base">{{ $saleProduct->pluck('count')->sum() }}</div>
+                                    <div class="text-base">{{ $saleProduct->pluck('count')->sum() ?? '' }}</div>
                                 </div>
                             </div>
                             <div class="col-span-12 sm:col-span-6 md:col-span-4">
@@ -106,7 +111,7 @@
                             <div class="col-span-12 sm:col-span-6 md:col-span-4">
                                 <div class="text-slate-500">Unpaid Debts</div>
                                 <div class="mt-1.5 flex items-center">
-                                    <div class="text-danger">{{ number_format($debts, 0, '.', ' ') }}</div>
+                                    <div class="text-danger">{{ number_format($debts, 0, '.', ' ') ?? '' }}</div>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +123,8 @@
 
 
             @foreach($client as $clien)
-                <div class="accordion-item report-box intro-x" style="border: none; margin-top: 35px!important;  padding: 0!important;">
+                <div class="accordion-item report-box intro-x"
+                     style="border: none; margin-top: 35px!important;  padding: 0!important;">
                     <div id="faq-accordion-content-5" class="accordion-header box">
                         <div class="accordion-button collapsed"
                              data-tw-toggle="collapse"
@@ -132,15 +138,16 @@
                                     <i data-lucide="map-pin" class="w-8"></i>{{ $clien['address'] ?? '' }}
                                 </div>
                                 <div class="flex col-span-2 items-center justify-center text-warning">
-                                    <i data-lucide="banknote" class="w-8"></i>{{ $clien['overall_amount'] ?? '' }}
+                                    <i data-lucide="banknote" class="w-8"></i>{{ $clien['overall_amount'] ?? 0 }}
                                 </div>
-                                <div class="flex col-span-2 items-center justify-center {{ ($clien['overall_debt'] != 0) ? ' text-danger ">' : ' text-success'}}">
+                                <div
+                                    class="flex col-span-2 items-center justify-center {{ ($clien['overall_debt'] != 0) ? ' text-danger ">' : ' text-success'}}">
                                     <i data-lucide='axe' class='w-8'></i>
                                     {{ ($clien['overall_debt'] != 0) ? $clien['overall_debt'] : 'PAID'}}
                                 </div>
                                 <div class="flex col-span-2 items-center justify-center text-primary">
                                     <i data-lucide='check-circle' class='w-8'></i>
-                                    {{ $clien['overall_amount'] - $clien['overall_debt'] ?? '' }}
+                                    {{ $clien['overall_amount'] - $clien['overall_debt'] ?? 0 }}
                                 </div>
                             </div>
                         </div>
@@ -160,28 +167,60 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
+
+                                    @foreach($sales as $sale)
+                                        @if($sale->client_id == $clien['id'])
+                                            <tr class="intro-x">
+                                                <td class="!py-3.5">{{ $sale->id }}</td>
+                                                <td class="!py-3.5">
+                                                    <input id="price-input" type="number"
+                                                           class="disable-it form-control"
+                                                           placeholder="Price" value="{{ $sale->finance->debt ?? 0 }}">
+                                                </td>
+                                                <td class="!py-3.5">
+                                                    <input id="price-input" type="number"
+                                                           class="disable-it form-control" placeholder="Price"
+                                                           value="{{ $sale->finance->given ?? 0 }}">
+                                                </td>
+                                                <td class="!py-3.5">{{$sale->amount ?? 0 }}</td>
+                                                <td class="!py-0">{{ $sale->created_at }}</td>
+                                                <td class="!py-0">
+                                                    <i data-lucide="alert-circle"
+                                                       data-tooltip-content="#chart-tooltip-{{ $sale->id }}" class="tooltip w-4 h-4 ml-1.5"></i>
+                                                    <div class="tooltip-content">
+                                                        <div id="chart-tooltip-{{ $sale->id }}" class="py-1">
+                                                            {{ $product_list = '' }}
+                                                            @foreach($sale->products as $product)
+                                                                {{ $product_list .= "<div>" . $product->product[0]->title . ':' . $product->price . 'x' . $product->count . '=' . $product->total . "</div>" }}
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+
+                                    {{--    <?php
                                         foreach ($sales as $sale) {
-                                            if ($sale->client_id == $clien['id']){
+                                            if ($sale->client_id == $clien['id']) {
                                                 $product_list = '';
-                                                foreach ($sale->products as $product){
-                                                    $product_list .= ' __'.$product->product[0]->title.':'.$product->price.'x'.$product->count.'='.$product->total."__ ";
+                                                foreach ($sale->products as $product) {
+                                                    $product_list .= ' __' . $product->product[0]->title . ':' . $product->price . 'x' . $product->count . '=' . $product->total . "__ ";
                                                 }
                                                 echo '<tr class="intro-x">
-
                             <td class="!py-3.5">' . $sale->id . '</td>
                             <td class="!py-3.5"><input id="price-input" type="number"
-                                   class="disable-it form-control" placeholder="Price" value="'.$sale->finance->debt.'"></td>
+                                   class="disable-it form-control" placeholder="Price" value="' . $sale->finance->debt . '"></td>
                             <td class="!py-3.5"><input id="price-input" type="number"
-                                   class="disable-it form-control" placeholder="Price" value="'.$sale->finance->given.'"></td>
+                                   class="disable-it form-control" placeholder="Price" value="' . $sale->finance->given . '"></td>
                             <td class="!py-3.5">' . $sale->amount . '</td>
                             <td class="!py-0">' . $sale->created_at . '</td>
                             <td class="!py-0"><i data-lucide="alert-circle" class="tooltip w-4 h-4 ml-1.5"
-                           title="'.$product_list.'"></i></td>
+                           title="' . $product_list . '"></i></td>
                             </tr>';
                                             }
                                         }
-                                        ?>
+                                        ?> --}}
                                     </tbody>
                                 </table>
                             </div>

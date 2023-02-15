@@ -22,14 +22,10 @@
                         <div class="box p-5">
                             <div class="flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="shopping-cart" data-lucide="shopping-cart" class="lucide lucide-shopping-cart report-box__icon text-primary"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path></svg>
-                                <div class="ml-auto">
-                                    <div class="report-box__indicator bg-success tooltip cursor-pointer">
-                                        33% <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="chevron-up" data-lucide="chevron-up" class="lucide lucide-chevron-up w-4 h-4 ml-0.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                                    </div>
-                                </div>
+                                <div class="ml-auto"></div>
                             </div>
-                            <div class="text-3xl font-medium leading-8 mt-6">4.710</div>
-                            <div class="text-base text-slate-500 mt-1">Item Sales</div>
+                            <div class="text-3xl font-medium leading-8 mt-6">{{ $client->sales->count() }}</div>
+                            <div class="text-base text-slate-500 mt-1">Sales Total</div>
                         </div>
                     </div>
                 </div>
@@ -39,15 +35,11 @@
                     <div class="report-box zoom-in">
                         <div class="box p-5">
                             <div class="flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="shopping-cart" data-lucide="shopping-cart" class="lucide lucide-shopping-cart report-box__icon text-primary"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path></svg>
-                                <div class="ml-auto">
-                                    <div class="report-box__indicator bg-success tooltip cursor-pointer">
-                                        33% <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="chevron-up" data-lucide="chevron-up" class="lucide lucide-chevron-up w-4 h-4 ml-0.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                                    </div>
-                                </div>
+                                <i data-lucide="dollar-sign"></i>
+                                <div class="ml-auto"></div>
                             </div>
-                            <div class="text-3xl font-medium leading-8 mt-6">4.710</div>
-                            <div class="text-base text-slate-500 mt-1">Item Sales</div>
+                            <div class="text-3xl font-medium leading-8 mt-6">{{ $totalAmount }}</div>
+                            <div class="text-base text-slate-500 mt-1">Total amount</div>
                         </div>
                     </div>
                 </div>
@@ -92,7 +84,7 @@
     </div>
 
     <div id="faq-accordion-2" class="accordion accordion-boxed py-5">
-        @foreach($sales as $sale)
+        @foreach($sales as $key =>$sale)
             <div class="accordion-item box" style="border: none;">
 {{--                <div class="text-center">--}}
 {{--                    <a href="javascript:;" class="tooltip btn btn-primary">Show Tooltip</a>--}}
@@ -103,7 +95,7 @@
                          data-tw-target="#faq-accordion-collapse-5" aria-expanded="true"
                          aria-controls="faq-accordion-collapse-5">
                         <div class="grid-cols-10 grid">
-                            <div class="pl-5 flex items-center">{{ $sale->id ?? '' }}</div>
+                            <div class="pl-5 flex items-center">{{ $key + 1 }}</div>
                             <div class="col-span-2 flex items-center">{{ $client->name ?? ''}}</div>
                             <div class="col-span-3 flex items-center"><i data-lucide="map-pin" class="px-1 h-full"></i>{{ $sale->client->address ?? '' }}</div>
                             <div class="flex items-center"><i data-lucide="banknote" class="px-1 h-full"></i>{{ $sale->amount ?? '' }}</div>

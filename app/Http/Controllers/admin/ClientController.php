@@ -21,8 +21,11 @@ class ClientController extends Controller
     {
         $sales = Sale::where('client_id', $id)->orderBy('id', 'DESC')->get();
         $client = Client::find($id);
-        $saleProduct = SaleProduct::all();
-        return view('admin.client.show', compact('client','sales'));
+        $totalAmount = 0;
+        foreach ($client->sales as $sale) {
+            $totalAmount = (int)$sale->amount + (int)$totalAmount;
+        }
+        return view('admin.client.show', compact('client','sales', 'totalAmount'));
     }
 
     public function create()

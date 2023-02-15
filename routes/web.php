@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\ClientController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\IndexController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\Mobile\CategoriesController;
 use App\Http\Controllers\Mobile\ClientsController;
 use App\Http\Controllers\Mobile\ProductsController;
@@ -55,6 +56,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('/{id}/edit', [SaleController::class, 'edit'])->name('admin.sales.edit');
         Route::get('/{id}', [SaleController::class, 'show'])->name('admin.sales.show');
         Route::delete('/{id}',[SaleController::class, 'destroy'])->name('admin.sales.delete');
+    });
+    Route::group(['prefix' => 'finances'], function () {
+        Route::get('/', [FinanceController::class, 'index'])->name('admin.finances');
+        Route::post('/store', [FinanceController::class,'store'])->name('admin.finances.store');
     });
 });
 // Mobile App routes

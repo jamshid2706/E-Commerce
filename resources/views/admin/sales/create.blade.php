@@ -5,18 +5,18 @@
 @section('content')
     <form class="mt-3" action="{{route('admin.sales.store')}}" method="post">
         @csrf
-    <div class="grid grid-cols-12">
-        <h2 class="col-span-6 text-lg font-medium mt-10">Adding Sale</h2>
-        <div class="col-span-4 p-5">
-            <select class="tom-select w-full js-example-basic-single" name="client">
-                @foreach($clients as $client)
-                    <option value="{{ $client->id }}">{{ $client->name }}</option>
-                @endforeach
-            </select>
-        </div>
+        <div class="grid grid-cols-12">
+            <h2 class="col-span-6 text-lg font-medium mt-10">Adding Sale</h2>
+            <div class="col-span-4 p-5">
+                <select class="tom-select w-full js-example-basic-single" name="client">
+                    @foreach($clients as $client)
+                        <option value="{{ $client->id }}">{{ $client->name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-    </div>
-    <div class="intro-y box mt-5">
+        </div>
+        <div class="intro-y box mt-5">
             <div class="px-5 sm:px-16 overflow-y-scroll scrollbar-hidden" style="height: 300px">
                 <table class="table max-h-full">
                     <thead class="relative ">
@@ -37,8 +37,13 @@
                     <div class="text-lg text-primary font-medium mt-2"></div>
                 </div>
                 <div class="text-center sm:text-right sm:ml-auto">
-                    <div id="total" class="text-xl text-primary font-medium mt-2">
-                        Total
+                    <label class="text-primary font-medium mt-2">Paid: </label>
+                    <input id="paid" name="paid" class="text-center border-b-2" value="0">
+                </div>
+                <div class="text-center sm:text-right sm:ml-auto">
+                    <p class="text-primary font-medium mt-2">Total: </p>
+                    <div id="total" class="text-center text-primary font-medium mt-2">
+                        0
                     </div>
                 </div>
             </div>
@@ -56,31 +61,32 @@
                          style="padding: 0"></div>
                 </div>
                 <div class="col-span-2 sm:col-span-3 relative">
-                    <input id="product_price" onkeyup="changes()" type="number" class="disable-it form-control"
+                    <input id="product_price" onkeyup="count()" type="number" class="disable-it form-control"
                            placeholder="Price">
                 </div>
                 <div class="col-span-2 sm:col-span-3 relative">
                     <input id="product_count" onkeyup="count()" type="number" class="disable-it form-control"
                            placeholder="Count">
                 </div>
-                <div class="test col-span-2 sm:col-span-3 relative tooltip" data-trigger="click" title="Total value of your sales: $0">
-                    <input id="product_amount" type="number" class="tooltip form-control floating-label" placeholder="Amount"
-                           title="Hey"
-                           disabled>
+                <div class="test col-span-2 sm:col-span-3 relative tooltip" data-trigger="click"
+                     title="Total value of your sales: $0">
+                    <input id="product_amount" type="number"
+                           class="form-control floating-label" placeholder="Amount" disabled>
                 </div>
             </div>
             <div class="text-right p-5">
                 <a class="btn btn-secondary mt-5 w-24 mr-2" data-tw-dismiss="modal">Cancel</a>
-                <a onclick="add()" class="btn btn-primary"> ADD + </a>
+                <a onclick="add()" class="btn btn-primary">Add</a>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-        </form>
+        </div>
+    </form>
     </div>
 
 @endsection
 
 @section('scripts')
-    <script>
+    <script type="text/javascript">
         function count() {
             $('#product_amount').val($('#product_count').val() * $('#product_price').val())
         }
@@ -92,6 +98,7 @@
                 total = total + parseInt(amounts[i].value)
             }
             $('#total').text(total)
+            $('#paid').val(total)
             $('#total').append('<input type="hidden" name="total" value="' + total + '">')
         }
 
@@ -101,12 +108,13 @@
         }
 
         function add() {
-            let body = $('#body')
             let cltr = $('.tableroad')
-            body.append('<tr class="tableroad" id="tableroad-' + cltr.length + '"></tr>')
+            //let body = document.getElementById('body').innerHTML = `<tr class="tableroad" id="tableroad-` + cltr.length + `"></tr>`;
+            $('#body').append(`<tr class="tableroad" id="tableroad-` + cltr.length + `"></tr>`)
             let tr = $('#tableroad-' + cltr.length)
-            tr.append('<td class="border-b dark:border-darkmode-400"> <div class="font-medium whitespace-nowrap">' +
-                $('#product_name').children("option").filter(":selected").text() + '</div><input type="hidden" name="product[]" value="' + $('#product_name').val() + '">')
+            tr.append(
+                `<td class="border-b dark:border-darkmode-400"> <div class="font-medium whitespace-nowrap">` + $('#product_name').children("option").filter(":selected").text()
+                + `</div><input type="hidden" name="product[]" value="` + $('#product_name').val() + `">`)
             $('#product_name').val('')
             tr.append('<td class="border-b text-right dark:border-darkmode-400">' +
                 $('#product_price').val() + '<input type="hidden" name="price[]" value="' + $('#product_price').val() + '">')
@@ -123,15 +131,13 @@
             class="lucide lucide-trash-2 w-4 h-4 mr-1"> <polyline points="3 6 5 6 21 6"></polyline> <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path> <line x1="10" y1="11" x2="10" y2="17"></line> <line x1="14" y1="11" x2="14" y2="17"></line> </svg>
                 Delete</a>`)
             total()
-            $('#product_name').children("option").filter(":selected").remove()
-
         }
 
         function changes() {
             let test = $('.test').attr('aria-decribedby', 'tippy-1')
         }
 
-        let products = '<?php echo $products ;?>';
+        let products = '<?php echo $products; ?>';
         let product = JSON.parse(products);
         console.log(product)
     </script>
