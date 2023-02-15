@@ -42,13 +42,7 @@ class DashboardController extends Controller
                 $end = date('Y-m-t');
                 $active = 'month';
         }
-
-//        $date['start_lastweek'] = date("Y-m-d", strtotime("last monday", strtotime("-1 week")));
-//        $date['end_lastweek'] = date("Y-m-d", strtotime("sunday", strtotime("-1 week")));
-//        $m = date('m', strtotime("-1 month"));
-//        $date['start_lastMonth'] = date("Y-$m-01");
-//        $date['end_lastMonth'] = date('Y-m-d', strtotime($start. ' -1 day'));
-        $calendar = $start.' - '.$end;
+        $calendar = date('d', strtotime($start)).' '.date('M', strtotime($start)).', '.date('Y', strtotime($start)).' - '.date('d', strtotime($end)).' '.date('M', strtotime($end)).', '.date('Y', strtotime($end));
         $sales = Sale::whereBetween('created_at', [$start, $end])->get();
         $client = [];
         $debts = 0;
@@ -79,12 +73,19 @@ class DashboardController extends Controller
             $profitPercentage = 100 - ($cost / $sales->pluck('amount')->sum() * 100);
             $profitPercentage = number_format($profitPercentage, 1);
             $profit = number_format($profit, 0, '.', ' ');
-            return view('admin.dashboard.showCard', compact('active', 'debts', 'profit', 'profitPercentage', 'productSold', 'activeClients', 'cost', 'sales', 'client', 'calendar'));
-        } else{
+            } else{
             $profit = 0;
             $profitPercentage = 0;
             $activeClients = 0;
-            return view('admin.dashboard.showCard', compact('active', 'debts', 'profit', 'profitPercentage', 'productSold', 'activeClients', 'cost', 'sales', 'client', 'calendar'));
         }
+        $data['salesTotal'] = number_format($sales->pluck('amount')->sum(), 0, '.', ' ');
+        $data['clients'] = '';
+        foreach ($client as $clien){
+            $data['clients'] .= view('admin.dashboard.clients', compact('sales', 'clien'));
+        }
+        $data['dashboardPart'] = '';
+        $data['dashboardPart'] .= view('admin.dashboard.dashboardPart', compact('profit', 'profitPercentage', 'activeClients', 'productSold', 'cost', 'debts'));
+        $data['calendar'] = $calendar;
+        return $data;
     }
 }
