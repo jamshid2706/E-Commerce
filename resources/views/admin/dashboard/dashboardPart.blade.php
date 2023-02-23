@@ -1,7 +1,7 @@
 <div class="tab-content px-5 pb-5">
     <div class="tab-pane active grid grid-cols-12 gap-y-8 gap-x-10" id="weekly-report"
          role="tabpanel" aria-labelledby="weekly-report-tab">
-        <div class="col-span-6 sm:col-span-6 md:col-span-4">
+        <div class="col-span-6 md:col-span-6 lg:col-span-4">
             <div class="text-slate-500">Profit</div>
             <div class="mt-1.5 flex items-center">
                 <div class="text-base">UZS {{ $profit }}</div>
@@ -11,7 +11,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-span-12 sm:col-span-6 md:col-span-4">
+        <div class="col-span-12 md:col-span-6 lg:col-span-4">
             <div class="text-slate-500">Active Partner</div>
             <div class="mt-1.5 flex items-center">
                 <div class="text-base">{{ $activeClients }}
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-span-12 sm:col-span-6 md:col-span-4">
+        <div class="col-span-12 md:col-span-6 lg:col-span-4">
             <div class="text-slate-500">Products sold</div>
             <div class="mt-1.5 flex items-center">
                 <div class="text-base">{{ number_format($productSold, 0, '.', ' ') }}</div>
@@ -30,7 +30,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-span-12 sm:col-span-6 md:col-span-4">
+        <div class="col-span-12 md:col-span-6 lg:col-span-4">
             <div class="text-slate-500">Sale cost</div>
             <div class="mt-1.5 flex items-center">
                 <div class="text-base">UZS {{number_format($cost, 0, '.', ' ')}}</div>
@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-span-12 sm:col-span-6 md:col-span-4">
+        <div class="col-span-12 md:col-span-6 lg:col-span-4">
             <div class="text-slate-500">Success Payment</div>
             <div class="mt-1.5 flex items-center">
                 <div class="text-base">UZS {{number_format($paid, 0, '.', ' ')}}</div>
@@ -50,12 +50,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-span-12 sm:col-span-6 md:col-span-4">
+        <div class="col-span-12 md:col-span-6 lg:col-span-4">
             <div class="text-slate-500">Unpaid Debts</div>
             <div class="mt-1.5 flex items-center">
                 <div class="text-danger">UZS {{ number_format($debts, 0, '.', ' ') }}</div>
                 <div class="text-danger flex text-xs font-medium tooltip cursor-pointer ml-2"
-                     title="{{number_format($paid, 0, '.', ' ')}} successfully paid">
+                     title="{{number_format($paid, 0, '.', ' ')}} debts unpaid">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                 </div>
             </div>

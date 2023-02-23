@@ -3123,6 +3123,9 @@ select{
 .mr-52{
     margin-right: 13rem;
 }
+.order-1{
+    order: 1;
+}
 .block{
     display: block;
 }
@@ -18399,6 +18402,9 @@ html body{
     .md\:col-span-3{
         grid-column: span 3 / span 3;
     }
+    .md\:col-span-10 {
+        grid-column: span 10 / span 10;
+    }
     .md\:row-start-auto{
         grid-row-start: auto;
     }
@@ -18509,6 +18515,9 @@ html body{
     .lg\:row-start-3{
         grid-row-start: 3;
     }
+    .lg\:col-span-10 {
+        grid-column: span 10 / span 10;
+    }
     .lg\:mx-auto{
         margin-left: auto;
         margin-right: auto;
@@ -18593,6 +18602,9 @@ html body{
     }
     .lg\:w-1\/2{
         width: 50%;
+    }
+    .lg\:order-0 {
+        order: 0;
     }
     .lg\:flex-row{
         flex-direction: row;
@@ -18697,6 +18709,9 @@ html body{
 @media (min-width: 1280px){
     .xl\:absolute{
         position: absolute;
+    }
+    .xl\:order-0 {
+        order: 0;
     }
     .xl\:sticky{
         position: -webkit-sticky;
