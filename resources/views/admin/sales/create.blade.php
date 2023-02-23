@@ -17,13 +17,13 @@
 
         </div>
         <div class="intro-y box mt-5">
-            <div class="px-5 sm:px-16 overflow-y-scroll scrollbar-hidden" style="height: 300px">
+            <div class="px-5 sm:px-16 overflow-y-scroll scrollbar-hidden" style="height: 50vh">
                 <table class="table max-h-full">
                     <thead class="relative ">
                     <tr>
                         <th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">Product</th>
-                        <th class="border-b-2 dark:border-darkmode-400 text-center whitespace-nowrap">Count</th>
                         <th class="border-b-2 dark:border-darkmode-400 text-center whitespace-nowrap">Price</th>
+                        <th class="border-b-2 dark:border-darkmode-400 text-center whitespace-nowrap">Count</th>
                         <th class="border-b-2 dark:border-darkmode-400 text-center whitespace-nowrap">Total</th>
                         <th class="border-b-2 dark:border-darkmode-400 text-center whitespace-nowrap">Actions</th>
                     </tr>
@@ -33,32 +33,24 @@
                 </table>
             </div>
             <div class="px-5 sm:px-20 flex flex-col-reverse sm:flex-row">
-                <div class="text-center sm:text-left mt-10 sm:mt-0">
-                    <div class="text-lg text-primary font-medium mt-2"></div>
-                </div>
                 <div class="text-center sm:text-right sm:ml-auto">
-                    <label class="text-primary font-medium mt-2">Paid: </label>
-                    <input id="paid" name="paid" class="text-center border-b-2" value="0">
-                </div>
-                <div class="text-center sm:text-right sm:ml-auto">
-                    <p class="text-primary font-medium mt-2">Total: </p>
-                    <div id="total" class="text-center text-primary font-medium mt-2">
-                        0
-                    </div>
+                    <label class="text-primary sm:text-right font-medium mt-2">Paid: </label>
+                    <input id="paid" name="paid" class="text-center border-b-2 col-sm-1" value="0">
+                    <p class="text-primary d-inline-block font-medium mt-2">
+                        Total: <span id="total" class="text-center text-primary font-medium mt-2">0</span>
+                    </p>
                 </div>
             </div>
             <div class="p-5 grid grid-cols-12">
                 <div class="col-span-2 sm:col-span-3 relative">
                     <div class="relative w-full">
-
                         <select class="tom-select w-full js-example-basic-single" id="product_name">
                             @foreach($products as $product)
                                 <option value="{{ $product->id }}">{{ $product->title }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="absolute hidden dark:bg-darkmode-400/70 bg-slate-200 w-52 ajax_result"
-                         style="padding: 0"></div>
+                    <div class="absolute hidden dark:bg-darkmode-400/70 bg-slate-200 w-52 ajax_result" style="padding: 0"></div>
                 </div>
                 <div class="col-span-2 sm:col-span-3 relative">
                     <input id="product_price" onkeyup="count()" type="number" class="disable-it form-control"
@@ -81,6 +73,14 @@
             </div>
         </div>
     </form>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
     </div>
 
 @endsection
@@ -97,7 +97,7 @@
             for (let i = 0; i < amounts.length; i++) {
                 total = total + parseInt(amounts[i].value)
             }
-            $('#total').text(total)
+            $('#total').text(total.toLocaleString('fr-FR')+ ' UZS')
             $('#paid').val(total)
             $('#total').append('<input type="hidden" name="total" value="' + total + '">')
         }
@@ -107,9 +107,11 @@
             total()
         }
 
+        var cltr = [0];
         function add() {
-            let cltr = $('.tableroad')
-            //let body = document.getElementById('body').innerHTML = `<tr class="tableroad" id="tableroad-` + cltr.length + `"></tr>`;
+            if($('#product_name').children("option").filter(":selected").text() == "" || $('#product_price').val() == 0 || $('#product_count').val() == 0){
+                return
+            }
             $('#body').append(`<tr class="tableroad" id="tableroad-` + cltr.length + `"></tr>`)
             let tr = $('#tableroad-' + cltr.length)
             tr.append(
@@ -131,6 +133,8 @@
             class="lucide lucide-trash-2 w-4 h-4 mr-1"> <polyline points="3 6 5 6 21 6"></polyline> <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path> <line x1="10" y1="11" x2="10" y2="17"></line> <line x1="14" y1="11" x2="14" y2="17"></line> </svg>
                 Delete</a>`)
             total()
+            cltr.push('tableroad-' + cltr.length)
+            console.log(cltr)
         }
 
         function changes() {

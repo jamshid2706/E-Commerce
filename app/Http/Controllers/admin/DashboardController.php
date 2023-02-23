@@ -14,7 +14,7 @@ class DashboardController extends Controller
 
     public function dashboard(){
         $dataForm = request()->all();
-
+        $sales = Sale::all();
         switch ($dataForm['dataForm']) {
             case 'Today':
                 $start = date("Y-m-d");
