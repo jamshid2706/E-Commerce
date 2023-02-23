@@ -22,11 +22,12 @@
             </div>
         </div>
         <div class="col-span-12 md:col-span-6 lg:col-span-4">
-            <div class="text-slate-500">Products sold</div>
+            <div class="text-slate-500">Success Payment</div>
             <div class="mt-1.5 flex items-center">
-                <div class="text-base">{{ number_format($productSold, 0, '.', ' ') }}</div>
-                <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.29 7 12 12 20.71 7"></polyline><line x1="12" y1="22" x2="12" y2="12"></line></svg>
+                <div class="text-base">UZS {{number_format($paid, 0, '.', ' ')}}</div>
+                <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2"
+                     title="{{number_format($paid, 0, '.', ' ')}} successfully paid">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                 </div>
             </div>
         </div>
@@ -41,12 +42,11 @@
             </div>
         </div>
         <div class="col-span-12 md:col-span-6 lg:col-span-4">
-            <div class="text-slate-500">Success Payment</div>
+            <div class="text-slate-500">Products sold</div>
             <div class="mt-1.5 flex items-center">
-                <div class="text-base">UZS {{number_format($paid, 0, '.', ' ')}}</div>
-                <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2"
-                     title="{{number_format($paid, 0, '.', ' ')}} successfully paid">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <div class="text-base">{{ number_format($productSold, 0, '.', ' ') }}</div>
+                <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.29 7 12 12 20.71 7"></polyline><line x1="12" y1="22" x2="12" y2="12"></line></svg>
                 </div>
             </div>
         </div>

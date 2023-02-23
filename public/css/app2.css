@@ -18402,6 +18402,12 @@ html body{
     .md\:col-span-3{
         grid-column: span 3 / span 3;
     }
+    .md\:col-span-7{
+        grid-column: span 7 / span 7;
+    }
+    .md\:col-span-5{
+        grid-column: span 5 / span 5;
+    }
     .md\:col-span-10 {
         grid-column: span 10 / span 10;
     }

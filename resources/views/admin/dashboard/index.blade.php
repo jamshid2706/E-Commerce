@@ -48,7 +48,7 @@
                             >Monthly</button>
                         </li>
                         <li id="date_report" class="nav-item flex-1" role="presentation">
-                            <input id="calendarDash" type="text" class="datepicker form-control sm:w-56 box pl-10"
+                            <input id="calendarDash" type="text" class="datepicker form-control sm:w-56 box pl-5"
                                    value="">
                         </li>
                     </ul>
