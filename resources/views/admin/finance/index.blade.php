@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title') | Finances@endsection
+@section('title') | Finances @endsection
 @section('content')
     <h2 class="intro-y text-lg font-medium mt-10">Finances</h2>
     <div class="grid grid-cols-12 gap-6">

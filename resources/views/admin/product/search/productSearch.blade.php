@@ -7,25 +7,19 @@
                 <img alt="Midone - HTML Admin Template" class="rounded-md"
                      src="{{asset('storage/'.$product->image)}}">
                 <div class="absolute bottom-0 text-white px-5 pb-6 z-10">
-                    <a href=""
-                       class="block font-medium text-base">{{ $product->title ?? '' }}</a>
-                    <span
-                        class="text-white/90 text-xs mt-3">{{ $product->description ?? '' }}</span>
+                    <a href="" class="block font-medium text-base">{{ $product->title ?? '' }}</a>
+                    <span class="text-white/90 text-xs mt-3">{{ $product->description ?? '' }}</span>
                 </div>
             </div>
             <div class="text-slate-600 dark:text-slate-500 mt-5">
                 <div class="flex items-center">
-                    Buy: {{ $product->buy ?? '' }} $
+                    Buy: {{ $product->buy ?? '' }} UZS
                     <br>
-                    Sell: {{ $product->sell ?? '' }} $
+                    Sell: {{ $product->sell ?? '' }} UZS
                 </div>
                 <div class="flex items-center mt-2">
                     <i data-lucide="layers"></i>
                     Remaining Stock: {{ $product->stock ?? '' }}
-                </div>
-                <div class="flex items-center mt-2">
-                    <i data-lucide="check-square"></i>
-                    Status: Active
                 </div>
             </div>
         </div>

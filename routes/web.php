@@ -11,6 +11,10 @@ use App\Http\Controllers\Mobile\ClientsController;
 use App\Http\Controllers\Mobile\ProductsController;
 use App\Http\Controllers\Mobile\SalesController;
 use App\Http\Controllers\SaleController;
+use App\Models\Category;
+use App\Models\Client;
+use App\Models\Product;
+use App\Models\Sale;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -106,7 +110,11 @@ Route::get('/tes/test', function (){
 });
 
 Route::get('/test', function (){
-    return view('console');
+    $clients = Client::all();
+    $sales = Sale::all();
+    $products = Product::all();
+    $categories = Category::all();
+    return view('admin.sales.concept.create', compact('sales', 'categories', 'clients', 'products'));
 });
 
 Route::get('/console', function (Request $request) {

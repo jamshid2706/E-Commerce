@@ -8,10 +8,10 @@
     <link rel="icon" type="image/icon" href="/svgexport-13.svg">
 </head>
 <body>
-@include('admin.partials.mobile-menu')
-@include('admin.partials.top-menu')
+@include('Projects.delivery.resources.views.partials.mobile-menu')
+@include('Projects.delivery.resources.views.partials.top-menu')
 <div class="flex overflow-hidden">
-    @include('admin.partials.menu')
+    @include('Projects.delivery.resources.views.partials.menu')
     <div id="div1" class="content">
         <div id="faq-accordion-2" class="accordion accordion-boxed">
             <div class="accordion-item">

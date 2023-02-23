@@ -14,7 +14,7 @@ class DashboardController extends Controller
 
     public function dashboard(){
         $dataForm = request()->all();
-
+        $sales = Sale::all();
         switch ($dataForm['dataForm']) {
             case 'Today':
                 $start = date("Y-m-d");
@@ -48,6 +48,7 @@ class DashboardController extends Controller
         $debts = 0;
         $cost = 0;
         $productSold = 0;
+        $paid = 0;
         if(count($sales) !== 0){
             foreach ($sales as $sale){
                 foreach ($sale->products as $sold){
@@ -67,13 +68,13 @@ class DashboardController extends Controller
                 }
                 $debts += $sale->finance['debt'];
             }
-
+            $paid = $sales->pluck('amount')->sum() - $debts;
             $activeClients = count($client);
             $profit = $sales->pluck('amount')->sum() - $cost;
             $profitPercentage = 100 - ($cost / $sales->pluck('amount')->sum() * 100);
             $profitPercentage = number_format($profitPercentage, 1);
             $profit = number_format($profit, 0, '.', ' ');
-            } else{
+        } else{
             $profit = 0;
             $profitPercentage = 0;
             $activeClients = 0;
@@ -84,7 +85,7 @@ class DashboardController extends Controller
             $data['clients'] .= view('admin.dashboard.clients', compact('sales', 'clien'));
         }
         $data['dashboardPart'] = '';
-        $data['dashboardPart'] .= view('admin.dashboard.dashboardPart', compact('profit', 'profitPercentage', 'activeClients', 'productSold', 'cost', 'debts'));
+        $data['dashboardPart'] .= view('admin.dashboard.dashboardPart', compact('paid', 'profit', 'profitPercentage', 'activeClients', 'productSold', 'cost', 'debts'));
         $data['calendar'] = $calendar;
         return $data;
     }

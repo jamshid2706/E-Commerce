@@ -37,16 +37,16 @@
                         </div>
                         <div class="text-slate-600 dark:text-slate-500 mt-5">
                             <div class="flex items-center">
-                                Buy: {{ $product->buy ?? '' }}$
+                                Buy: {{ $product->buy ?? '' }} UZS
                             </div>
                             <div class="flex items-center mt-2">
-                                Sell: {{ $product->sell ?? '' }}$
+                                Sell: {{ $product->sell ?? '' }} UZS
                             </div>
                             <div class="flex items-center mt-2">
                                 Remaining Stock: {{ $product->stock ?? '' }}
                             </div>
                             <div class="flex items-center mt-2">
-                                Category: {{$product->category_id ?? ''}}
+                                Category: {{$product->category->title ?? ''}}
                             </div>
                         </div>
                     </div>
