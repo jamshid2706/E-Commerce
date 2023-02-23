@@ -43,10 +43,10 @@
         <div class="col-span-12 sm:col-span-6 md:col-span-4">
             <div class="text-slate-500">Success Payment</div>
             <div class="mt-1.5 flex items-center">
-                <div class="text-base">2.500</div>
+                <div class="text-base">UZS {{number_format($paid, 0, '.', ' ')}}</div>
                 <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2"
-                     title="52% Higher than last month">
-                    52% <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="chevron-up" data-lucide="chevron-up" class="lucide lucide-chevron-up w-4 h-4 ml-0.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+                     title="{{number_format($paid, 0, '.', ' ')}} successfully paid">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                 </div>
             </div>
         </div>
@@ -54,6 +54,10 @@
             <div class="text-slate-500">Unpaid Debts</div>
             <div class="mt-1.5 flex items-center">
                 <div class="text-danger">UZS {{ number_format($debts, 0, '.', ' ') }}</div>
+                <div class="text-danger flex text-xs font-medium tooltip cursor-pointer ml-2"
+                     title="{{number_format($paid, 0, '.', ' ')}} successfully paid">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                </div>
             </div>
         </div>
     </div>
