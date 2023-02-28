@@ -1,39 +1,31 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="col-span-12 lg:col-span-8 p-8 border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-darkmode-300 border-dashed">
-        <ul class="nav nav-pills w-60 border border-slate-300 dark:border-darkmode-300 border-dashed rounded-md mx-auto p-1 mb-8" role="tablist">
-            <li id="weekly-report-tab" class="nav-item flex-1" role="presentation">
-                <button class="nav-link w-full py-1.5 px-2 active" data-tw-toggle="pill" data-tw-target="#weekly-report" type="button" role="tab" aria-controls="weekly-report" aria-selected="true" control-id="ControlID-3">
-                    Optom
-                </button>
+
+    <div class="grid grid-cols-12 mt-10">
+        <h2 class="col-span-3 text-lg font-medium pl-10">Adding Sale</h2>
+        <ul class="nav nav-pills col-span-4 border border-slate-300 dark:border-darkmode-300 border-dashed rounded-md p-1" role="tablist">
+            <li id="optom-tab" class="nav-item flex-1" role="presentation">
+                <button onclick="on()" class="nav-link w-full py-1.5 px-2 active" data-tw-toggle="pill" data-tw-target="#optom" type="button" role="tab"
+                        aria-controls="optom" aria-selected="true" control-id="ControlID-3">Optom</button>
             </li>
-            <li id="monthly-report-tab" class="nav-item flex-1" role="presentation">
-                <button class="nav-link w-full py-1.5 px-2" data-tw-toggle="pill" data-tw-target="#monthly-report" type="button" role="tab" aria-selected="false" control-id="ControlID-4">
-                    Donaga
-                </button>
-            </li>
-            <li id="test-tab" class="nav-item flex-1" role="presentation">
-                <button class="nav-link w-full py-1.5 px-2" data-tw-toggle="pill" data-tw-target="#test" type="button" role="tab" aria-selected="false" control-id="ControlID-4">
-                    TeST
-                </button>
+            <li id="donaga-tab" class="nav-item flex-1" role="presentation">
+                <button onclick="off()" class="nav-link w-full py-1.5 px-2" data-tw-toggle="pill" data-tw-target="#donaga" type="button" role="tab"
+                        aria-selected="false" control-id="ControlID-4">Donaga</button>
             </li>
         </ul>
-        <div class="tab-content px-5 pb-5">
-            <div class="tab-pane active grid grid-cols-12 gap-y-8 gap-x-10" id="weekly-report" role="tabpanel" aria-labelledby="weekly-report-tab">
+        <div id="clients" class="col-span-4 pl-10">
+            <select class="tom-select w-full js-example-basic-single" name="client">
+                @foreach($clients as $client)
+                    <option value="{{ $client->id }}">{{ $client->name }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+        <div class="tab-content px-5 pt-10 pb-5">
+            <div class="tab-pane active grid grid-cols-12 gap-y-8 mb-10 pb-20" id="optom" role="tabpanel" aria-labelledby="optom-tab">
                 <div class="col-span-12 sm:col-span-12 md:col-span-12">
                     <form class="mt-3" action="{{route('admin.sales.store')}}" method="post">
                         @csrf
-                        <div class="grid grid-cols-12">
-                            <h2 class="col-span-6 text-lg font-medium mt-10">Adding Sale</h2>
-                            <div class="col-span-4 p-5">
-                                <select class="tom-select w-full js-example-basic-single" name="client">
-                                    @foreach($clients as $client)
-                                        <option value="{{ $client->id }}">{{ $client->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                        </div>
                         <div class="intro-y box mt-5">
                             <div class="px-5 sm:px-16 overflow-y-scroll scrollbar-hidden" style="height: 300px">
                                 <table class="table max-h-full">
@@ -94,7 +86,7 @@
                     </form>
                 </div>
             </div>
-            <div class="tab-pane grid grid-cols-12 gap-y-8 gap-x-10" id="monthly-report" role="tabpanel" aria-labelledby="monthly-report-tab">
+            <div class="tab-pane grid grid-cols-12 gap-y-8 gap-x-10" id="donaga" role="tabpanel" aria-labelledby="donaga-tab">
                 <div class="col-span-6 sm:col-span-6 md:col-span-6">
                     <div class="overflow-y-scroll scrollbar-hidden" style="max-height: 70vh">
                         <table class="table max-h-full">
@@ -112,9 +104,8 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-span-6 sm:col-span-6 md:col-span-6 overflow-y-scroll scrollbar-hidden" style="max-height: 70vh">
+                <div class="px-5 col-span-6 sm:col-span-6 md:col-span-6 overflow-y-scroll scrollbar-hidden" style="max-height: 70vh">
                     <div class="col-6">
-
                         <div class="intro-y col-span-12 overflow-auto 2xl:overflow-visible">
                             <table class="table table-report -mt-2">
                                 <thead>
@@ -130,7 +121,7 @@
                                     <td class="!py-3.5">
                                         <div class="flex items-center">
                                             <div class="w-9 h-9 image-fit zoom-in">
-                                                <img alt="Midone - HTML Admin Template" class="rounded-lg border-white shadow-md" src="https://enigma.left4code.com/dist/images/profile-15.jpg">
+                                                <img class="rounded-lg border-white shadow-md" src="{{asset('storage/'.$product->image)}}">
                                             </div>
                                             <div class="ml-4">
                                                 <a href="" class="font-medium whitespace-nowrap">{{ $product->title }}</a>
@@ -150,9 +141,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane grid grid-cols-12 gap-y-8 gap-x-10" id="test" role="tabpanel" aria-labelledby="monthly-report-tab">TEST</div>
         </div>
-    </div>
 
 @endsection
 
@@ -212,8 +201,12 @@
             let test = $('.test').attr('aria-decribedby', 'tippy-1')
         }
 
-        let products = '<?php echo $products; ?>';
-        let product = JSON.parse(products);
-        console.log(product)
+        function on(){
+            $('#clients').css('display', 'block')
+        }
+
+        function off(){
+            $('#clients').css('display', 'none')
+        }
     </script>
 @endsection
