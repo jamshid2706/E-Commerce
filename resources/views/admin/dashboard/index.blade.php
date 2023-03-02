@@ -18,7 +18,7 @@
                     </div>
                     <div class="flex items-center justify-start mt-4">
                         <div class="relative text-2xl font-medium">
-                            <span id="totalSales" class="text-xl font-medium"></span>
+                            <span id="totalSales" class="text-xl font-medium" title="000"></span>
                         </div>
                         <a class="text-slate-500 ml-4" href="">
                             <i data-lucide="refresh-ccw" class="w-4 h-4"></i>
@@ -44,7 +44,7 @@
                         <li id="" class="nav-item flex-1" role="presentation">
                             <button
                                 name=""
-                                class="dataForm nav-link w-full p-2 active"
+                                class="dataForm dataFormMonth nav-link w-full p-2 active"
                             >Monthly</button>
                         </li>
                         <li id="date_report" class="nav-item flex-1" role="presentation">
@@ -52,31 +52,34 @@
                                    value="">
                         </li>
                     </ul>
-                    <div id="dashboardPart">
+                    <div id="dashboardPart" class="pt-10">
 
                     </div>
                 </div>
                 <div class="col-span-5 md:col-span-5 lg:col-span-5 xl:col-span-2 p-5 mt-5 flex flex-col lg:border-l border-slate-200 dark:border-darkmode-300 border-dashed">
                     <div class="mt-3">
                         <div class="h-[213px]">
+{{--                            <figure class="myPieChart">--}}
+
+{{--                            </figure>--}}
                             <canvas id="report-donut-chart" width="189" height="213" style="display: block; box-sizing: border-box; height: 213px; width: 189px;"></canvas>
                         </div>
                     </div>
                     <div class="w-52 sm:w-auto mx-6 mt-8">
                         <div class="flex items-center w-full">
+                            <div class="w-2 h-2 bg-success rounded-full mr-3"></div>
+                            <span class="truncate">Total</span>
+                            <span id="donutTotal" class="font-medium ml-auto">100</span>%
+                        </div>
+                        <div class="flex items-center mt-4">
                             <div class="w-2 h-2 bg-primary rounded-full mr-3"></div>
-                            <span class="truncate">17 - 30 Years old</span>
-                            <span class="font-medium ml-auto">20%</span>
+                            <span class="truncate">Paid</span>
+                            <span id="donutPaid" class="font-medium ml-auto">60</span>%
                         </div>
                         <div class="flex items-center mt-4">
                             <div class="w-2 h-2 bg-pending rounded-full mr-3"></div>
-                            <span class="truncate">31 - 50 Years old</span>
-                            <span class="font-medium ml-auto">60%</span>
-                        </div>
-                        <div class="flex items-center mt-4">
-                            <div class="w-2 h-2 bg-warning rounded-full mr-3"></div>
-                            <span class="truncate">&gt;= 50 Years old</span>
-                            <span class="font-medium ml-auto">20%</span>
+                            <span class="truncate">Debt</span>
+                            <span id="donutDebt" class="font-medium ml-auto">20</span>%
                         </div>
                     </div>
                 </div>
@@ -87,11 +90,21 @@
 
         </div>
     </div>
+
+    <style>
+        .myPieChart {
+            background: radial-gradient( circle closest-side, white 0, white 50%, transparent 10%, transparent 59%, white 0), conic-gradient(#FFFFFF 0, #FFFFFF 1%, #DD841E 0, #DD841E 48%, #FFFFFF 0, #FFFFFF 49%, #259E94 0, #259E94 77%, #FFFFFF 0, #FFFFFF 78%, #2D5F72 0, #2D5F72 91%);
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 @endsection
 
 @section('scripts')
 
     <script>
+
         function updateDash($dataForm) {
             let value = {
                 'dataForm': $dataForm,
@@ -103,7 +116,7 @@
                 data: value,
                 success: function (data) {
                     $('#salesTotal').attr('title', `Total value of your sales: UZS `+ data['salesTotal']);
-                    $('#totalSales').text(`UZS `+ data['salesTotal']);
+                    $('#totalSales').text(`UZS `+ data['salesTotal']).attr('title', data['salesTotal']);
                     $('#faq-accordion-2').html(data['clients']);
                     $('#dashboardPart').html(data['dashboardPart']);
                     $('#calendarDash').val(data['calendar']);
@@ -112,7 +125,7 @@
         }
 
         jQuery(document).ready(function($){
-            updateDash('Monthly');
+            $('.dataFormMonth').click();
         })
 
         $(document).on('click', '.button-apply', function () {

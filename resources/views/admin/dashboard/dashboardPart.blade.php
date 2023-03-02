@@ -55,7 +55,7 @@
             <div class="mt-1.5 flex items-center">
                 <div class="text-danger">UZS {{ number_format($debts, 0, '.', ' ') }}</div>
                 <div class="text-danger flex text-xs font-medium tooltip cursor-pointer ml-2"
-                     title="{{number_format($paid, 0, '.', ' ')}} debts unpaid">
+                     title="{{number_format($debts, 0, '.', ' ')}} debts unpaid">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                 </div>
             </div>
