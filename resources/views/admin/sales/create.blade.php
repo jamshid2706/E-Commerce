@@ -50,7 +50,8 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="absolute hidden dark:bg-darkmode-400/70 bg-slate-200 w-52 ajax_result" style="padding: 0"></div>
+                    <div class="absolute hidden dark:bg-darkmode-400/70 bg-slate-200 w-52 ajax_result"
+                         style="padding: 0"></div>
                 </div>
                 <div class="col-span-2 sm:col-span-3 relative">
                     <input id="product_price" onkeyup="count()" type="number" class="disable-it form-control"
@@ -97,7 +98,7 @@
             for (let i = 0; i < amounts.length; i++) {
                 total = total + parseInt(amounts[i].value)
             }
-            $('#total').text(total.toLocaleString('fr-FR')+ ' UZS')
+            $('#total').text(total.toLocaleString('fr-FR') + ' UZS')
             $('#paid').val(total)
             $('#total').append('<input type="hidden" name="total" value="' + total + '">')
         }
@@ -108,8 +109,9 @@
         }
 
         var cltr = [0];
+
         function add() {
-            if($('#product_name').children("option").filter(":selected").text() == "" || $('#product_price').val() == 0 || $('#product_count').val() == 0){
+            if ($('#product_name').children("option").filter(":selected").text() == "" || $('#product_price').val() == 0 || $('#product_count').val() == 0) {
                 return
             }
             $('#body').append(`<tr class="tableroad" id="tableroad-` + cltr.length + `"></tr>`)
