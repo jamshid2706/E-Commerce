@@ -77,6 +77,10 @@ class SaleController extends Controller
         return redirect()->route('admin.sales');
     }
 
+    public function storeSingle(){
+
+    }
+
     public function search(Request $request)
     {
         $products = Product::where('title', 'Like', '%' . $request->search . '%')->orWhere('description', 'Like', '%' . $request->search . '%')->get();
