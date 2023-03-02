@@ -12,4 +12,9 @@ class Customer extends Model
     protected $fillable = [
         'name'
     ];
+
+//    public function buys()
+//    {
+//        return $this->hasMany(Buy::class, 'customer_id', 'id');
+//    }
 }

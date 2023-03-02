@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ClientController;
+use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\IndexController;
 use App\Http\Controllers\admin\ProductController;
@@ -53,6 +54,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('/{id}', [ClientController::class, 'show'])->name('admin.clients.show');
         Route::delete('/{id}', [ClientController::class, 'destroy'])->name('admin.clients.delete');
     });
+    Route::group(['prefix' => 'customers'], function () {
+        Route::get('/search', [CustomerController::class, 'search'])->name('admin.customers.search');
+        Route::get('/', [CustomerController::class, 'index'])->name('admin.customers');
+        Route::post('/store', [CustomerController::class, 'store'])->name('admin.customers.store');
+        Route::post('/{id}/edit', [CustomerController::class, 'edit'])->name('admin.customers.edit');
+        Route::get('/{id}', [CustomerController::class, 'show'])->name('admin.customers.show');
+        Route::delete('/{id}', [CustomerController::class, 'destroy'])->name('admin.customers.delete');
+    });
     Route::group(['prefix' => 'sales'], function () {
         Route::get('/', [SaleController::class, 'index'])->name('admin.sales');
         Route::post('/store', [SaleController::class, 'store'])->name('admin.sales.store');
@@ -60,22 +69,24 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('/create', [SaleController::class, 'create'])->name('admin.sales.create');
         Route::get('/{id}/edit', [SaleController::class, 'edit'])->name('admin.sales.edit');
         Route::get('/{id}', [SaleController::class, 'show'])->name('admin.sales.show');
-        Route::delete('/{id}',[SaleController::class, 'destroy'])->name('admin.sales.delete');
+        Route::delete('/{id}', [SaleController::class, 'destroy'])->name('admin.sales.delete');
     });
     Route::group(['prefix' => 'finances'], function () {
         Route::get('/', [FinanceController::class, 'index'])->name('admin.finances');
-        Route::post('/store', [FinanceController::class,'store'])->name('admin.finances.store');
+        Route::post('/store', [FinanceController::class, 'store'])->name('admin.finances.store');
     });
 });
 // Mobile App routes
-Route::group(['prefix'=>'mobile'], function () {
-    Route::get('/', function () {return view('mobile.dashboard.index');})->name('mobile.home');
-    Route::group(['prefix'=>'clients'], function () {
+Route::group(['prefix' => 'mobile'], function () {
+    Route::get('/', function () {
+        return view('mobile.dashboard.index');
+    })->name('mobile.home');
+    Route::group(['prefix' => 'clients'], function () {
         Route::get('/', [ClientsController::class, 'index'])->name('mobile.clients');
         Route::post('/store', [ClientsController::class, 'store'])->name('mobile.clients.store');
         Route::get('/{id}', [ClientsController::class, 'show'])->name('mobile.clients.show');
     });
-    Route::group(['prefix'=>'products'], function () {
+    Route::group(['prefix' => 'products'], function () {
         Route::get('/', [ProductsController::class, 'index'])->name('mobile.products');
         Route::get('/create', [ProductsController::class, 'create'])->name('mobile.products.create');
         Route::post('/store', [ProductsController::class, 'store'])->name('mobile.products.store');
@@ -84,32 +95,32 @@ Route::group(['prefix'=>'mobile'], function () {
         Route::get('/{id}', [ProductsController::class, 'show'])->name('mobile.products.show');
 
     });
-    Route::group(['prefix'=>'sales'], function () {
+    Route::group(['prefix' => 'sales'], function () {
         Route::get('/', [SalesController::class, 'index'])->name('mobile.sales');
         Route::get('/create', [SalesController::class, 'create'])->name('mobile.sales.create');
         Route::post('/store', [SalesController::class, 'store'])->name('mobile.sales.store');
         Route::get('/{id}', [SalesController::class, 'show'])->name('mobile.sales.show');
         Route::get('/{id}/edit', [SalesController::class, 'edit'])->name('mobile.sales.edit');
     });
-    Route::group(['prefix'=>'categories'], function () {
-       Route::get('/', [CategoriesController::class, 'index'])->name('mobile.categories');
-       Route::post('/store', [CategoriesController::class, 'store'])->name('mobile.categories.store');
-       Route::get('/{id}', [CategoriesController::class, 'show'])->name('mobile.categories.show');
+    Route::group(['prefix' => 'categories'], function () {
+        Route::get('/', [CategoriesController::class, 'index'])->name('mobile.categories');
+        Route::post('/store', [CategoriesController::class, 'store'])->name('mobile.categories.store');
+        Route::get('/{id}', [CategoriesController::class, 'show'])->name('mobile.categories.show');
     });
 });
 
 Route::get('/test/{code}', function ($code) {
     \Illuminate\Support\Facades\Artisan::call($code);
-   echo '<pre>';
+    echo '<pre>';
     print_r(\Illuminate\Support\Facades\Artisan::output());
 });
 
-Route::get('/tes/test', function (){
+Route::get('/tes/test', function () {
     $products = \App\Models\Product::all()->toArray();
     print_r(json_encode($products));
 });
 
-Route::get('/test', function (){
+Route::get('/test', function () {
     $clients = Client::all();
     $sales = Sale::all();
     $products = Product::all();
