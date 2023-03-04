@@ -19,7 +19,6 @@
     </div>
 </div>
 <script src="{{ asset('/js/enigma.js') }}"></script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 {{--<script type="text/javascript">
     $( "option" ).on('click', function() {
@@ -40,6 +39,8 @@
 </script>--}}
 
 @yield('scripts')
+
+
 <script type="text/javascript">
     if ($('html').hasClass('dark')) {
         $('.dark-mode-switcher__toggle').addClass('dark-mode-switcher__toggle--active')

@@ -14,7 +14,6 @@ class DashboardController extends Controller
 
     public function dashboard(){
         $dataForm = request()->all();
-        $sales = Sale::all();
         switch ($dataForm['dataForm']) {
             case 'Today':
                 $start = date("Y-m-d");
@@ -49,6 +48,7 @@ class DashboardController extends Controller
         $cost = 0;
         $productSold = 0;
         $paid = 0;
+
         if(count($sales) !== 0){
             foreach ($sales as $sale){
                 foreach ($sale->products as $sold){

@@ -3396,6 +3396,53 @@ select{
 .max-w-\[50\%\]{
     max-width: 50%;
 }
+.order-1 {
+    order: 1;
+}
+
+.order-2 {
+    order: 2;
+}
+
+.order-3 {
+    order: 3;
+}
+
+.order-4 {
+    order: 4;
+}
+
+.order-5 {
+    order: 5;
+}
+
+.order-6 {
+    order: 6;
+}
+
+.order-7 {
+    order: 7;
+}
+
+.order-8 {
+    order: 8;
+}
+
+.order-9 {
+    order: 9;
+}
+
+.order-10 {
+    order: 10;
+}
+
+.order-11 {
+    order: 11;
+}
+
+.order-12 {
+    order: 12;
+}
 .flex-1{
     flex: 1 1 0%;
 }
@@ -18645,6 +18692,9 @@ html body{
     .lg\:border-b-0{
         border-bottom-width: 0px;
     }
+    .lg\:border-b {
+        border-bottom-width: 1px;
+    }
     .lg\:border-r{
         border-right-width: 1px;
     }
@@ -18718,6 +18768,15 @@ html body{
     }
     .xl\:order-0 {
         order: 0;
+    }
+    .xl\:order-1 {
+        order: 1;
+    }
+    .xl\:order-2 {
+        order: 2;
+    }
+    .xl\:order-3 {
+        order: 3;
     }
     .xl\:sticky{
         position: -webkit-sticky;
@@ -18901,6 +18960,9 @@ html body{
     }
     .xl\:text-right{
         text-align: right;
+    }
+    .xl\:border-b-0{
+        border-bottom-width: 0px;
     }
     .xl\:text-xl{
         font-size: 1.25rem;
