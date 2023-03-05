@@ -7,6 +7,7 @@
     <title> Royal @yield('title')</title>
     @yield('css')
     <link rel="stylesheet" href="{{ asset('/css/app2.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/css/font-awesome.css') }}"/>
     <link rel="icon" type="image/icon" href="/svgexport-13.svg">
 </head>
 <body>
