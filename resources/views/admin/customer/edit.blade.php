@@ -16,6 +16,17 @@
                             <input id="vertical-form-1" type="text" name="name" class="form-control"
                                    placeholder="Please write..." value="{{ old('name', $customer->name) }}" required>
                         </div>
+                        <div class="mt-3">
+                            <label for="vertical-form-2" class="form-label">Client Number</label>
+                            <input id="vertical-form-2" name="phone_number" type="text" class="form-control"
+                                   placeholder="Please write..."
+                                   value="{{ old('phone_number', $customer->phone_number) }}" required>
+                        </div>
+                        <div class="mt-3">
+                            <label for="vertical-form-3" class="form-label">Client Address</label>
+                            <input id="vertical-form-3" name="address" type="text" class="form-control"
+                                   placeholder="Please write..." value="{{ old('address', $customer->address) }}" required>
+                        </div>
                         <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1 mt-4">Cancel</button>
                         <button type="submit" class="btn btn-primary w-24 text-">Ok</button>
                     </div>

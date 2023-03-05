@@ -15,16 +15,9 @@ class CustomerController extends Controller
         return view('admin.customer.index', compact('customers'));
     }
 
-    public function create()
-    {
-        $customers = Customer::all();
-        return view('admin.customer.create', compact('customers'));
-    }
-
     public function store(CustomerRequest $request)
     {
-        $insertion = Customer::create($request->all());
-
+        Customer::create($request->all());
         return redirect()->route('admin.customers');
     }
 
@@ -33,7 +26,7 @@ class CustomerController extends Controller
         $data = $request->validated();
         $customer = Customer::find($id);
         $customer->update($data);
-        return redirect()->back();
+        return redirect()->route('admin.customers');
     }
 
     public function destroy($id)
@@ -45,10 +38,11 @@ class CustomerController extends Controller
     public function search(Request $request)
     {
         $customers = Customer::where('name', 'Like', '%' . $request['search'] . '%')->get();
-        $output = '';
-        foreach ($customers as $customer) {
-            $output .= view('admin.customer.client-box', compact('customer'));
-        }
-        return $output;
+        return view('admin.customer.customerItems', compact('customers'));
+    }
+
+    public function show($id){
+        $customer = Customer::find($id);
+        return view('admin.customer.show', compact('customer'));
     }
 }

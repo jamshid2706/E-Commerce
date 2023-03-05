@@ -18,6 +18,16 @@
                             <input id="vertical-form-1" type="text" name="name" class="form-control"
                                    placeholder="Please write..." required>
                         </div>
+                        <div class="mt-3">
+                            <label for="vertical-form-2" class="form-label">Customer Number</label>
+                            <input id="vertical-form-2" name="phone_number" type="text" class="form-control"
+                                   placeholder="Please write..." required>
+                        </div>
+                        <div class="mt-3">
+                            <label for="vertical-form-3" class="form-label">Customer Address</label>
+                            <input id="vertical-form-3" name="address" type="text" class="form-control"
+                                   placeholder="Please write..." required>
+                        </div>
                         <button class="btn btn-secondary mt-5 w-24 mr-2" data-tw-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-primary w-24 text-">Ok</button>
                     </div>

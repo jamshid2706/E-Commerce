@@ -31,7 +31,7 @@
                                 </svg>
                                 <div class="ml-auto"></div>
                             </div>
-                            <div class="text-3xl font-medium leading-8 mt-6">{{ $client->sales->count() }}</div>
+                            <div class="text-3xl font-medium leading-8 mt-6">{{--{{ $customer->sales->count() }}--}}</div>
                             <div class="text-base text-slate-500 mt-1">Buys Total</div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                                 <i data-lucide="dollar-sign"></i>
                                 <div class="ml-auto"></div>
                             </div>
-                            <div class="text-3xl font-medium leading-8 mt-6">{{ $totalAmount }}</div>
+                            <div class="text-3xl font-medium leading-8 mt-6"></div>
                             <div class="text-base text-slate-500 mt-1">Total amount</div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-3xl font-medium leading-8 mt-6">{{$saless}}</div>
+                            <div class="text-3xl font-medium leading-8 mt-6"></div>
                             <div class="text-base text-slate-500 mt-1">Item Sales</div>
                         </div>
                     </div>
@@ -121,12 +121,12 @@
         </div>
     </div>
 
-    <div id="faq-accordion-2" class="accordion accordion-boxed py-5">
+    {{--<div id="faq-accordion-2" class="accordion accordion-boxed py-5">
         @foreach($sales as $key =>$sale)
             <div class="accordion-item box" style="border: none;">
-                {{--                <div class="text-center">--}}
-                {{--                    <a href="javascript:;" class="tooltip btn btn-primary">Show Tooltip</a>--}}
-                {{--                </div>--}}
+                --}}{{--                <div class="text-center">--}}{{--
+                --}}{{--                    <a href="javascript:;" class="tooltip btn btn-primary">Show Tooltip</a>--}}{{--
+                --}}{{--                </div>--}}{{--
                 <div id="faq-accordion-content-5" style="cursor: pointer;" title="Bosing malumotlarni ko`rasz!"
                      class="tooltip accordion-header">
                     <div class="rounded-md accordion-button dark:bg-darkmode-600 collapsed"
@@ -228,5 +228,5 @@
                 </div>
             </div>
         @endforeach
-    </div>
+    </div>--}}
 @endsection

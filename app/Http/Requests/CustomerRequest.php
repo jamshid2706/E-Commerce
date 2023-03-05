@@ -28,6 +28,14 @@ class CustomerRequest extends FormRequest
                 'required',
                 'string',
             ],
+            'address' => [
+                'required',
+                'string',
+            ],
+            'phone_number' => [
+                'required',
+                'integer',
+            ],
         ];
     }
 }

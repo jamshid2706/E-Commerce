@@ -4,7 +4,6 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ClientController;
 use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\DashboardController;
-use App\Http\Controllers\admin\IndexController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\Mobile\CategoriesController;
@@ -74,9 +73,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::group(['prefix' => 'finances'], function () {
         Route::get('/', [FinanceController::class, 'index'])->name('admin.finances');
         Route::post('/store', [FinanceController::class, 'store'])->name('admin.finances.store');
-    });
-    Route::group(['prefix' => '/customers'], function () {
-        Route::get('/', [CustomerController::class, 'index'])->name('admin.customers');
     });
 });
 // Mobile App routes
