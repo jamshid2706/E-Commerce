@@ -15,9 +15,10 @@ class CustomerController extends Controller
         return view('admin.customer.index', compact('customers'));
     }
 
-    public function store(CustomerRequest $request)
+    public function store(Request $request)
     {
-        Customer::create($request->all());
+        $data = $request->all();
+        Customer::create($data);
         return redirect()->route('admin.customers');
     }
 

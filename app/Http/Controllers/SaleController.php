@@ -49,9 +49,6 @@ class SaleController extends Controller
 
         $debt = ($data['paid'] === '' || !is_numeric($data['paid']) ) ? $data['total'] : $data['total'] - $data['paid'];
         $paid = $data['total'] - $debt;
-
-
-
         $product = $data['product'];
         $price = $data['price'];
         $count = $data['count'];

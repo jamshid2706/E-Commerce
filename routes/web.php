@@ -23,9 +23,27 @@ Route::get('/', function () {
 });
 
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace'=>'admin'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.home');
     Route::get('/dashboardContent', [DashboardController::class, 'dashboard'])->name('admin.home.content');
+
+    Route::group(['prefix'=>'import', 'namespace'=>'import'], function (){
+        Route::group(['prefix' => 'customers'], function () {
+            Route::get('/search', [CustomerController::class, 'search'])->name('admin.customers.search');
+            Route::get('/', [CustomerController::class, 'index'])->name('admin.customers');
+            Route::post('/store', [CustomerController::class, 'store'])->name('admin.customers.store');
+            Route::post('/{id}/edit', [CustomerController::class, 'edit'])->name('admin.customers.edit');
+            Route::get('/{id}', [CustomerController::class, 'show'])->name('admin.customers.show');
+            Route::delete('/{id}', [CustomerController::class, 'destroy'])->name('admin.customers.delete');
+        });
+        Route::group(['prefix' => 'sales'], function () {
+            Route::get('/', [App\Http\Controllers\admin\import\SaleController::class, 'index'])->name('admin.import.sales');
+            Route::get('/create', [App\Http\Controllers\admin\import\SaleController::class, 'create'])->name('admin.import.sales.create');
+            Route::post('/store', [App\Http\Controllers\admin\import\SaleController::class, 'store'])->name('admin.import.sales.store');
+            Route::get('/{id}', [App\Http\Controllers\admin\import\SaleController::class, 'show'])->name('admin.import.sales.show');
+        });
+    });
+
     Route::group(['prefix' => 'categories'], function () {
         Route::get('/', [CategoryController::class, 'index'])->name('admin.categories');
         Route::get('/add', [CategoryController::class, 'add'])->name('admin.categories.add');
@@ -52,14 +70,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::post('/{id}/edit', [ClientController::class, 'edit'])->name('admin.clients.edit');
         Route::get('/{id}', [ClientController::class, 'show'])->name('admin.clients.show');
         Route::delete('/{id}', [ClientController::class, 'destroy'])->name('admin.clients.delete');
-    });
-    Route::group(['prefix' => 'customers'], function () {
-        Route::get('/search', [CustomerController::class, 'search'])->name('admin.customers.search');
-        Route::get('/', [CustomerController::class, 'index'])->name('admin.customers');
-        Route::post('/store', [CustomerController::class, 'store'])->name('admin.customers.store');
-        Route::post('/{id}/edit', [CustomerController::class, 'edit'])->name('admin.customers.edit');
-        Route::get('/{id}', [CustomerController::class, 'show'])->name('admin.customers.show');
-        Route::delete('/{id}', [CustomerController::class, 'destroy'])->name('admin.customers.delete');
     });
     Route::group(['prefix' => 'sales'], function () {
         Route::get('/', [SaleController::class, 'index'])->name('admin.sales');

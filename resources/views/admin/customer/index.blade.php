@@ -89,13 +89,13 @@
 @section('scripts')
     <script type="text/javascript">
         function update() {
+            console.log($('#search').val())
             let value = {
-                'search': $('#search').val(),
-                'sort': $('#sort').val()
+                'search': $('#search').val()
             }
             $.ajax({
                 type: 'get',
-                url: '{{URL::to('/admin/clients/search')}}',
+                url: '{{URL::to('/admin/customers/search')}}',
                 data: value,
                 success: function (data) {
                     console.log(data);
@@ -103,8 +103,6 @@
                 },
             });
         }
-
         $('#search').on('keyup', update);
-        $('#sort').on('change', update);
     </script>
 @endsection

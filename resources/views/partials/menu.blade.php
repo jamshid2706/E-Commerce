@@ -30,7 +30,7 @@
             </a>
         </li>
         <li>
-            <a href="javascript:;" class="side-menu">
+            <a href="javascript:;" class="side-menu side-menu{{ request()->is("admin/import") || request()->is("admin/import/*") ? "--active" : "" }}">
                 <div class="side-menu__icon">
                     <svg fill="#174f64" height="24px" width="24px" version="1.1" id="Layer_1"
                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </a>
-            <ul class="" style="display: none;">
+            <ul class="{{ request()->is("admin/import") || request()->is("admin/import/*") ? "side-menu__sub-open" : "" }}">
                 <li>
                     <a href="{{route('admin.customers')}}" class="side-menu">
                         <div class="side-menu__icon">
@@ -73,8 +73,8 @@
                     </a>
                 </li>
                 <li>
-                    <a {{--href="{{ route('admin.sales') }}"--}}
-                       class="side-menu side-menu">
+                    <a href="{{ route('admin.import.sales') }}"
+                       class="side-menu side-menu{{ request()->is("admin/import/sales") || request()->is("admin/import/sales/*") ? "--active" : "" }}">
                         <div class="side-menu__icon"><i data-lucide="clipboard"></i></div>
                         <div class="side-menu__title">Sales</div>
                     </a>
