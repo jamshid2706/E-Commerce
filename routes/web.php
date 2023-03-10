@@ -42,6 +42,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace'=>'admin
             Route::post('/store', [App\Http\Controllers\admin\import\SaleController::class, 'store'])->name('admin.import.sales.store');
             Route::get('/{id}', [App\Http\Controllers\admin\import\SaleController::class, 'show'])->name('admin.import.sales.show');
         });
+        Route::group(['prefix' => 'finances'], function () {
+            Route::get('/', [App\Http\Controllers\admin\import\FinanceController::class, 'index'])->name('admin.import.finances');
+            Route::post('/store', [App\Http\Controllers\admin\import\FinanceController::class, 'store'])->name('admin.import.finances.store');
+        });
     });
 
     Route::group(['prefix' => 'categories'], function () {

@@ -28,7 +28,8 @@ class SaleController extends Controller
         $data = $request->all();
         $sale = ImportSale::create([
             'customer_id' => $data['customer'],
-            'amount' => $data['total']
+            'amount' => $data['total'],
+            'debt' => $data['paid'] !== $data['total'] ? $data['total'] - $data['paid'] : 0,
         ]);
 
         $finance = Finance::create([
