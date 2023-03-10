@@ -26,7 +26,6 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace'=>'admin'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.home');
     Route::get('/dashboardContent', [DashboardController::class, 'dashboard'])->name('admin.home.content');
-
     Route::group(['prefix'=>'import', 'namespace'=>'import'], function (){
         Route::group(['prefix' => 'customers'], function () {
             Route::get('/search', [CustomerController::class, 'search'])->name('admin.customers.search');
@@ -47,7 +46,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace'=>'admin
             Route::post('/store', [App\Http\Controllers\admin\import\FinanceController::class, 'store'])->name('admin.import.finances.store');
         });
     });
-
     Route::group(['prefix' => 'categories'], function () {
         Route::get('/', [CategoryController::class, 'index'])->name('admin.categories');
         Route::get('/add', [CategoryController::class, 'add'])->name('admin.categories.add');
@@ -88,68 +86,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace'=>'admin
         Route::get('/', [FinanceController::class, 'index'])->name('admin.finances');
         Route::post('/store', [FinanceController::class, 'store'])->name('admin.finances.store');
     });
-});
-// Mobile App routes
-Route::group(['prefix' => 'mobile'], function () {
-    Route::get('/', function () {
-        return view('mobile.dashboard.index');
-    })->name('mobile.home');
-    Route::group(['prefix' => 'clients'], function () {
-        Route::get('/', [ClientsController::class, 'index'])->name('mobile.clients');
-        Route::post('/store', [ClientsController::class, 'store'])->name('mobile.clients.store');
-        Route::get('/{id}', [ClientsController::class, 'show'])->name('mobile.clients.show');
-    });
-    Route::group(['prefix' => 'products'], function () {
-        Route::get('/', [ProductsController::class, 'index'])->name('mobile.products');
-        Route::get('/create', [ProductsController::class, 'create'])->name('mobile.products.create');
-        Route::post('/store', [ProductsController::class, 'store'])->name('mobile.products.store');
-        Route::get('/{id}/edit', [ProductsController::class, 'edit'])->name('mobile.products.edit');
-        Route::post('/{id}/update', [ProductsController::class, 'update'])->name('mobile.products.update');
-        Route::get('/{id}', [ProductsController::class, 'show'])->name('mobile.products.show');
-
-    });
-    Route::group(['prefix' => 'sales'], function () {
-        Route::get('/', [SalesController::class, 'index'])->name('mobile.sales');
-        Route::get('/create', [SalesController::class, 'create'])->name('mobile.sales.create');
-        Route::post('/store', [SalesController::class, 'store'])->name('mobile.sales.store');
-        Route::get('/{id}', [SalesController::class, 'show'])->name('mobile.sales.show');
-        Route::get('/{id}/edit', [SalesController::class, 'edit'])->name('mobile.sales.edit');
-    });
-    Route::group(['prefix' => 'categories'], function () {
-        Route::get('/', [CategoriesController::class, 'index'])->name('mobile.categories');
-        Route::post('/store', [CategoriesController::class, 'store'])->name('mobile.categories.store');
-        Route::get('/{id}', [CategoriesController::class, 'show'])->name('mobile.categories.show');
-    });
-});
-
-Route::get('/test/{code}', function ($code) {
-    \Illuminate\Support\Facades\Artisan::call($code);
-    echo '<pre>';
-    print_r(\Illuminate\Support\Facades\Artisan::output());
-});
-
-Route::get('/tes/test', function () {
-    $products = \App\Models\Product::all()->toArray();
-    print_r(json_encode($products));
-});
-
-Route::get('/test', function () {
-    $clients = Client::all();
-    $sales = Sale::all();
-    $products = Product::all();
-    $categories = Category::all();
-    return view('admin.sales.concept.create', compact('sales', 'categories', 'clients', 'products'));
-});
-
-Route::get('/console', function (Request $request) {
-    \Illuminate\Support\Facades\Artisan::call($request->search);
-    $output = '<pre>';
-    $output .= \Illuminate\Support\Facades\Artisan::output();
-    $output .= '<div class="actions">
-    <label for="code">php artisan </label>
-    <input id="code" onKeyDown="if(event.keyCode == 13)update()"/>
-</div>';
-    return $output;
 });
 
 Auth::routes();

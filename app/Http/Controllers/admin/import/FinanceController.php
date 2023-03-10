@@ -12,7 +12,8 @@ class FinanceController extends Controller
     public function index()
     {
         $customers = Customer::all();
-        return view('admin.import.finances.index', compact('customers'));
+        $finances = Finance::all();
+        return view('admin.import.finances.index', compact('finances', 'customers'));
     }
 
     public function store(Request $request)
