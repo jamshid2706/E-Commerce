@@ -52,7 +52,7 @@
                                   enctype="multipart/form-data">
                                 @csrf
                                 <div class="flex items-center justify-center w-full">
-                                    <label class="flex flex-col w-full h-56 border-4 border-dashed dropzone"
+                                    <label class="flex flex-col w-full h-56 border-4 border-dashed dropzones"
                                            style="cursor: pointer">
                                         <div class="flex flex-col items-center justify-center pt-7">
                                             <img src="{{asset('storage/'.$product->image)}}" alt="" id="preview"

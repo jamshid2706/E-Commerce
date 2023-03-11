@@ -38,7 +38,7 @@
                           enctype="multipart/form-data">
                         @csrf
                         <div class="flex items-center justify-center w-full">
-                            <label class="flex flex-col w-full h-32 border-4 border-dashed dropzone"
+                            <label class="flex flex-col w-full h-32 border-4 border-dashed dropzones"
                                    style="cursor: pointer">
                                 <div class="flex flex-col items-center justify-center pt-7 center">
                                         <div class="form-input2">
