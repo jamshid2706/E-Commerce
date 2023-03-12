@@ -14,7 +14,8 @@ class SaleProduct extends Model
         'product_id',
         'count',
         'price',
-        'total'
+        'total',
+        'cost'
     ];
 
     public function product()
