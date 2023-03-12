@@ -28,7 +28,7 @@
 
                     <div class="mt-3">
                         <label for="title" class="form-label">Product Title</label>
-                        <input id="title" type="text" name="title" class="form-control"
+                        <input id="title" type="text" name="title"  class="form-control"
                                placeholder="Product Title"
                                value="{{ old('title', $product->title) }}" required>
                     </div>

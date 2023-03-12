@@ -6,29 +6,27 @@
                      src="https://enigma.left4code.com/dist/images/profile-8.jpg">
             </div>
             <div class="lg:ml-2 lg:mr-auto text-center lg:text-left mt-3 lg:mt-0">
-                <a href="" class="font-medium">{{ $client->name ?? '' }}</a>
-                <div class="text-slate-500 text-xs mt-0.5">{{ $client->phone_number ?? '' }} </div>
-                <div class="text-slate-500 text-xs mt-0.5">{{ $client->address ?? '' }} </div>
+                <a href="" class="font-medium">{{ $customer->name ?? '' }}</a>
             </div>
             <div class="flex mt-4 lg:mt-0 mr-1">
-                @include('admin.client.edit')
+                @include('admin.customer.edit')
             </div>
             <div class="flex mt-4 lg:mt-0 mr-1">
-                <a href="{{ route('admin.clients.show', $client->id) }}"
+                <a href="{{ route('admin.customers.show', $customer->id) }}"
                    class="btn btn-outline-secondary py-1 px-2"
                    control-id="ControlID-8"><i data-lucide="eye" class="px-1"></i> Preview</a>
             </div>
             <!-- BEGIN: Modal Toggle -->
             <div class="flex mt-4 lg:mt-0 mr-1">
                 <a href="javascript:;" data-tw-toggle="modal"
-                   data-tw-target="#delete-modal-preview-{{$client->id}}"
+                   data-tw-target="#delete-modal-preview-{{$customer->id}}"
                    class="btn btn-outline-danger py-1 px-2">
                     <i data-lucide="trash-2" class="px-1"></i>
                     Delete</a>
             </div>
             <!-- END: Modal Toggle -->
             <!-- BEGIN: Modal Content -->
-            <div id="delete-modal-preview-{{$client->id}}" class="modal" tabindex="-1"
+            <div id="delete-modal-preview-{{$customer->id}}" class="modal" tabindex="-1"
                  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -42,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="px-5 pb-8 text-center">
-                                <form action="{{ route('admin.clients.delete', $client->id) }}"
+                                <form action="{{ route('admin.customers.delete', $customer->id) }}"
                                       method="post">
                                     <button type="button" data-tw-dismiss="modal"
                                             class="btn btn-outline-secondary w-24 mr-1">Cancel

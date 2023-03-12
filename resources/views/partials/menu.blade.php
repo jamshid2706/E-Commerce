@@ -80,7 +80,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('admin.customers')}}" class="side-menu">
+                    <a href="{{route('admin.import.finance')}}" class="side-menu">
                         <div class="side-menu__icon"><i data-lucide="dollar-sign"></i></div>
                         <div class="side-menu__title">Finances</div>
                     </a>

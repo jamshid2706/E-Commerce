@@ -23,11 +23,11 @@ Route::get('/', function () {
 });
 
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace'=>'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace' => 'admin'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.home');
     Route::get('/dashboardContent', [DashboardController::class, 'dashboard'])->name('admin.home.content');
 
-    Route::group(['prefix'=>'import', 'namespace'=>'import'], function (){
+    Route::group(['prefix' => 'import', 'namespace' => 'import'], function () {
         Route::group(['prefix' => 'customers'], function () {
             Route::get('/search', [CustomerController::class, 'search'])->name('admin.customers.search');
             Route::get('/', [CustomerController::class, 'index'])->name('admin.customers');
@@ -41,6 +41,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace'=>'admin
             Route::get('/create', [App\Http\Controllers\admin\import\SaleController::class, 'create'])->name('admin.import.sales.create');
             Route::post('/store', [App\Http\Controllers\admin\import\SaleController::class, 'store'])->name('admin.import.sales.store');
             Route::get('/{id}', [App\Http\Controllers\admin\import\SaleController::class, 'show'])->name('admin.import.sales.show');
+        });
+        Route::group(['prefix' => 'finance'], function () {
+            Route::get('/', [App\Http\Controllers\admin\import\FinanceController::class, 'index'])->name('admin.import.finance');
+            Route::get('/create', [App\Http\Controllers\admin\import\FinanceController::class, 'create'])->name('admin.import.finance.create');
+            Route::post('/store', [App\Http\Controllers\admin\import\FinanceController::class, 'store'])->name('admin.import.finance.store');
+            Route::get('/{id}', [App\Http\Controllers\admin\import\FinanceController::class, 'show'])->name('admin.import.finance.show');
         });
     });
 

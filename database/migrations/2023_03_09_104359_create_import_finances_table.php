@@ -4,10 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-//pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -15,13 +12,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('import_finances', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('phone_number');
-            $table->string('address')->nullable();
+            $table->integer('money');
+            $table->unsignedBigInteger('customer_id');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('import_finances');
     }
 };
