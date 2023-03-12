@@ -120,7 +120,7 @@
                     $('#Content').html(data);
                 },
             });
-        }
+        };
 
         $('#search').on('keyup', update);
         $('#sort').on('change', update);

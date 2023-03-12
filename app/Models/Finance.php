@@ -14,4 +14,8 @@ class Finance extends Model
         'given',
         'debt'
     ];
+
+    public function client() {
+        return $this->belongsTo(Client::class, 'client_id', 'id');
+    }
 }

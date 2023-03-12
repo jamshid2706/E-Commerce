@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <h2 class="intro-y text-lg font-medium mt-10">Customers</h2>
-    @include('admin.customer.create')
+    @include('admin.import.customer.create')
     <div class="lg:flex intro-y">
         <div class="intro-y col-span-12 flex flex-wrap items-center mt-2">
             <div class="relative">
@@ -31,7 +31,7 @@
                                 <div class="text-slate-500 text-xs mt-0.5">{{ $customer->address ?? '' }} </div>
                             </div>
                             <div class="flex mt-4 lg:mt-0 mr-1">
-                                @include('admin.customer.edit')
+                                @include('admin.import.customer.edit')
                             </div>
                             <div class="flex mt-4 lg:mt-0 mr-1">
                                 <a href="{{ route('admin.customers.show', $customer->id) }}"
@@ -103,6 +103,7 @@
                 },
             });
         }
+
         $('#search').on('keyup', update);
     </script>
 @endsection

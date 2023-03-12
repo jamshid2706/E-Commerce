@@ -13,6 +13,7 @@
                 <th class="whitespace-nowrap">ID</th>
                 <th class="whitespace-nowrap">Client Name</th>
                 <th class="whitespace-nowrap">Product</th>
+                <th class="whitespace-nowrap">Debt</th>
                 <th class="text-center whitespace-nowrap">Date</th>
                 <th class="text-center whitespace-nowrap">ACTIONS</th>
             </tr>
@@ -42,6 +43,13 @@
                                 @endforeach
                             @endif
                         </p>
+                    </td>
+                    <td>
+                        <div style="border-radius: 5px; width: 80px;" class="bg-success flex items-center justify-center font-bold text-white px-3 py-1 {{($sale->debt) ? 'hidden' : null}}">
+                            <i class="px-1" data-lucide="check-circle"></i>
+                            Paid
+                        </div>
+                        <p class="text-danger font-semibold flex items-center">{{($sale->debt) ? $sale->debt : null}}</p>
                     </td>
                     <td class="w-40">
                         <p class="flex items-center justify-center">

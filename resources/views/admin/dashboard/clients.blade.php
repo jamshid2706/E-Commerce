@@ -63,9 +63,9 @@
 
                             <td class="!py-3.5">' . $sale->id . '</td>
                             <td class="!py-3.5"><input id="price-input" type="number"
-                                   class="disable-it form-control" placeholder="Price" value="'.$sale->finance->debt.'"></td>
+                                   class="disable-it form-control" placeholder="Price" value="'.$sale->debt.'"></td>
                             <td class="!py-3.5"><input id="price-input" type="number"
-                                   class="disable-it form-control" placeholder="Price" value="'.$sale->finance->given.'"></td>
+                                   class="disable-it form-control" placeholder="Price" value="'.$sale->amount - $sale->debt.'"></td>
                             <td class="!py-3.5">' . $sale->amount . '</td>
                             <td class="!py-0">' . $sale->created_at . '</td>
                             <td class="!py-0"><i data-lucide="alert-circle" class="tooltip w-4 h-4 ml-1.5"

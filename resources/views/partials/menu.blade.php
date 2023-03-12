@@ -80,7 +80,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('admin.import.finance')}}" class="side-menu">
+                    <a href="{{route('admin.import.finances')}}"
+                       class="side-menu side-menu{{ request()->is("admin/import/finances") || request()->is("admin/import/finances/*") ? "--active" : "" }}">
                         <div class="side-menu__icon"><i data-lucide="dollar-sign"></i></div>
                         <div class="side-menu__title">Finances</div>
                     </a>

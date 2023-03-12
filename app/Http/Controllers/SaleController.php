@@ -44,7 +44,8 @@ class SaleController extends Controller
         $data = request()->all();
         $sale = Sale::create([
             'client_id' => $data['client'],
-            'amount' => $data['total']
+            'amount' => $data['total'],
+            'debt' => $data['total'] - $data['paid'],
         ]);
 
         $debt = ($data['paid'] === '' || !is_numeric($data['paid']) ) ? $data['total'] : $data['total'] - $data['paid'];
@@ -60,7 +61,8 @@ class SaleController extends Controller
                 'product_id' => $product[$i],
                 'price' => (int)$price[$i],
                 'count' => (int)$count[$i],
-                'total' => (int)$amount[$i]
+                'total' => (int)$amount[$i],
+                'cost' => (int)$prod->buy
             ]);
             $prod->update([
                 'stock' => $prod->stock - $count[$i]

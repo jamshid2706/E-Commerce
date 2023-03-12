@@ -13,6 +13,7 @@ class Sale extends Model
     protected $fillable =[
         'client_id',
         'amount',
+        'debt',
     ];
 
     public function products() {
