@@ -52,8 +52,7 @@ class DashboardController extends Controller
         if(count($sales) !== 0){
             foreach ($sales as $sale){
                 foreach ($sale->products as $sold){
-                    $product = Product::withTrashed()->find($sold['product_id']);
-                    $cost += $sold['count'] * $product['buy'];
+                    $cost += $sold['count'] * $sold['cost'];
                     $productSold += $sold['count'];
                 }
                 if(!array_key_exists($sale['client_id'], $client)){
@@ -61,12 +60,12 @@ class DashboardController extends Controller
                     $client[$sale['client_id']]['name'] = $sale->client->name;
                     $client[$sale['client_id']]['address'] = $sale->client->address;
                     $client[$sale['client_id']]['overall_amount'] = $sale['amount'];
-                    $client[$sale['client_id']]['overall_debt'] = $sale->finance['debt'];
+                    $client[$sale['client_id']]['overall_debt'] = $sale['debt'];
                 } else{
                     $client[$sale['client_id']]['overall_amount'] += $sale['amount'];
-                    $client[$sale['client_id']]['overall_debt'] += $sale->finance['debt'];
+                    $client[$sale['client_id']]['overall_debt'] += $sale['debt'];
                 }
-                $debts += $sale->finance['debt'];
+                $debts += $sale['debt'];
             }
             $paid = $sales->pluck('amount')->sum() - $debts;
             $activeClients = count($client);
