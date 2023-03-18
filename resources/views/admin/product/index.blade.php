@@ -37,10 +37,10 @@
                         </div>
                         <div class="text-slate-600 dark:text-slate-500 mt-5">
                             <div class="flex items-center">
-                                Buy: {{ number_format($product->buy, 0, '.', ' ') ?? '' }}
+                                Buy: {{ $product->buy ?? '' }}
                             </div>
                             <div class="flex items-center mt-2">
-                                Sell: {{ number_format($product->sell, 0, '.', ' ') ?? '' }}
+                                Sell: {{ $product->sell ?? '' }}
                             </div>
                             <div class="flex items-center mt-2">
                                 Remaining Stock: {{ $product->stock ?? '' }}
