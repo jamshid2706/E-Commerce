@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('finances', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('sale_id');
-            $table->unsignedBigInteger('given');
-            $table->unsignedBigInteger('debt');
+            $table->double('given');
+            $table->double('debt');
             $table->timestamps();
         });
     }

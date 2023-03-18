@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('sale_id');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('count');
-            $table->unsignedBigInteger('price');
-            $table->unsignedBigInteger('total');
+            $table->double('count');
+            $table->double('price');
+            $table->double('total');
             $table->timestamps();
             $table->softDeletes();
 

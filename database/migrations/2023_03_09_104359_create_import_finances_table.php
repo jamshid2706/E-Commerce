@@ -14,8 +14,8 @@ return new class extends Migration {
     {
         Schema::create('import_finances', function (Blueprint $table) {
             $table->id();
-            $table->integer('money');
             $table->unsignedBigInteger('customer_id');
+            $table->double('money');
             $table->timestamps();
         });
     }

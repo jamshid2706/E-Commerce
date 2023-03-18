@@ -18,8 +18,8 @@ return new  class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('image');
-            $table->integer('buy');
-            $table->integer('sell');
+            $table->double('buy');
+            $table->double('sell');
             $table->integer('stock');
             $table->unsignedBigInteger('category_id');
             $table->timestamps();
