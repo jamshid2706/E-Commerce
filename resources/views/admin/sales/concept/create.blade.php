@@ -32,7 +32,7 @@
     <div class="tab-content intro-y box mx-5 px-2 pb-5">
         <div class="tab-pane active col-12 mb-10 pb-20" id="optom" role="tabpanel" aria-labelledby="optom-tab">
             <div class="col">
-                <form action="{{route('admin.sales.store')}}" method="post">
+                <form action="{{route('store.test')}}" method="post">
                     @csrf
                     <div class="intro-y mt-5">
                         <div class="px-5 overflow-y-scroll scrollbar-hidden" style="height: 300px">
@@ -105,7 +105,8 @@
             </div>
         </div>
         <div class="tab-pane mb-10" id="donaga" role="tabpanel" aria-labelledby="donaga-tab">
-            <form>
+            <form  action="{{route('admin.sales.store')}}" method="post">
+                @csrf
                 <div class="grid grid-cols-2" style="height: 60vh">
                     <div class="grid-cols-1">
                         <div class="px-5 overflow-y-scroll scrollbar-hidden"  style="height: 60vh">
@@ -177,6 +178,7 @@
                                 Total: <span id="donaga-total" class="text-center text-primary font-medium mt-2">0</span>
                             </p>
                     </div>
+                    <input type="hidden" name="client" value="4">
                     <div class="text-right p-5">
                         <a class="btn btn-secondary mt-5 w-24 mr-2" data-tw-dismiss="modal">Cancel</a>
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -267,7 +269,6 @@
                     amount.children('span').text(count.children('input').val() * $('#product-' + id.id + '-price').children('input').val())
                     amount.children('input').val(count.children('input').val() * $('#product-' + id.id + '-price').children('input').val())
             } else {
-                console.log('None')
                 table.append(`<tr class="tableroad" id="product-` + id.id + `"></tr>`)
                 let element = $('#product-' + id.id)
                 element.append(`<td id="product-` + id.id + `-title" class="border-b dark:border-darkmode-400"><div class="font-medium whitespace-nowrap">` + id.title + `</div><input type="hidden" name="product[]" value="` + id.id + `"></td>`)
@@ -282,13 +283,23 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="trash-2" data-lucide="trash-2" class="lucide lucide-trash-2 w-4 h-4 mr-1"> <polyline points="3 6 5 6 21 6"></polyline> <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path> <line x1="10" y1="11" x2="10" y2="17"></line> <line x1="14" y1="11" x2="14" y2="17"></line> </svg>
                 Delete</a></td>`)
             }
-
-            let amounts = $('.amounts')
-            let total = 0
-            for (let i = 0; i<amounts.length; i++) {
-                total += amounts[i].val()
-            }
-            console.log(total)
+            donagaTotal()
         }
+
+        function donagaTotal() {
+            let amounts = $('.amounts')
+            let total = 0;
+            let elements = $('#body-donaga').children();
+            console.log(elements.length)
+            for(let i = 0; i<elements.length; i++){
+                total += parseFloat(elements.find('#' + elements[i].id + '-amount').children('span').text())
+                console.log(total)
+            }
+
+            $('#donaga-total').text(total.toLocaleString('fr-FR'))
+            $('#donaga-paid').val(total)
+            $('#donaga-total').append('<input type="hidden" name="total" value="' + total + '">')
+        }
+
     </script>
 @endsection

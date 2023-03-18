@@ -88,4 +88,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace'=>'admin
     });
 });
 
+Route::post('/test/store', [\App\Http\Controllers\TestController::class, 'store'])->name('store.test');
+
+Route::get('/test', function () {
+
+    $clients = Client::all();
+    $products = Product::all();
+
+    return view('admin.sales.concept.create', compact('clients', 'products'));
+});
+
 Auth::routes();
