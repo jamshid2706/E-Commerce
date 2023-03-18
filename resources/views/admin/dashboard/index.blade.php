@@ -107,8 +107,8 @@
                 url: '{{URL::to('/admin/dashboardContent')}}',
                 data: value,
                 success: function (data) {
-                    $('#salesTotal').attr('title', `Total value of your sales: UZS `+ data['salesTotal']);
-                    $('#totalSales').text(`UZS `+ data['salesTotal']).attr('title', data['salesTotal']);
+                    $('#salesTotal').attr('title', `Total value of your sales: `+ data['salesTotal']);
+                    $('#totalSales').text(data['salesTotal']).attr('title', data['salesTotal']);
                     $('#faq-accordion-2').html(data['clients']);
                     $('#dashboardPart').html(data['dashboardPart']);
                     $('#calendarDash').val(data['calendar']);

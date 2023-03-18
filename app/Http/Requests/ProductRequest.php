@@ -36,12 +36,8 @@ class ProductRequest extends FormRequest
             'description' => [
                 'string',
             ],
-            'buy' => [
-                'integer',
-            ],
-            'sell' => [
-                'integer',
-            ],
+            'buy' => 'required',
+            'sell' => 'required',
             'stock' => [
                 'integer',
             ],

@@ -37,10 +37,10 @@
                         </div>
                         <div class="text-slate-600 dark:text-slate-500 mt-5">
                             <div class="flex items-center">
-                                Buy: {{ $product->buy ?? '' }} UZS
+                                Buy: {{ number_format($product->buy, 0, '.', ' ') ?? '' }}
                             </div>
                             <div class="flex items-center mt-2">
-                                Sell: {{ $product->sell ?? '' }} UZS
+                                Sell: {{ number_format($product->sell, 0, '.', ' ') ?? '' }}
                             </div>
                             <div class="flex items-center mt-2">
                                 Remaining Stock: {{ $product->stock ?? '' }}
@@ -97,8 +97,10 @@
                 </div>
             </div>
         @endforeach
-        <div class="mt-10 col-span-12">
-            {{$products->withQueryString()->links()}}
+        <div class="grid grid-cols-2">
+            <div class="mt-10 grid-cols-1 text-center">
+                {{$products->withQueryString()->links()}}
+            </div>
         </div>
     </div>
 

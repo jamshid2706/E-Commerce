@@ -199,7 +199,7 @@
             for (let i = 0; i < amounts.length; i++) {
                 total = total + parseInt(amounts[i].value)
             }
-            $('#total').text(total.toLocaleString('fr-FR') + ' UZS')
+            $('#total').text(total.toLocaleString('fr-FR'))
             $('#paid').val(total)
             $('#total').append('<input type="hidden" name="total" value="' + total + '">')
         }

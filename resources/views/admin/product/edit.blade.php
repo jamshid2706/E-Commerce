@@ -34,13 +34,13 @@
                     </div>
                     <div class="mt-3">
                         <label for="vertical-form-2" class="form-label">Buy</label>
-                        <input id="vertical-form-2" type="number" name="buy" class="form-control"
+                        <input id="vertical-form-2" type="number" step="any" name="buy" class="form-control"
                                value="{{ old('buy', $product->buy) }}" placeholder="Buy"
                                required>
                     </div>
                     <div class="mt-3">
                         <label for="vertical-form-3" class="form-label">Sell</label>
-                        <input id="vertical-form-3" name="sell" type="number" class="form-control"
+                        <input id="vertical-form-3" name="sell" type="number" step="any" class="form-control"
                                placeholder="Sell" value="{{ old('sell', $product->sell) }}" required>
                     </div>
                     <div class="mt-3">

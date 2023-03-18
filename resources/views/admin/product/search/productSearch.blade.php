@@ -13,9 +13,9 @@
             </div>
             <div class="text-slate-600 dark:text-slate-500 mt-5">
                 <div class="flex items-center">
-                    Buy: {{ $product->buy ?? '' }} UZS
+                    Buy: {{ $product->buy ?? '' }}
                     <br>
-                    Sell: {{ $product->sell ?? '' }} UZS
+                    Sell: {{ $product->sell ?? '' }}
                 </div>
                 <div class="flex items-center mt-2">
                     <i data-lucide="layers"></i>

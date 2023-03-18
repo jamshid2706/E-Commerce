@@ -30,7 +30,7 @@ class ProductController extends Controller
         $data = $request->all();
         $data['image'] = Storage::put('/images', $request['image']);
         Product::create($data);
-        dd($data);
+        //dd($data);
         return redirect()->route('admin.products');
     }
 

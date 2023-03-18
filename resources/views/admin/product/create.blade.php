@@ -58,12 +58,12 @@
                         </div>
                         <div class="mt-3">
                             <label for="vertical-form-2" class="form-label">Buy</label>
-                            <input id="vertical-form-2" type="number" step="0.01" name="buy" class="form-control floatNumberField" placeholder="Buy"
+                            <input id="vertical-form-2" type="number" step="any" name="buy" class="form-control floatNumberField" placeholder="Buy"
                                    required>
                         </div>
                         <div class="mt-3">
                             <label for="vertical-form-3" class="form-label">Sell</label>
-                            <input id="vertical-form-3" name="sell" type="number" class="form-control"
+                            <input id="vertical-form-3" name="sell" type="number" step="any" class="form-control"
                                    placeholder="Sell" required>
                         </div>
                         <div class="mt-3">
