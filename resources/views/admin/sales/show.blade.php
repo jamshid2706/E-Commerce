@@ -24,13 +24,13 @@
                             <div class="font-medium whitespace-nowrap">{{ $product->product[0]->title }}</div>
                         </td>
                         <td class="border-b text-center dark:border-darkmode-400">
-                            {{ $product->count }}
+                            {{ number_format($product->count, 0, '.', ' ') }}
                         </td>
                         <td class="border-b text-center dark:border-darkmode-400">
-                            {{ $product->price }}
+                            {{ number_format($product->price, 0, '.', ' ') }}
                         </td>
                         <td class="text-center border-b dark:border-darkmode-400 w-32 font-medium">
-                            {{ $product->total }}
+                            {{ number_format($product->total, 0, '.', ' ') }}
                         </td>
                     </tr>
                 @endforeach
@@ -45,7 +45,7 @@
             </div>
             <div class="lg:text-right  lg:mt-0 lg:ml-auto">
                 <div class="text-base text-slate-500">Sale Amount</div>
-                <div class="text-lg font-medium text-primary mt-2">{{ $sale->amount }}</div>
+                <div class="text-lg font-medium text-primary mt-2">{{ number_format($sale->amount, 0, '.', ' ') }}</div>
             </div>
         </div>
     </div>

@@ -35,7 +35,7 @@
             <div class="px-5 sm:px-20 flex flex-col-reverse sm:flex-row">
                 <div class="text-center sm:text-right sm:ml-auto">
                     <label class="text-primary sm:text-right font-medium mt-2">Paid: </label>
-                    <input id="paid" name="paid" class="text-center border-b-2 col-sm-1" value="0">
+                    <input id="paid" name="paid" step="any" class="text-center border-b-2 col-sm-1" value="0">
                     <p class="text-primary d-inline-block font-medium mt-2">
                         Total: <span id="total" class="text-center text-primary font-medium mt-2">0</span>
                     </p>
@@ -54,7 +54,7 @@
                          style="padding: 0"></div>
                 </div>
                 <div class="col-span-2 sm:col-span-3 relative">
-                    <input id="product_price" onkeyup="count()" type="number" class="disable-it form-control"
+                    <input id="product_price" onkeyup="count()" type="number" step="any" class="disable-it form-control"
                            placeholder="Price">
                 </div>
                 <div class="col-span-2 sm:col-span-3 relative">
@@ -100,7 +100,7 @@
             }
             $('#total').text(total.toLocaleString('fr-FR'))
             $('#paid').val(total)
-            $('#total').append('<input type="hidden" name="total" value="' + total + '">')
+            $('#total').append('<input type="hidden" step="any" name="total" value="' + total + '">')
         }
 
         function del(id) {

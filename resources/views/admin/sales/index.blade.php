@@ -49,7 +49,7 @@
                             <i class="px-1" data-lucide="check-circle"></i>
                             Paid
                         </div>
-                        <p class="text-danger font-semibold flex items-center">{{($sale->debt) ? $sale->debt : null}}</p>
+                        <p class="text-danger font-semibold flex items-center">{{$sale->debt ? number_format($sale->debt, 0, '.', ' ') : null}}</p>
                     </td>
                     <td class="w-40">
                         <p class="flex items-center justify-center">

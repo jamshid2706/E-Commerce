@@ -22,7 +22,7 @@
             <div class="px-5 sm:px-16 overflow-y-scroll scrollbar-hidden" style="height: 300px">
 
                 <table class="table max-h-full">
-                    <thead class="relative ">
+                    <thead class="relative">
                     <tr>
                         <th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">Product</th>
                         <th class="border-b-2 dark:border-darkmode-400 text-center whitespace-nowrap">Count</th>
@@ -72,11 +72,11 @@
                          style="padding: 0"></div>
                 </div>
                 <div class="col-span-2 sm:col-span-3 relative">
-                    <input id="product_price" onkeyup="count()" type="number" class="disable-it form-control"
+                    <input id="product_price" onkeyup="count()" type="number" step="any" class="disable-it form-control"
                            placeholder="Price">
                 </div>
                 <div class="col-span-2 sm:col-span-3 relative">
-                    <input id="product_count" onkeyup="count()" type="number" class="disable-it form-control"
+                    <input id="product_count" onkeyup="count()" type="number" step="any" class="disable-it form-control"
                            placeholder="Count">
                 </div>
                 <div class="col-span-2 sm:col-span-3 relative">
@@ -106,7 +106,7 @@
             for (let i = 0; i < amounts.length; i++) {
                 total = total + parseInt(amounts[i].value)
             }
-            $('#total').text(total)
+            $('#total').text(total.toLocaleString("fr-FR"))
             $('#total').append('<input type="hidden" name="total" value="' + total + '">')
         }
 
