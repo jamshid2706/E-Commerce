@@ -214,6 +214,7 @@
         function delSingle(id) {
             let body = $('#body-donaga')
             body.children('#product-' + id).remove()
+            donagaTotal()
         }
 
         var cltr = [0];
